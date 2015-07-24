@@ -1,6 +1,5 @@
 ;; el-get setup
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-(setq el-get-user-package-directory "~/.emacs.d/init-files")
 (require 'el-get nil 'noerror)
 (el-get-bundle dash)
 (require 'dash)

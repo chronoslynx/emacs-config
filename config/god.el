@@ -13,7 +13,7 @@
       (god-local-mode-pause)
     (god-local-mode-resume)))
 
-
+
 ;; Keybindings
 
 (global-set-key (kbd "C-x C-1") 'delete-other-windows)
@@ -32,7 +32,13 @@
 (setq god-exempt-major-modes nil)
 (setq god-exempt-predicates nil)
 
-
+;; Projectile keys
+(global-set-key (kbd "C-c C-p C-c") 'projectile-compile-project)
+(global-set-key (kbd "C-c C-p C-f") 'projectile-find-file)
+(global-set-key (kbd "C-c C-p C-p") 'projectile-switch-project)
+(global-set-key (kbd "C-c C-p C-R") 'projectile-regenerate-tags)
+
+
 ;; Hooks
 
 (add-hook 'god-mode-enabled-hook 'god-update-cursor)
