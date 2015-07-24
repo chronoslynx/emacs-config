@@ -1,0 +1,26 @@
+[submodule "packages/better-defaults"]
+	url = https://github.com/technomancy/better-defaults
+[submodule "packages/magit"]
+	url = git://github.com/magit/magit.git
+[submodule "packages/helm"]
+	url = https://github.com/emacs-helm/helm.git
+[submodule "packages/emacs-async"]
+	url = https://github.com/jwiegley/emacs-async.git
+[submodule "packages/god-mode"]
+	url = https://github.com/chrisdone/god-mode.git
+[submodule "packages/projectile"]
+	url = https://github.com/bbatsov/projectile
+[submodule "packages/dash"]
+	url = https://github.com/magnars/dash.el.git
+[submodule "packages/flx"]
+	url = https://github.com/lewang/flx.git
+[submodule "packages/markdown-mode"]
+	url = git://jblevins.org/git/markdown-mode.git
+[submodule "packages/rainbow-delimiters"]
+	url = https://github.com/Fanael/rainbow-delimiters.git
+[submodule "packages/company-mode"]
+	url = https://github.com/company-mode/company-mode.git
+[submodule "packages/company-jedi"]
+	url = https://github.com/syohex/emacs-company-jedi.git
+[submodule "packages/flycheck"]
+	url = https://github.com/flycheck/flycheck.git
