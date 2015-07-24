@@ -1,11 +1,14 @@
 ;; (Shamelessly based on chrisdone's emacs config)
 ;; Standard libraries needed
+(require 'package)
+(package-initialize)
 (add-to-list 'load-path "~/.emacs.d/packages/dash")
 (require 'dash)
 
-;; Packages to laod
+;; Packages to load
 (defvar packages
-  '(auto-complete
+  '(popup
+    auto-complete
     better-defaults
     company
     company-jedi
@@ -40,7 +43,8 @@
     "emacs-deferred"
     "epc"
     "flx"
-;    "jedi"
+    "python-environment"
+    "jedi"
     "god-mode"
     "helm"
     "helm-projectile"

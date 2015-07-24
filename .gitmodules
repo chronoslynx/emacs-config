@@ -52,3 +52,9 @@
 [submodule "packages/ctable"]
 	path = packages/ctable
 	url = https://github.com/kiwanami/emacs-ctable.git
+[submodule "packages/popup"]
+	path = packages/popup
+	url = https://github.com/auto-complete/popup-el.git
+[submodule "packages/python-environment"]
+	path = packages/python-environment
+	url = https://github.com/tkf/emacs-python-environment.git
