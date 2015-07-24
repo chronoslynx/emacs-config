@@ -37,3 +37,18 @@
 [submodule "packages/flycheck"]
 	path = packages/flycheck
 	url = https://github.com/flycheck/flycheck.git
+[submodule "packages/jedi"]
+	path = packages/jedi
+	url = https://github.com/tkf/emacs-jedi.git
+[submodule "packages/epc"]
+	path = packages/epc
+	url = https://github.com/kiwanami/emacs-epc.git
+[submodule "packages/auto-complete"]
+	path = packages/auto-complete
+	url = https://github.com/auto-complete/auto-complete
+[submodule "packages/emacs-deferred"]
+	path = packages/emacs-deferred
+	url = https://github.com/kiwanami/emacs-deferred.git
+[submodule "packages/ctable"]
+	path = packages/ctable
+	url = https://github.com/kiwanami/emacs-ctable.git

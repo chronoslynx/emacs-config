@@ -5,7 +5,8 @@
 
 ;; Packages to laod
 (defvar packages
-  '(better-defaults
+  '(auto-complete
+    better-defaults
     company
     company-jedi
     flycheck
@@ -34,9 +35,12 @@
 
 (defvar custom-load-paths
   '("company-mode"
+    "ctable"
     "emacs-async"
+    "emacs-deferred"
+    "epc"
     "flx"
-    "jedi"
+;    "jedi"
     "god-mode"
     "helm"
     "helm-projectile"
