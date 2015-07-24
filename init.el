@@ -1,34 +1,44 @@
-;; (Shamelessly based on chrisdone's emacs config)
-;; Standard libraries needed
-(require 'package)
-(package-initialize)
-(add-to-list 'load-path "~/.emacs.d/packages/dash")
+;; el-get setup
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(setq el-get-user-package-directory "~/.emacs.d/init-files")
+(require 'el-get nil 'noerror)
+(el-get-bundle dash)
 (require 'dash)
 
 ;; Packages to load
-(defvar packages
-  '(popup
-    auto-complete
-    better-defaults
-    company
+(defvar my:elpackages
+  '(company-mode
+    company-auctex
+    company-irony
     company-jedi
+    flx
     flycheck
-    flycheck-pylama
+    flycheck-puppet
+    go-mode
+    god-mode
+    helm
+    helm-swoop
+    magit
     markdown-mode
+    rainbow-delimiters
     projectile
-    rainbow-delimeters
-    ;rust-mode
+    puppet-mode
+    rust-mode
     sml-mode
     )
-  "Packages whose location follows the
-  packages/package-name/package-name.el format.")
+  "Packages to install via el-get")
+
+(defvar packages
+  '(better-defaults
+    flycheck-pylama)
+  "Packages to install locally from packages/name/name.el")
 
 (defvar configs
   '("global"
     "god"
     "golang"
     "haskell"
-    "prelude-helm-everywhere"
+    "my-helm"
     "markdown"
     "my-magit"
     "rust"
@@ -36,47 +46,23 @@
   "Configuration files that follow the config/foo.el path
   format.")
 
-(defvar custom-load-paths
-  '("company-mode"
-    "ctable"
-    "emacs-async"
-    "emacs-deferred"
-    "epc"
-    "flx"
-    "python-environment"
-    "jedi"
-    "god-mode"
-    "helm"
-    "helm-projectile"
-    "magit/lisp"))
+;; Load packages using el-get
+(el-get 'sync my:elpackages)
 
-;; Add custom load paths
-(let (s)
-  (-each custom-load-paths
-    (lambda (location)
-        (add-to-list 'load-path
-	       (concat (file-name-directory (or load-file-name
-						(buffer-file-name)))
-		       "packages/"
-		       location)))))
-;; Load packages
 (let (s)
   (-each packages
     (lambda (name)
-           (progn (unless (fboundp name)
-                    (add-to-list 'load-path
-                                 (concat (file-name-directory (or load-file-name
-                                                                  (buffer-file-name)))
-                                         "packages/"
-                                         (symbol-name name)))
-                    (require name))))))
+       (progn (unless (fboundp name)
+		(add-to-list 'load-path
+			     (concat "~/.emacs.d/packages/"
+				     (symbol-name name)))
+		(require name))))))
 
 ;; Load configurations
 (let (s)
   (-each configs
     (lambda (name)
-      (load (concat (file-name-directory load-file-name)
-                    "config/"
+      (load (concat "~/.emacs.d/config/"
                     name ".el")))))
 
 ;; Mode initializations

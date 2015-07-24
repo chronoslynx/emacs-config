@@ -1,60 +1,6 @@
 [submodule "packages/better-defaults"]
 	path = packages/better-defaults
-	url = https://github.com/technomancy/better-defaults
-[submodule "packages/magit"]
-	path = packages/magit
-	url = git://github.com/magit/magit.git
-[submodule "packages/helm"]
-	path = packages/helm
-	url = https://github.com/emacs-helm/helm.git
-[submodule "packages/emacs-async"]
-	path = packages/emacs-async
-	url = https://github.com/jwiegley/emacs-async.git
-[submodule "packages/god-mode"]
-	path = packages/god-mode
-	url = https://github.com/chrisdone/god-mode.git
-[submodule "packages/projectile"]
-	path = packages/projectile
-	url = https://github.com/bbatsov/projectile
-[submodule "packages/dash"]
-	path = packages/dash
-	url = https://github.com/magnars/dash.el.git
-[submodule "packages/flx"]
-	path = packages/flx
-	url = https://github.com/lewang/flx.git
-[submodule "packages/markdown-mode"]
-	path = packages/markdown-mode
-	url = git://jblevins.org/git/markdown-mode.git
+	url = https://github.com/technomancy/better-defaults.git
 [submodule "packages/rainbow-delimiters"]
 	path = packages/rainbow-delimiters
 	url = https://github.com/Fanael/rainbow-delimiters.git
-[submodule "packages/company-mode"]
-	path = packages/company-mode
-	url = https://github.com/company-mode/company-mode.git
-[submodule "packages/company-jedi"]
-	path = packages/company-jedi
-	url = https://github.com/syohex/emacs-company-jedi.git
-[submodule "packages/flycheck"]
-	path = packages/flycheck
-	url = https://github.com/flycheck/flycheck.git
-[submodule "packages/jedi"]
-	path = packages/jedi
-	url = https://github.com/tkf/emacs-jedi.git
-[submodule "packages/epc"]
-	path = packages/epc
-	url = https://github.com/kiwanami/emacs-epc.git
-[submodule "packages/auto-complete"]
-	path = packages/auto-complete
-	url = https://github.com/auto-complete/auto-complete
-[submodule "packages/emacs-deferred"]
-	path = packages/emacs-deferred
-	url = https://github.com/kiwanami/emacs-deferred.git
-[submodule "packages/ctable"]
-	path = packages/ctable
-	url = https://github.com/kiwanami/emacs-ctable.git
-[submodule "packages/popup"]
-	path = packages/popup
-	url = https://github.com/auto-complete/popup-el.git
-[submodule "packages/python-environment"]
-	path = packages/python-environment
-	url = https://github.com/tkf/emacs-python-environment.git

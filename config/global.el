@@ -2,7 +2,7 @@
 (require 'uniquify)
 (require 'projectile)
 (require 'flycheck)
-(require 'rainbow-delimeters)
+(require 'rainbow-delimiters)
 
 ;; Fundamental functions
 
@@ -121,8 +121,10 @@
   (set-frame-parameter frame 'font "Input-14"))
 (fontify-frame nil)
 (push 'fontify-frame after-make-frame-functions)
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'gruvbox t)
-(global-smartscan-mode 1)
+;;(global-smartscan-mode 1)
 
 ;; Company
 (setq company-tooltip-flip-when-above t)
