@@ -10,9 +10,6 @@
     company-jedi
     flycheck
     flycheck-pylama
-    god-mode
-    helm
-    helm-projectile
     markdown-mode
     projectile
     rainbow-delimeters
@@ -40,7 +37,9 @@
     "emacs-async"
     "flx"
     "jedi"
+    "god-mode"
     "helm"
+    "helm-projectile"
     "magit/lisp"))
 
 ;; Add custom load paths
