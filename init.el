@@ -12,9 +12,8 @@
     company-jedi
     flx
     flycheck
-    flycheck-puppet
     go-mode
-    god-mode
+;;    god-mode
     helm
     helm-swoop
     magit
@@ -34,7 +33,7 @@
 
 (defvar configs
   '("global"
-    "god"
+;;    "god"
     "golang"
     "haskell"
     "my-helm"
@@ -68,4 +67,19 @@
 (require 'helm-config)
 (projectile-global-mode)
 (add-hook 'after-init-hook #'global-flycheck-mode)
-(god-mode)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["color-237" "#d75f5f" "#afaf00" "#ffaf00" "#87afaf" "#d787af" "#87af87" "color-223"])
+ '(custom-safe-themes
+   (quote
+    ("e20210182a77631882d6b0e6f6cb9c273e00623200acfd436361cdc8430a7e22" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

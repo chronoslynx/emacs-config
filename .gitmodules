@@ -4,3 +4,6 @@
 [submodule "packages/rainbow-delimiters"]
 	path = packages/rainbow-delimiters
 	url = https://github.com/Fanael/rainbow-delimiters.git
+[submodule "el-get/el-get"]
+    path = el-get/el-get
+    url =  https://github.com/dimitri/el-get.git
