@@ -1,3 +1,4 @@
+(setq org-directory (expand-file-name "~/Dropbox/org"))
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (global-set-key "\C-cl" 'org-store-link)

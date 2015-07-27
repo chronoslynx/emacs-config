@@ -19,6 +19,7 @@
 ;;    god-mode
     helm
     helm-swoop
+    hydra
     magit
     markdown-mode
     org-mode
@@ -31,18 +32,19 @@
     )
   "Packages to install via el-get")
 
-(defvar packages
+(defvar my:packages
   '(better-defaults
     flycheck-pylama)
   "Packages to install locally from packages/name/name.el")
 
-(defvar configs
+(defvar my:configs
   '("global"
     "my-aggressive-indent"
     "my-deft"
     "golang"
     "haskell"
     "my-helm"
+    "my-hydras"
     "markdown"
     "my-magit"
     "my-org"
@@ -55,7 +57,7 @@
 (el-get 'sync my:elpackages)
 
 (let (s)
-  (-each packages
+  (-each my:packages
     (lambda (name)
        (progn (unless (fboundp name)
 		(add-to-list 'load-path
@@ -65,7 +67,7 @@
 
 ;; Load configurations
 (let (s)
-  (-each configs
+  (-each my:configs
     (lambda (name)
       (load (concat "~/.emacs.d/config/"
                     name ".el")))))

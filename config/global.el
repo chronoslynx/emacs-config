@@ -6,6 +6,19 @@
 (require 'smartparens-config)
 ;; Fundamental functions
 
+(defun occur-dwim ()
+  "Call `occur' with a sane default."
+  (interactive)
+  (push (if (region-active-p)
+            (buffer-substring-no-properties
+             (region-beginning)
+             (region-end))
+          (let ((sym (thing-at-point 'symbol)))
+            (when (stringp sym)
+              (regexp-quote sym))))
+        regexp-history)
+  (call-interactively 'occur))
+
 (defun delete-blank-lines-in (start end)
   "Delete blank lines at point or in the region."
   (interactive "r")
@@ -100,6 +113,7 @@
 (global-set-key (kbd "C-<") 'beginning-of-buffer)
 (global-set-key (kbd "C-!") 'eval-defun)
 (global-set-key (kbd "M-;") 'comment-dwim-2)
+
 ;; Hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'after-init-hook #'global-flycheck-mode)
