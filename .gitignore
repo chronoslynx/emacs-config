@@ -4,3 +4,6 @@ auto-save-list
 helm-adaptive-history
 projectile-bookmarks.eld
 el-get/*
+projectile.cache
+recentf
+#*#

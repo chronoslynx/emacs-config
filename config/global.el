@@ -3,7 +3,7 @@
 (require 'projectile)
 (require 'flycheck)
 (require 'rainbow-delimiters)
-
+(require 'smartparens-config)
 ;; Fundamental functions
 
 (defun delete-blank-lines-in (start end)
@@ -99,7 +99,7 @@
 (global-set-key (kbd "C->") 'end-of-buffer)
 (global-set-key (kbd "C-<") 'beginning-of-buffer)
 (global-set-key (kbd "C-!") 'eval-defun)
-
+(global-set-key (kbd "M-;") 'comment-dwim-2)
 ;; Hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'after-init-hook #'global-flycheck-mode)

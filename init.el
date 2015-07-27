@@ -6,10 +6,13 @@
 
 ;; Packages to load
 (defvar my:elpackages
-  '(company-mode
+  '(aggressive-indent-mode
+    comment-dwim-2
+    company-mode
     company-auctex
     company-irony
     company-jedi
+    deft
     flx
     flycheck
     go-mode
@@ -18,7 +21,9 @@
     helm-swoop
     magit
     markdown-mode
+    org-mode
     rainbow-delimiters
+    smartparens
     projectile
     puppet-mode
     rust-mode
@@ -33,12 +38,14 @@
 
 (defvar configs
   '("global"
-;;    "god"
+    "my-aggressive-indent"
+    "my-deft"
     "golang"
     "haskell"
     "my-helm"
     "markdown"
     "my-magit"
+    "my-org"
     "rust"
     "python")
   "Configuration files that follow the config/foo.el path
