@@ -5,4 +5,5 @@
   (add-to-list 'Info-directory-list
 	       "~/.emacs.d/packages/magit/Documentation/"))
 
+(global-set-key [f10] 'magit-status)
 (provide 'my-magit)
