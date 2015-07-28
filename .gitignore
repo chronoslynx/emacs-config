@@ -6,4 +6,5 @@ projectile-bookmarks.eld
 el-get/*
 projectile.cache
 recentf
-#*#
+\#*
+*.dat

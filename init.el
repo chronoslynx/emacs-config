@@ -19,6 +19,7 @@
     helm
     helm-swoop
     hydra
+    jedi
     magit
     markdown-mode
     org-mode
