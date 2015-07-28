@@ -6,8 +6,7 @@
 
 ;; Packages to load
 (defvar my:elpackages
-  '(ag
-    aggressive-indent-mode
+  '(aggressive-indent-mode
     comment-dwim-2
     company-mode
     company-auctex
@@ -35,7 +34,6 @@
 (defvar my:packages
   '(better-defaults
     flycheck-pylama
-    ibuffer-projectile
     swiper
     swiper-helm
     )
