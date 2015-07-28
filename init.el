@@ -44,6 +44,7 @@
   '("global"
     "my-aggressive-indent"
     "my-deft"
+    "my-eshell"
     "golang"
     "haskell"
     "my-helm"
