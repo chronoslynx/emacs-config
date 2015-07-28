@@ -1,4 +1,5 @@
 (require 'helm-config)
+(require 'swiper-helm)
 (helm-mode 1)
 (helm-adaptive-mode 1)
 (helm-autoresize-mode 1)
@@ -23,6 +24,10 @@
 (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 (substitute-key-definition 'find-tag 'helm-etags-select global-map)
 (setq projectile-completion-system 'helm)
+
+(global-set-key "\C-s" 'swiper-helm)
+(global-set-key "\C-r" 'swiper-helm)
+(global-set-key (kbd "C-c C-r") 'helm-resume)
 
 (helm-projectile-on)
 (provide 'my-helm)

@@ -6,7 +6,8 @@
 
 ;; Packages to load
 (defvar my:elpackages
-  '(aggressive-indent-mode
+  '(ag
+    aggressive-indent-mode
     comment-dwim-2
     company-mode
     company-auctex
@@ -16,7 +17,6 @@
     flx
     flycheck
     go-mode
-;;    god-mode
     helm
     helm-swoop
     hydra
@@ -34,7 +34,11 @@
 
 (defvar my:packages
   '(better-defaults
-    flycheck-pylama)
+    flycheck-pylama
+    ibuffer-projectile
+    swiper
+    swiper-helm
+    )
   "Packages to install locally from packages/name/name.el")
 
 (defvar my:configs

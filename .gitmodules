@@ -7,3 +7,12 @@
 [submodule "el-get/el-get"]
     path = el-get/el-get
     url =  https://github.com/dimitri/el-get.git
+[submodule "packages/ibuffer-projectile"]
+	path = packages/ibuffer-projectile
+	url = https://github.com/purcell/ibuffer-projectile.git
+[submodule "packages/swiper-helm"]
+	path = packages/swiper-helm
+	url = https://github.com/abo-abo/swiper-helm.git
+[submodule "packages/swiper"]
+	path = packages/swiper
+	url = https://github.com/abo-abo/swiper.git
