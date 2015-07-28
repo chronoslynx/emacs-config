@@ -1,8 +1,6 @@
 ;; el-get setup
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (require 'el-get nil 'noerror)
-(el-get-bundle dash)
-(require 'dash)
 
 ;; Packages to load
 (defvar my:elpackages
@@ -12,6 +10,7 @@
     company-auctex
     company-irony
     company-jedi
+    dash
     deft
     flx
     flycheck
@@ -60,21 +59,16 @@
 ;; Load packages using el-get
 (el-get 'sync my:elpackages)
 
-(let (s)
-  (-each my:packages
-    (lambda (name)
-       (progn (unless (fboundp name)
+(mapc (lambda (name)
+        (progn (unless (fboundp name)
 		(add-to-list 'load-path
 			     (concat "~/.emacs.d/packages/"
 				     (symbol-name name)))
-		(require name))))))
+		(require name))))
+      my:packages)
 
 ;; Load configurations
-(let (s)
-  (-each my:configs
-    (lambda (name)
-      (load (concat "~/.emacs.d/config/"
-                    name ".el")))))
+(mapc (lambda (name) (load (concat "~/.emacs.d/config/" name ".el"))) my:configs)
 
 ;; Mode initializations
 (require 'helm-config)

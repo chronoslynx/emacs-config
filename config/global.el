@@ -1,5 +1,6 @@
 ;; Requirements
 (require 'uniquify)
+(require 'comment-dwim-2)
 (require 'projectile)
 (require 'flycheck)
 (require 'rainbow-delimiters)
