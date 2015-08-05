@@ -16,6 +16,7 @@
     flycheck
     go-mode
     helm
+    helm-ag
     helm-swoop
     hydra
     jedi
