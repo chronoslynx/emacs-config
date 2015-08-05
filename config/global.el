@@ -4,6 +4,7 @@
 (require 'projectile)
 (require 'flycheck)
 (require 'rainbow-delimiters)
+(smartparens-global-mode t)
 (require 'smartparens-config)
 ;; Fundamental functions
 
