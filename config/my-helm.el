@@ -29,5 +29,8 @@
 (global-set-key "\C-r" 'swiper-helm)
 (global-set-key (kbd "C-c C-r") 'helm-resume)
 
+(custom-set-variables
+ '(helm-ag-base-command "pt -e --nocolor --nogroup"))
+
 (helm-projectile-on)
 (provide 'my-helm)
