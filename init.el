@@ -25,6 +25,7 @@
     org-mode
     rainbow-delimiters
     smartparens
+    sphinx-doc
     projectile
     puppet-mode
     rust-mode
