@@ -1,8 +1,8 @@
 (require 'jedi)
-
+(require 'sphinx-doc)
+(eval-after-load 'company '(push 'company-jedi company-backends))
+(defun my/python-hook ()
+  (sphinx-doc-mode t))
+(add-hook 'python-mode-hook 'my/python-hook)
 (add-hook 'python-mode-hook 'jedi:setup)
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
-
-(add-hook 'python-mode-hook 'my/python-mode-hook)
 (provide 'python)
