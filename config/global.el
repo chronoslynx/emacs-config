@@ -6,6 +6,7 @@
 (require 'rainbow-delimiters)
 (smartparens-global-mode t)
 (require 'smartparens-config)
+(require 'yaml-mode)
 ;; Fundamental functions
 
 (defun occur-dwim ()
@@ -128,6 +129,7 @@
 (add-to-list 'auto-mode-alist (cons "\\.md\\'" 'markdown-mode))
 (add-to-list 'auto-mode-alist (cons "\\.markdown\\'" 'markdown-mode))
 
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 ;; Environment settings
 
 (set-language-environment "UTF-8")

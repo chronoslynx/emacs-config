@@ -17,6 +17,7 @@
     go-mode
     helm
     helm-ag
+    helm-gtags
     helm-swoop
     hydra
     jedi
@@ -30,6 +31,7 @@
     puppet-mode
     rust-mode
     sml-mode
+    yaml-mode
     )
   "Packages to install via el-get")
 
