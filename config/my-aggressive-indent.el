@@ -1,16 +1,18 @@
-(defvar my:aggressive-modes
+(require 'aggressive-indent)
+(global-aggressive-indent-mode 1)
+
+(defvar my:unaggressive-modes
   '("python"
-    "rust"
-    "go"
+    "html"
     )
-  "Modes to use aggressive indentation in"
-  )
+  "Modes in which to not aggressively indent")
 
 (mapc
  (lambda (mode)
-   (add-hook
-    (intern (concat mode "-mode-hook"))
-    #'aggressive-indent-mode))
- my:aggressive-modes)
+   (add-to-list 'aggressive-indent-excluded-modes
+                (intern (concat mode "-mode"))))
+ my:unaggressive-modes)
+
+
 
 (provide 'my-aggressive-indent)
