@@ -10,6 +10,7 @@
     company-auctex
     company-irony
     company-jedi
+    clang-format
     dash
     deft
     flx
@@ -40,6 +41,7 @@
     flycheck-pylama
     swiper
     swiper-helm
+    yasnippet
     )
   "Packages to install locally from packages/name/name.el")
 

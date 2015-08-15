@@ -4,9 +4,12 @@
 (require 'projectile)
 (require 'flycheck)
 (require 'rainbow-delimiters)
-(smartparens-global-mode t)
+(require 'smartparens)
 (require 'smartparens-config)
+(smartparens-global-mode t)
 (require 'yaml-mode)
+(require 'yasnippet)
+(yas-global-mode 1)
 ;; Fundamental functions
 
 (defun occur-dwim ()

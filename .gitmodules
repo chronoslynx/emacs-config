@@ -16,3 +16,6 @@
 [submodule "packages/swiper"]
 	path = packages/swiper
 	url = https://github.com/abo-abo/swiper.git
+[submodule "packages/yasnippet"]
+	path = packages/yasnippet
+	url = https://github.com/capitaomorte/yasnippet
