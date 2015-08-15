@@ -39,6 +39,7 @@
 (defvar my:packages
   '(better-defaults
     flycheck-pylama
+    function-args
     swiper
     swiper-helm
     yasnippet
@@ -69,32 +70,26 @@
 
 (mapc (lambda (name)
         (progn (unless (fboundp name)
-		(add-to-list 'load-path
-			     (concat "~/.emacs.d/packages/"
-				     (symbol-name name)))
-		(require name))))
+                 (add-to-list 'load-path
+                              (concat "~/.emacs.d/packages/"
+                                      (symbol-name name)))
+                 (require name))))
       my:packages)
-
-;; Load configurations
-(mapc (lambda (name) (load (concat "~/.emacs.d/config/" name ".el"))) my:configs)
-
-;; Mode initializations
-(require 'helm-config)
-(projectile-global-mode)
-(add-hook 'after-init-hook #'global-flycheck-mode)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["color-237" "#d75f5f" "#afaf00" "#ffaf00" "#87afaf" "#d787af" "#87af87" "color-223"])
  '(custom-safe-themes
    (quote
-    ("e20210182a77631882d6b0e6f6cb9c273e00623200acfd436361cdc8430a7e22" default))))
+    ("ca8350a6affc43fc36f84a5271e6d5278857185753cd91a899d1f88be062f77b" default)))
+ '(helm-ag-base-command "pt -e --nocolor --nogroup"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; Load configurations
+(mapc (lambda (name) (load (concat "~/.emacs.d/config/" name ".el"))) my:configs)

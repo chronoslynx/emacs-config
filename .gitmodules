@@ -19,3 +19,6 @@
 [submodule "packages/yasnippet"]
 	path = packages/yasnippet
 	url = https://github.com/capitaomorte/yasnippet
+[submodule "packages/function-args"]
+	path = packages/function-args
+	url = https://github.com/abo-abo/function-args.git

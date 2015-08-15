@@ -9,6 +9,8 @@
 (smartparens-global-mode t)
 (require 'yaml-mode)
 (require 'yasnippet)
+(projectile-global-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 (yas-global-mode 1)
 ;; Fundamental functions
 

@@ -1,3 +1,4 @@
+(require 'helm)
 (require 'helm-config)
 (require 'helm-gtags)
 (require 'swiper-helm)
