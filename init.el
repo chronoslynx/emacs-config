@@ -47,9 +47,11 @@
 
 (defvar my:configs
   '("global"
+    "cxx"
     "my-aggressive-indent"
     "my-deft"
     "my-eshell"
+    "my-ggtags"
     "golang"
     "haskell"
     "my-helm"

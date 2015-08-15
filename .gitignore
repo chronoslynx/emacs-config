@@ -8,3 +8,6 @@ projectile.cache
 recentf
 \#*
 *.dat
+**/.DS_Store
+semanticdb
+backup*
