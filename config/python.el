@@ -5,4 +5,6 @@
   (sphinx-doc-mode t))
 (add-hook 'python-mode-hook 'my/python-hook)
 (add-hook 'python-mode-hook 'jedi:setup)
+(add-to-list 'interpreter-mode-alist '("python2" . python-mode))
+(add-to-list 'interpreter-mode-alist '("python3" . python-mode))
 (provide 'python)

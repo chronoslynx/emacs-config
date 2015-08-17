@@ -26,12 +26,14 @@
     markdown-mode
     org-mode
     rainbow-delimiters
+    smart-mode-line
     smartparens
     sphinx-doc
     projectile
     puppet-mode
     rust-mode
     sml-mode
+    web-mode
     yaml-mode
     )
   "Packages to install via el-get")
@@ -40,6 +42,7 @@
   '(better-defaults
     flycheck-pylama
     function-args
+    hl-todo
     swiper
     swiper-helm
     yasnippet
@@ -61,7 +64,8 @@
     "my-magit"
     "my-org"
     "rust"
-    "python")
+    "python"
+    "web")
   "Configuration files that follow the config/foo.el path
   format.")
 
@@ -82,7 +86,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("ca8350a6affc43fc36f84a5271e6d5278857185753cd91a899d1f88be062f77b" default)))
+    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "ca8350a6affc43fc36f84a5271e6d5278857185753cd91a899d1f88be062f77b" default)))
  '(helm-ag-base-command "pt -e --nocolor --nogroup"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -22,3 +22,6 @@
 [submodule "packages/function-args"]
 	path = packages/function-args
 	url = https://github.com/abo-abo/function-args.git
+[submodule "packages/hl-todo"]
+	path = packages/hl-todo
+	url = https://github.com/tarsius/hl-todo.git

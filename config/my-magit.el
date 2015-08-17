@@ -4,6 +4,6 @@
   (info-initialize)
   (add-to-list 'Info-directory-list
 	       "~/.emacs.d/packages/magit/Documentation/"))
-
+(setq magit-revert-buffers 'silent)
 (global-set-key [f10] 'magit-status)
 (provide 'my-magit)

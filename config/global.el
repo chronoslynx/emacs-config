@@ -6,12 +6,10 @@
 (require 'rainbow-delimiters)
 (require 'smartparens)
 (require 'smartparens-config)
-(smartparens-global-mode t)
+(require 'smart-mode-line)
 (require 'yaml-mode)
 (require 'yasnippet)
-(projectile-global-mode)
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(yas-global-mode 1)
+
 ;; Fundamental functions
 
 (defun occur-dwim ()
@@ -56,33 +54,6 @@
     (set-mark (point))
     (goto-char start)))
 
-(defun unfill-paragraph ()
-  "Takes a multi-line paragraph and makes it into a single line of text."
-  (interactive)
-  (let ((fill-column (point-max)))
-    (fill-paragraph nil)))
-
-(defun set-auto-saves ()
-  "Put autosave files (ie #foo#) in one place, *not*
- scattered all over the file system!"
-  (defvar autosave-dir
-    (concat "/tmp/emacs_autosaves/" (user-login-name) "/"))
-
-  (make-directory autosave-dir t)
-
-  (defun auto-save-file-name-p (filename)
-    (string-match "^#.*#$" (file-name-nondirectory filename)))
-
-  (defun make-auto-save-file-name ()
-    (concat autosave-dir
-            (if buffer-file-name
-                (concat "#" (file-name-nondirectory buffer-file-name) "#")
-              (expand-file-name
-               (concat "#%" (buffer-name) "#")))))
-
-  (defvar backup-dir (concat "/tmp/emacs_backups/" (user-login-name) "/"))
-  (setq backup-directory-alist (list (cons "." backup-dir))))
-
 (defun auto-chmod ()
   "If we're in a script buffer, then chmod +x that script."
   (and (save-excursion
@@ -115,7 +86,9 @@
 (global-set-key (kbd "<down>") 'windmove-down)
 
 (global-set-key (kbd "C-c M-x") 'execute-extended-command)
-;; Convenience bindings for god-mode
+(global-set-key (kbd "C-c r") 'remember)
+(with-eval-after-load 'remember
+  (define-key remember-notes-mode-map (kbd "C-c C-c") nil))
 
 (global-set-key (kbd "C->") 'end-of-buffer)
 (global-set-key (kbd "C-<") 'beginning-of-buffer)
@@ -139,6 +112,7 @@
 
 (set-language-environment "UTF-8")
 
+(fset 'yes-or-no-p 'y-or-n-p)
 ;; GDB
 (setq
  ;; use gdb-many-windows by default
@@ -155,10 +129,64 @@
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'gruvbox t)
-;;(global-smartscan-mode 1)
+
+;; Other Global Setup
+(projectile-global-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(yas-global-mode 1)
+(smartparens-global-mode t)
+;; Decrese keystroke echo timeout
+(setq echo-keystrokes 0.5)
+(setq line-number-display-limit-width 10000)
+
+;; Mode line
+(sml/setup)
+;;; Hide minor modes by default
+(setq rm-blacklist ".*")
+(add-to-list 'sml/replacer-regexp-list '("^~/Projects/\\(\\w+\\)/"
+                                         (lambda(s) (concat ":" (upcase (match-string 1 s)) ":"))
+                                         ) t)
+(add-to-list 'sml/replacer-regexp-list '("^~/Development/" ":DEV:") t)
+(add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/Class/" ":CLS:") t)
 
 ;; Company
-(setq company-tooltip-flip-when-above t)
+(setq company-tooltip-flip-when-above t
+      company-idle-delay 0.1
+      company-minimum-prefix-length 2
+      company-selection-wrap-around t
+      company-show-numbers t
+      company-require-match 'never
+      company-dabbrev-downcase nil
+      company-dabbrev-ignore-case t
+      company-jedi-python-bin "python")
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "C-:") 'helm-company))
+
+;; Smartparens
+(with-eval-after-load 'smartparens
+  (sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
+  (sp-local-pair 'minibuffer-inactive-mode "`" nil :actions nil)
+  (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
+  (sp-local-pair 'emacs-lisp-mode "`" nil :actions nil)
+  (sp-local-pair 'lisp-interaction-mode "'" nil :actions nil)
+  (sp-local-pair 'lisp-interaction-mode "`" nil :actions nil)
+  (sp-local-pair 'scheme-mode "'" nil :actions nil)
+  (sp-local-pair 'scheme-mode "`" nil :actions nil)
+  (sp-local-pair 'inferior-scheme-mode "'" nil :actions nil)
+  (sp-local-pair 'inferior-scheme-mode "`" nil :actions nil)
+
+  (sp-local-pair 'LaTeX-mode "\"" nil :actions nil)
+  (sp-local-pair 'LaTeX-mode "'" nil :actions nil)
+  (sp-local-pair 'LaTeX-mode "`" nil :actions nil)
+  (sp-local-pair 'latex-mode "\"" nil :actions nil)
+  (sp-local-pair 'latex-mode "'" nil :actions nil)
+  (sp-local-pair 'latex-mode "`" nil :actions nil)
+  (sp-local-pair 'TeX-mode "\"" nil :actions nil)
+  (sp-local-pair 'TeX-mode "'" nil :actions nil)
+  (sp-local-pair 'TeX-mode "`" nil :actions nil)
+  (sp-local-pair 'tex-mode "\"" nil :actions nil)
+  (sp-local-pair 'tex-mode "'" nil :actions nil)
+  (sp-local-pair 'tex-mode "`" nil :actions nil))
 
 ;; Helm
 (require 'helm-projectile)
@@ -193,5 +221,14 @@
   (let ((buffer-backed-up nil))
     (backup-buffer)))
 (add-hook 'before-save-hook 'force-backup-of-buffer)
+
+;; hl-todo
+(setq hl-todo-keyword-faces '(("TODO" . hl-todo)
+                              ("NOTE" . hl-todo)
+                              ("FIXME" . hl-todo)
+                              ("KLUDGE" . hl-todo)))
+
+(with-eval-after-load 'hl-todo
+  (hl-todo-set-regexp))
 
 (provide 'global)

@@ -11,3 +11,7 @@ recentf
 **/.DS_Store
 semanticdb
 backup*
+.python-environments
+bookmarks
+eshell
+url
