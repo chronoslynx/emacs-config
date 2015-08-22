@@ -93,13 +93,14 @@
 (global-set-key (kbd "C->") 'end-of-buffer)
 (global-set-key (kbd "C-<") 'beginning-of-buffer)
 (global-set-key (kbd "C-!") 'eval-defun)
-(global-set-key (kbd "M-;") 'comment-dwim-2)
+(global-set-key (kbd "C-;") 'comment-dwim-2)
 
 ;; Hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'after-init-hook 'global-company-mode)
+(setq company-backends (delete 'company-capf company-backends)
 
 ;; Autoloads
 (add-to-list 'auto-mode-alist (cons "\\.el\\'" 'emacs-lisp-mode))
