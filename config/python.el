@@ -1,12 +1,14 @@
 (require 'jedi)
 (require 'sphinx-doc)
 ;; (eval-after-load 'company '(push 'company-jedi company-backends))
-(defun my/python-hook ()
+(use-package 'python-mode
+  :config
+  (use-package jedi)
+  (use-package sphinx-doc)
   (sphinx-doc-mode t)
-  (add-to-list 'company-backends 'company-jedi))
-(add-hook 'python-mode-hook 'my/python-hook)
-(add-hook 'python-mode-hook 'jedi:setup)
-(add-to-list 'interpreter-mode-alist '("python2" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python3" . python-mode))
+  (add-to-list 'company-backends 'company-jedi)
+  (jedi:setup)
+  (add-to-list 'interpreter-mode-alist '("python2" . python-mode))
+  (add-to-list 'interpreter-mode-alist '("python3" . python-mode)))
 
 (provide 'python)

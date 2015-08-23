@@ -1,14 +1,8 @@
 ;; Requirements
 (require 'uniquify)
-(require 'comment-dwim-2)
-(require 'projectile)
-(require 'flycheck)
-(require 'rainbow-delimiters)
-(require 'smartparens)
-(require 'smartparens-config)
-(require 'smart-mode-line)
+
+
 (require 'yaml-mode)
-(require 'yasnippet)
 
 ;; Fundamental functions
 
@@ -70,12 +64,6 @@
   (insert (shell-command-to-string "date +'%Y-%m-%d'")))
 
 ;; Global keybindings
-(global-set-key (kbd "C-c C-+") 'number/add)
-(global-set-key (kbd "C-c C--") 'number/sub)
-(global-set-key (kbd "C-c C-*") 'number/multiply)
-(global-set-key (kbd "C-c C-/") 'number/divide)
-(global-set-key (kbd "C-c C-0") 'number/pad)
-(global-set-key (kbd "C-c C-=") 'number/eval)
 (global-set-key (kbd "C-c C-:") 'eval-replacing-region)
 (global-set-key (kbd "C-x C-k C-o") 'delete-blank-lines-in)
 (global-set-key (kbd "M-g") 'goto-line)
@@ -93,20 +81,11 @@
 (global-set-key (kbd "C->") 'end-of-buffer)
 (global-set-key (kbd "C-<") 'beginning-of-buffer)
 (global-set-key (kbd "C-!") 'eval-defun)
-(global-set-key (kbd "C-;") 'comment-dwim-2)
 
-;; Hooks
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-(add-hook 'after-init-hook 'global-company-mode)
-(setq company-backends (delete 'company-capf company-backends)
 
 ;; Autoloads
 (add-to-list 'auto-mode-alist (cons "\\.el\\'" 'emacs-lisp-mode))
-(add-to-list 'auto-mode-alist (cons "\\.text\\'" 'markdown-mode))
-(add-to-list 'auto-mode-alist (cons "\\.md\\'" 'markdown-mode))
-(add-to-list 'auto-mode-alist (cons "\\.markdown\\'" 'markdown-mode))
+
 
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 ;; Environment settings
@@ -127,44 +106,25 @@
   (set-frame-parameter frame 'font "Input-14"))
 (fontify-frame nil)
 (push 'fontify-frame after-make-frame-functions)
-
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'gruvbox t)
 
 ;; Other Global Setup
-(projectile-global-mode)
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(yas-global-mode 1)
-(smartparens-global-mode t)
-;; Decrese keystroke echo timeout
-(setq echo-keystrokes 0.5)
-(setq line-number-display-limit-width 10000)
+(use-package projectile
+  :config
+  (projectile-global-mode))
 
-;; Mode line
-(sml/setup)
-;;; Hide minor modes by default
-(setq rm-blacklist ".*")
-(add-to-list 'sml/replacer-regexp-list '("^~/Projects/\\(\\w+\\)/"
-                                         (lambda(s) (concat ":" (upcase (match-string 1 s)) ":"))
-                                         ) t)
-(add-to-list 'sml/replacer-regexp-list '("^~/Development/" ":DEV:") t)
-(add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/Class/" ":CLS:") t)
+(use-package flycheck
+  :config
+  (add-hook 'after-init-hook 'global-flycheck-mode))
 
-;; Company
-(setq company-tooltip-flip-when-above t
-      company-idle-delay 0.1
-      company-minimum-prefix-length 2
-      company-selection-wrap-around t
-      company-show-numbers t
-      company-require-match 'never
-      company-dabbrev-downcase nil
-      company-dabbrev-ignore-case t
-      company-jedi-python-bin "python")
-(with-eval-after-load 'company
-  (define-key company-active-map (kbd "C-:") 'helm-company))
+(use-package yasnippet
+  :config (yas-global-mode 1))
 
-;; Smartparens
-(with-eval-after-load 'smartparens
+(use-package smartparens
+  :config
+  (use-package smartparens-config)
+  (smartparens-global-mode t)
   (sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
   (sp-local-pair 'minibuffer-inactive-mode "`" nil :actions nil)
   (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
@@ -189,15 +149,69 @@
   (sp-local-pair 'tex-mode "'" nil :actions nil)
   (sp-local-pair 'tex-mode "`" nil :actions nil))
 
-;; Helm
-(require 'helm-projectile)
-(setq helm-split-window-in-side-p           t
-      helm-buffers-fuzzy-matching           t
-      helm-move-to-line-cycle-in-source     t
-      helm-ff-search-library-in-sexp        t
-      helm-ff-file-name-history-use-recentf t)
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
+;; Mode line
+(use-package smart-mode-line
+  :config
+  (sml/setup)
+  (setq rm-blacklist ".*")
+  (add-to-list 'sml/replacer-regexp-list '("^~/Projects/\\(\\w+\\)/"
+                                           (lambda(s) (concat ":" (upcase (match-string 1 s)) ":"))
+                                           ) t)
+  (add-to-list 'sml/replacer-regexp-list '("^~/Development/" ":DEV:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:") t)
+  (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/Class/" ":CLS:") t))
+
+;; Company
+(with-eval-after-load 'company
+  (add-hook 'after-init-hook 'global-company-mode)
+  (define-key company-active-map (kbd "C-:") 'helm-company)
+  (setq company-backends (delete 'company-capf company-backends))
+  (setq company-tooltip-flip-when-above t
+        company-idle-delay 0.1
+        company-minimum-prefix-length 2
+        company-selection-wrap-around t
+        company-show-numbers t
+        company-require-match 'never
+        company-dabbrev-downcase nil
+        company-dabbrev-ignore-case t
+        company-jedi-python-bin "python"))
+
+(use-package comment-dwim-2
+  :bind ("C-;" . comment-dwim-2))
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(use-package rainbow-delimiters
+  :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+
+(use-package hl-todo
+  :config
+  (setq hl-todo-keyword-faces '(("TODO" . hl-todo)
+                                ("NOTE" . hl-todo)
+                                ("FIXME" . hl-todo)
+                                ("KLUDGE" . hl-todo)))
+  (hl-todo-set-regexp)
+  (global-hl-todo-mode))
+
+(use-package aggressive-indent
+  :config
+  (global-aggressive-indent-mode 1)
+
+  (defvar my:unaggressive-modes
+    '("python"
+      "html"
+      )
+    "Modes in which to not aggressively indent")
+
+  (mapc
+   (lambda (mode)
+     (add-to-list 'aggressive-indent-excluded-modes
+                  (intern (concat mode "-mode"))))
+   my:unaggressive-modes))
+
+
+;; Decrease keystroke echo timeout
+(setq echo-keystrokes 0.5)
+(setq line-number-display-limit-width 10000)
 
 ;; Backups
 (setq vc-make-backup-files t)
@@ -223,13 +237,6 @@
     (backup-buffer)))
 (add-hook 'before-save-hook 'force-backup-of-buffer)
 
-;; hl-todo
-(setq hl-todo-keyword-faces '(("TODO" . hl-todo)
-                              ("NOTE" . hl-todo)
-                              ("FIXME" . hl-todo)
-                              ("KLUDGE" . hl-todo)))
 
-(with-eval-after-load 'hl-todo
-  (hl-todo-set-regexp))
 
 (provide 'global)
