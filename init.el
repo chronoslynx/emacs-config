@@ -3,9 +3,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-theme-load-path
+   (quote
+    ("~/.emacs.d/el-get/smart-mode-line/themes/"
+     "~/.emacs.d/el-get/smart-mode-line/"
+     "~/.emacs.d/themes" custom-theme-directory t)))
+ '(custom-enabled-themes (quote (smart-mode-line-dark gruvbox)))
  '(custom-safe-themes
    (quote
-    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "ca8350a6affc43fc36f84a5271e6d5278857185753cd91a899d1f88be062f77b" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+    ("79a3f477ac0cb4a106f78b6109614e991564a5c2467c36e6e854d4bc1102e178"
+     "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e"
+     "ca8350a6affc43fc36f84a5271e6d5278857185753cd91a899d1f88be062f77b"
+     "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa"
+     default)))
+
  '(helm-ag-base-command "pt -e --nocolor --nogroup"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -13,7 +24,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
 
 ;; el-get setup
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")

@@ -110,8 +110,6 @@ be global."
   (set-frame-parameter frame 'font "Input-14"))
 (fontify-frame nil)
 (push 'fontify-frame after-make-frame-functions)
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'gruvbox t)
 
 ;; Other Global Setup
 (use-package remember
@@ -174,9 +172,8 @@ be global."
   (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:") t)
   (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/Class/" ":CLS:") t))
 
-(use-package
-  helm
-  :config
+(use-package helm
+  :init
   (use-package helm-config)
   (use-package helm-gtags
     :commands (helm-gtags-mode)
@@ -187,33 +184,34 @@ be global."
     (add-hook 'c++-mode-hook 'helm-gtags-mode)
     (add-hook 'rust-mode-hook 'helm-gtags-mode)
     (add-hook 'asm-mode-hook 'helm-gtags-mode)
+    :config
     (setq
      helm-gtags-ignore-case t
      helm-gtags-auto-update t
      helm-gtags-use-input-at-cursor t
      helm-gtags-pulse-at-cursor t
-     helm-gtags-prefix-key "\C-cg"
+     helm-gtags-prefix-key "\C-c g"
      helm-gtags-suggested-key-mapping t)
-    :bind-keys (:map helm-gtags-mode-map
-                     ("C-c g a" . helm-gtags-tags-in-this-function)
-                     ("C-j" . helm-gtags-select)
-                     ("M-." . helm-gtags-dwim)
-                     ("M-," . helm-gtags-pop-stack)
-                     ("C-c <" . helm-gtags-previous-history)
-                     ("C-c >" . helm-gtags-next-history))
-
+    (bind-keys :map helm-gtags-mode-map
+               ("C-c g a" . helm-gtags-tags-in-this-function)
+               ("C-j" . helm-gtags-select)
+               ("M-." . helm-gtags-dwim)
+               ("M-," . helm-gtags-pop-stack)
+               ("C-c <" . helm-gtags-previous-history)
+               ("C-c >" . helm-gtags-next-history)))
   (use-package helm-projectile
-    :commands (helm-projectile-on)
-    :config (setq projectile-completion-system 'helm))
+    :config
+    (helm-projectile-on)
+    (setq projectile-completion-system 'helm))
   (use-package swiper-helm
     :bind (("\C-s" . swiper-helm)
            ("\C-s" . swiper-helm)
            ("C-c C-r" . helm-resume)))
+  :config
   (helm-mode 1)
   (helm-adaptive-mode 1)
   (helm-autoresize-mode 1)
   (helm-push-mark-mode 1)
-  (helm-projectile-on)
   (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
         helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
         helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
@@ -238,17 +236,14 @@ be global."
          ("C-c h" . helm-command-prefix)))
 (global-unset-key (kbd "C-x c"))
 
+
 ;; Company
 (use-package company
-  :commands (global-company-mode)
-  :init
-  (add-hook 'after-init-hook 'global-company-mode)
+  :config
   (use-package helm-company
-    :commands (helm-company)
-    :init
+    :config
     (define-key company-mode-map (kbd "C-:") 'helm-company)
     (define-key company-active-map (kbd "C-:") 'helm-company))
-  :config
   (setq company-backends (delete 'company-capf company-backends))
   (setq company-tooltip-flip-when-above t
         company-idle-delay 0.1
@@ -257,7 +252,8 @@ be global."
         company-show-numbers t
         company-require-match 'never
         company-dabbrev-downcase nil
-        company-dabbrev-ignore-case t))
+        company-dabbrev-ignore-case t)
+  (global-company-mode))
 
 (use-package comment-dwim-2
   :bind ("C-;" . comment-dwim-2))
@@ -277,7 +273,7 @@ be global."
     :config
     (info-initialize)
     (add-to-list 'Info-directory-list
-                 "~/.emacs.d/packages/magit/Documentation/"))))
+                 "~/.emacs.d/packages/magit/Documentation/")))
 
 (use-package hl-todo
   :config
@@ -303,7 +299,6 @@ be global."
   (setq deft-auto-save-interval 0.0)
   (setq deft-use-filename-as-title t)
   (global-set-key [f8] 'deft)
-  :config
   :bind ("C-c C-d" . deft-find-file))
 
 ;; Decrease keystroke echo timeout

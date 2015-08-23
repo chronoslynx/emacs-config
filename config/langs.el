@@ -5,28 +5,30 @@
 (defvar markdown-code-languages
     '("haskell" "lisp" "javascript" "c"))
 (defun markdown-code-fence (beg end)
-    "Make a code fence of the given region."
-    (interactive "r")
-    (save-excursion
-      (goto-char beg)
-      (goto-char (line-beginning-position))
-      (insert "``` "
-              (ido-completing-read "Language: " markdown-code-languages)
-              "\n")
-      (goto-char end)
-      (goto-char (line-end-position))
-      (newline)
-      (insert "```")))
+  "Make a code fence of the given region."
+  (interactive "r")
+  (save-excursion
+    (goto-char beg)
+    (goto-char (line-beginning-position))
+    (insert "``` "
+            (ido-completing-read "Language: " markdown-code-languages)
+            "\n")
+    (goto-char end)
+    (goto-char (line-end-position))
+    (newline)
+    (insert "```")))
+
 (use-package markdown-mode
   :commands (markdown-mode)
   :init
   (add-to-list 'auto-mode-alist (cons "\\.text\\'" 'markdown-mode))
-    (add-to-list 'auto-mode-alist (cons "\\.txt\\'" 'markdown-mode))
+  (add-to-list 'auto-mode-alist (cons "\\.txt\\'" 'markdown-mode))
   (add-to-list 'auto-mode-alist (cons "\\.md\\'" 'markdown-mode))
   (add-to-list 'auto-mode-alist (cons "\\.markdown\\'" 'markdown-mode))
-  :bind-keys (:map markdown-mode-map
-                   ("C-c C-f" . markdown-code-fence)
-                   ("M-;" . markdown-blockquote-region))
+  :config
+  (bind-keys :map markdown-mode-map
+             ("C-c C-f" . markdown-code-fence)
+             ("M-;" . markdown-blockquote-region)))
 ;; C, C++
 (use-package function-args
   :init (use-package cc-mode
@@ -46,8 +48,8 @@
   (set-default 'semantic-case-fold t))
 
 ;; Python
-(use-package 'python-mode
-  :command (python-mode)
+(use-package python-mode
+  :commands (python-mode)
   :config
   (use-package jedi
     :config
@@ -56,11 +58,11 @@
       :init
       (add-to-list 'company-backends 'company-jedi)
       (setq company-jedi-python-bin "python"))
-  (use-package sphinx-doc)
-  (sphinx-doc-mode t)
-  (jedi:setup)
-  (add-to-list 'interpreter-mode-alist '("python2" . python-mode))
-  (add-to-list 'interpreter-mode-alist '("python3" . python-mode)))
+    (use-package sphinx-doc)
+    (sphinx-doc-mode t)
+    (jedi:setup)
+    (add-to-list 'interpreter-mode-alist '("python2" . python-mode))
+    (add-to-list 'interpreter-mode-alist '("python3" . python-mode))))
 
 ;; HTML, html-templates
 (use-package web-mode
