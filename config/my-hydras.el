@@ -1,4 +1,4 @@
-(require 'hydra)
+(use-package hydra)
 ;; Yank-pop
 (defhydra hydra-yank-pop ()
   "yank"

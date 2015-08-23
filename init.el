@@ -69,17 +69,9 @@
 
 (defvar my:configs
   '("global"
-    "cxx"
-    "my-deft"
-    "my-eshell"
-    "my-helm"
     "my-hydras"
-    "markdown"
-    "my-magit"
-    "my-org"
-    "rust"
-    "python"
-    "web")
+    "langs"
+    "my-org")
   "Configuration files that follow the config/foo.el path
   format.")
 

@@ -1,4 +1,9 @@
-(setq org-directory (expand-file-name "~/Dropbox/org")
+(use-package org-mode
+  :commands (org-agenda org-capture org-store-link)
+  :init
+  (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+  :config
+  (setq org-directory (expand-file-name "~/Dropbox/org")
       org-agenda-files (list org-directory)
       org-default-notes-file (concat org-directory "/inbox.org")
       org-capture-templates
@@ -9,14 +14,9 @@
         ("w" "Work" entry (file+datetree (concat org-directory "/work.org"))
          "* %<%H:%M>\n\n%?" :empty-lines 1)
         ("j" "Journal" entry (file+datetree (concat org-directory "/journal.org"))
-         "* %<%H:%M>\n\n%?" :empty-lines 1)))
-(setq org-export-backends '(ascii beamer html latex md))
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(define-key global-map "\C-cc" 'org-capture)
-
-(setq org-catch-invisible-edits 'error
+         "* %<%H:%M>\n\n%?" :empty-lines 1))
+      org-export-backends '(ascii beamer html latex md)
+      org-catch-invisible-edits 'error
       org-startup-indented t
       org-cycle-include-plain-lists 'integrate
       org-ellipsis " […]"
@@ -27,4 +27,8 @@
       org-enforce-todo-dependencies t
       org-enforce-todo-checkbox-dependencies t
       org-link-frame-setup '((file . find-file)))
+  :bind (("C-c l" . org-store-link)
+         ("C-c a" . org-agenda)
+         ("C-c c" . org-capture)))
+
 (provide 'my-org)

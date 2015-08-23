@@ -1,11 +1,4 @@
-;; Requirements
-(require 'uniquify)
-
-
-(require 'yaml-mode)
-
 ;; Fundamental functions
-
 (defun occur-dwim ()
   "Call `occur' with a sane default."
   (interactive)
@@ -63,33 +56,44 @@
   (interactive)
   (insert (shell-command-to-string "date +'%Y-%m-%d'")))
 
+(defun endless/ispell-word-then-abbrev (p)
+  "Call `ispell-word', then create an abbrev for it.
+With prefix P, create local abbrev. Otherwise it will
+be global."
+  (interactive "P")
+  (let ((bef (downcase (or (thing-at-point 'word)
+                           "")))
+        aft)
+    (call-interactively 'ispell-word)
+    (setq aft (downcase
+               (or (thing-at-point 'word) "")))
+    (unless (or (string= aft bef)
+                (string= aft "")
+                (string= bef ""))
+      (message "\"%s\" now expands to \"%s\" %sally"
+               bef aft (if p "loc" "glob"))
+      (define-abbrev
+        (if p local-abbrev-table global-abbrev-table)
+        bef aft))))
+
+(setq save-abbrevs t)
+(setq-default abbrev-mode t)
+
 ;; Global keybindings
 (global-set-key (kbd "C-c C-:") 'eval-replacing-region)
 (global-set-key (kbd "C-x C-k C-o") 'delete-blank-lines-in)
 (global-set-key (kbd "M-g") 'goto-line)
-
 (global-set-key (kbd "<left>") 'windmove-left)
 (global-set-key (kbd "<right>") 'windmove-right)
 (global-set-key (kbd "<up>") 'windmove-up)
 (global-set-key (kbd "<down>") 'windmove-down)
-
 (global-set-key (kbd "C-c M-x") 'execute-extended-command)
-(global-set-key (kbd "C-c r") 'remember)
-(with-eval-after-load 'remember
-  (define-key remember-notes-mode-map (kbd "C-c C-c") nil))
-
 (global-set-key (kbd "C->") 'end-of-buffer)
 (global-set-key (kbd "C-<") 'beginning-of-buffer)
 (global-set-key (kbd "C-!") 'eval-defun)
+(define-key ctl-x-map "\C-i" 'endless/ispell-word-then-abbrev)
 
-
-;; Autoloads
-(add-to-list 'auto-mode-alist (cons "\\.el\\'" 'emacs-lisp-mode))
-
-
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 ;; Environment settings
-
 (set-language-environment "UTF-8")
 
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -110,13 +114,18 @@
 (load-theme 'gruvbox t)
 
 ;; Other Global Setup
+(use-package remember
+  :commands (remember)
+  :config (define-key remember-notes-mode-map (kbd "C-c C-c") nil)
+  :bind ("C-c r" . remember))
+
 (use-package projectile
   :config
   (projectile-global-mode))
 
 (use-package flycheck
-  :config
-  (add-hook 'after-init-hook 'global-flycheck-mode))
+  :commands (global-flycheck-mode)
+  :init (add-hook 'after-init-hook 'global-flycheck-mode))
 
 (use-package yasnippet
   :config (yas-global-mode 1))
@@ -127,6 +136,7 @@
   (smartparens-global-mode t)
   (sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
   (sp-local-pair 'minibuffer-inactive-mode "`" nil :actions nil)
+  ;; Lisps
   (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
   (sp-local-pair 'emacs-lisp-mode "`" nil :actions nil)
   (sp-local-pair 'lisp-interaction-mode "'" nil :actions nil)
@@ -135,7 +145,7 @@
   (sp-local-pair 'scheme-mode "`" nil :actions nil)
   (sp-local-pair 'inferior-scheme-mode "'" nil :actions nil)
   (sp-local-pair 'inferior-scheme-mode "`" nil :actions nil)
-
+  ;; *TeX
   (sp-local-pair 'LaTeX-mode "\"" nil :actions nil)
   (sp-local-pair 'LaTeX-mode "'" nil :actions nil)
   (sp-local-pair 'LaTeX-mode "`" nil :actions nil)
@@ -147,8 +157,11 @@
   (sp-local-pair 'TeX-mode "`" nil :actions nil)
   (sp-local-pair 'tex-mode "\"" nil :actions nil)
   (sp-local-pair 'tex-mode "'" nil :actions nil)
-  (sp-local-pair 'tex-mode "`" nil :actions nil))
-
+  (sp-local-pair 'tex-mode "`" nil :actions nil)
+  (sp-with-modes '(c-mode c++-mode)
+    (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
+    (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
+                                              ("* ||\n[i]" "RET")))))
 ;; Mode line
 (use-package smart-mode-line
   :config
@@ -161,10 +174,81 @@
   (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:") t)
   (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/Class/" ":CLS:") t))
 
+(use-package
+  helm
+  :config
+  (use-package helm-config)
+  (use-package helm-gtags
+    :commands (helm-gtags-mode)
+    :init
+    (add-hook 'dired-mode-hook 'helm-gtags-mode)
+    (add-hook 'eshell-mode-hook 'helm-gtags-mode)
+    (add-hook 'c-mode-hook 'helm-gtags-mode)
+    (add-hook 'c++-mode-hook 'helm-gtags-mode)
+    (add-hook 'rust-mode-hook 'helm-gtags-mode)
+    (add-hook 'asm-mode-hook 'helm-gtags-mode)
+    (setq
+     helm-gtags-ignore-case t
+     helm-gtags-auto-update t
+     helm-gtags-use-input-at-cursor t
+     helm-gtags-pulse-at-cursor t
+     helm-gtags-prefix-key "\C-cg"
+     helm-gtags-suggested-key-mapping t)
+    :bind-keys (:map helm-gtags-mode-map
+                     ("C-c g a" . helm-gtags-tags-in-this-function)
+                     ("C-j" . helm-gtags-select)
+                     ("M-." . helm-gtags-dwim)
+                     ("M-," . helm-gtags-pop-stack)
+                     ("C-c <" . helm-gtags-previous-history)
+                     ("C-c >" . helm-gtags-next-history))
+
+  (use-package helm-projectile
+    :commands (helm-projectile-on)
+    :config (setq projectile-completion-system 'helm))
+  (use-package swiper-helm
+    :bind (("\C-s" . swiper-helm)
+           ("\C-s" . swiper-helm)
+           ("C-c C-r" . helm-resume)))
+  (helm-mode 1)
+  (helm-adaptive-mode 1)
+  (helm-autoresize-mode 1)
+  (helm-push-mark-mode 1)
+  (helm-projectile-on)
+  (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+        helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+        helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+        helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+        helm-ff-file-name-history-use-recentf t)
+  (setq helm-split-window-in-side-p           t
+        helm-buffers-fuzzy-matching           t
+        helm-move-to-line-cycle-in-source     t
+        helm-ff-search-library-in-sexp        t
+        helm-ff-file-name-history-use-recentf t)
+  (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
+  (substitute-key-definition 'find-tag 'helm-etags-select global-map)
+  :bind (("M-x" . helm-M-x)
+         ("C-x C-m" . helm-M-x)
+         ("M-y" . helm-show-kill-ring)
+         ("C-x b" . helm-mini)
+         ("C-x C-b" . helm-buffers-list)
+         ("C-x C-f" . helm-find-files)
+         ("C-h f" . helm-apropos)
+         ("C-h r" . helm-info-emacs)
+         ("C-h C-l" . helm-locate-library)
+         ("C-c h" . helm-command-prefix)))
+(global-unset-key (kbd "C-x c"))
+
 ;; Company
-(with-eval-after-load 'company
+(use-package company
+  :commands (global-company-mode)
+  :init
   (add-hook 'after-init-hook 'global-company-mode)
-  (define-key company-active-map (kbd "C-:") 'helm-company)
+  (use-package helm-company
+    :commands (helm-company)
+    :init
+    (define-key company-mode-map (kbd "C-:") 'helm-company)
+    (define-key company-active-map (kbd "C-:") 'helm-company))
+  :config
   (setq company-backends (delete 'company-capf company-backends))
   (setq company-tooltip-flip-when-above t
         company-idle-delay 0.1
@@ -173,15 +257,27 @@
         company-show-numbers t
         company-require-match 'never
         company-dabbrev-downcase nil
-        company-dabbrev-ignore-case t
-        company-jedi-python-bin "python"))
+        company-dabbrev-ignore-case t))
 
 (use-package comment-dwim-2
   :bind ("C-;" . comment-dwim-2))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (use-package rainbow-delimiters
-  :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+  :commands (rainbow-delimiters-mode)
+  :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+(use-package magit
+  :commands (magit-status)
+  :init
+  (setq magit-revert-buffers 'silent)
+  (global-set-key [f10] 'magit-status)
+  :config
+  (use-package info
+    :config
+    (info-initialize)
+    (add-to-list 'Info-directory-list
+                 "~/.emacs.d/packages/magit/Documentation/"))))
 
 (use-package hl-todo
   :config
@@ -195,19 +291,20 @@
 (use-package aggressive-indent
   :config
   (global-aggressive-indent-mode 1)
+  (add-to-list 'aggressive-indent-excluded-modes 'python-mode)
+  (add-to-list 'aggressive-indent-excluded-modes 'html-mode))
 
-  (defvar my:unaggressive-modes
-    '("python"
-      "html"
-      )
-    "Modes in which to not aggressively indent")
-
-  (mapc
-   (lambda (mode)
-     (add-to-list 'aggressive-indent-excluded-modes
-                  (intern (concat mode "-mode"))))
-   my:unaggressive-modes))
-
+;; Deft
+(use-package deft
+  :commands (deft deft-find-file)
+  :init
+  (setq deft-extensions '("markdown" "md" "txt" "tex" "org"))
+  (setq deft-directory "~/Dropbox/Notational Velocity/")
+  (setq deft-auto-save-interval 0.0)
+  (setq deft-use-filename-as-title t)
+  (global-set-key [f8] 'deft)
+  :config
+  :bind ("C-c C-d" . deft-find-file))
 
 ;; Decrease keystroke echo timeout
 (setq echo-keystrokes 0.5)
@@ -236,7 +333,4 @@
   (let ((buffer-backed-up nil))
     (backup-buffer)))
 (add-hook 'before-save-hook 'force-backup-of-buffer)
-
-
-
 (provide 'global)
