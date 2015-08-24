@@ -156,7 +156,10 @@ be global."
   (sp-local-pair 'tex-mode "\"" nil :actions nil)
   (sp-local-pair 'tex-mode "'" nil :actions nil)
   (sp-local-pair 'tex-mode "`" nil :actions nil)
-  (sp-with-modes '(c-mode c++-mode)
+  ;; Rust
+  (sp-local-pair 'rust-mode "<" ">")
+  (sp-local-pair 'rust-mode "|" "|")
+  (sp-with-modes '(c-mode c++-mode rust-mode)
     (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
     (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
                                               ("* ||\n[i]" "RET")))))
@@ -172,6 +175,7 @@ be global."
   (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:") t)
   (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/Class/" ":CLS:") t))
 
+;; Helm the Mighty
 (use-package helm
   :init
   (use-package helm-config)
