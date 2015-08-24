@@ -52,17 +52,18 @@
   :commands (python-mode)
   :config
   (use-package jedi
+    :commands (jedi:setup)
     :config
     (use-package company-jedi
       :commands (company-jedi)
       :init
       (add-to-list 'company-backends 'company-jedi)
-      (setq company-jedi-python-bin "python"))
-    (use-package sphinx-doc)
-    (sphinx-doc-mode t)
-    (jedi:setup)
-    (add-to-list 'interpreter-mode-alist '("python2" . python-mode))
-    (add-to-list 'interpreter-mode-alist '("python3" . python-mode))))
+      (setq company-jedi-python-bin "python")))
+  (jedi:setup)
+  (use-package sphinx-doc)
+  (sphinx-doc-mode t)
+  (add-to-list 'interpreter-mode-alist '("python2" . python-mode))
+  (add-to-list 'interpreter-mode-alist '("python3" . python-mode)))
 
 ;; HTML, html-templates
 (use-package web-mode

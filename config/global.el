@@ -126,7 +126,10 @@ be global."
   :init (add-hook 'after-init-hook 'global-flycheck-mode))
 
 (use-package yasnippet
-  :config (yas-global-mode 1))
+  :init
+  :config
+  (setq yasnippet-dirs (append yas-snippet-dirs "~/.emacs.d/snippets"))
+  (yas-global-mode 1))
 
 (use-package smartparens
   :config
