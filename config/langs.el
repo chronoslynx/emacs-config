@@ -1,5 +1,5 @@
 ;; Elisp
-(add-to-list 'auto-mode-alist (cons "\\.el\\'" 'emacs-lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 
 ;; Markdown
 (defvar markdown-code-languages
@@ -19,67 +19,74 @@
     (insert "```")))
 
 (use-package markdown-mode
-  :commands (markdown-mode)
-  :init
-  (add-to-list 'auto-mode-alist (cons "\\.text\\'" 'markdown-mode))
-  (add-to-list 'auto-mode-alist (cons "\\.txt\\'" 'markdown-mode))
-  (add-to-list 'auto-mode-alist (cons "\\.md\\'" 'markdown-mode))
-  (add-to-list 'auto-mode-alist (cons "\\.markdown\\'" 'markdown-mode))
   :config
+  (add-to-list 'auto-mode-alist '("\\.txt$" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
   (bind-keys :map markdown-mode-map
              ("C-c C-f" . markdown-code-fence)
              ("M-;" . markdown-blockquote-region)))
 ;; C, C++
-(use-package function-args
-  :init (use-package cc-mode
-          :config
-          (defun clang-format-before-save ()
-            (interactive)
-            (when (or (eq major-mode 'c++-mode)
-                      (eq major-mode 'c-mode))
-              (clang-format-buffer)))
-          (add-hook 'before-save-hook 'clang-format-before-save))
+(use-package cc-mode
   :config
-  (fa-config-default)
-  (define-key c-mode-map  [(control tab)] 'moo-complete)
-  (define-key c++-mode-map  [(control tab)] 'moo-complete)
-  (define-key c-mode-map (kbd "M-o")  'fa-show)
-  (define-key c++-mode-map (kbd "M-o")  'fa-show)
-  (set-default 'semantic-case-fold t))
+  (defun clang-format-before-save ()
+    (interactive)
+    (when (or (eq major-mode 'c++-mode)
+              (eq major-mode 'c-mode))
+      (clang-format-buffer)))
+  (add-hook 'before-save-hook 'clang-format-before-save)
+  (use-package function-args
+    :load-path "packages/function-args"
+    :config
+    (fa-config-default)
+    (define-key c-mode-map  [(control tab)] 'moo-complete)
+    (define-key c++-mode-map  [(control tab)] 'moo-complete)
+    (define-key c-mode-map (kbd "M-o")  'fa-show)
+    (define-key c++-mode-map (kbd "M-o")  'fa-show)
+    (set-default 'semantic-case-fold t)))
 
 ;; Python
-(use-package python-mode
-  :commands (python-mode)
+(use-package sphinx-doc
+  :commands sphinx-doc-mode)
+
+(use-package jedi
+  :demand
+  :preface
+  (declare-function jedi:goto-definition jedi nil)
+  (declare-function jedi:related-names jedi nil)
+  (declare-function jedi:show-doc jedi nil)
+  :bind (("C-." . jedi:goto-definition)
+	 ("C-c r" . jedi:related-names)
+	 ("C-?" . jedi:show-doc)))
+
+(use-package company-jedi
+  :demand)
+
+(use-package python
+  :mode ("\\.py$" . python-mode)
+  :interpreter ("ipython" . python-mode)
   :config
-  (use-package jedi
-    :commands (jedi:setup)
-    :config
-    (use-package company-jedi
-      :commands (company-jedi)
-      :init
-      (add-to-list 'company-backends 'company-jedi)
-      (setq company-jedi-python-bin "python")))
   (jedi:setup)
-  (use-package sphinx-doc)
   (sphinx-doc-mode t)
-  (add-to-list 'interpreter-mode-alist '("python2" . python-mode))
-  (add-to-list 'interpreter-mode-alist '("python3" . python-mode)))
+  (setq python-shell-interpreter "ipython")
+  (add-to-list 'company-backends 'company-jedi))
+  ;; (add-to-list 'interpreter-mode-alist '("python2" . python-mode))
+  ;; (add-to-list 'interpreter-mode-alist '("python3" . python-mode)))
+
 
 ;; HTML, html-templates
 (use-package web-mode
-  :commands (web-mode)
   :init
+  (add-to-list 'auto-mode-alist '("\\.html?" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.j2$" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb$" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tmpl$" . web-mode))
+  :config
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.tmpl\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.j2\\'" . web-mode)))
-
+  (setq web-mode-code-indent-offset 2))
 
 (use-package yaml-mode
-  :commands (yaml-mode)
-  :init (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode)))
+  :mode ("\\.yml$" . yaml-mode))
 
 (provide 'langs)

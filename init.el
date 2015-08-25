@@ -40,6 +40,7 @@
     clang-format
     dash
     deft
+    ein
     flx
     flycheck
     go-mode
@@ -66,17 +67,6 @@
     )
   "Packages to install via el-get")
 
-(defvar my:packages
-  '(better-defaults
-    flycheck-pylama
-    function-args
-    hl-todo
-    swiper
-    swiper-helm
-    yasnippet
-    )
-  "Packages to install locally from packages/name/name.el")
-
 (defvar my:configs
   '("global"
     "my-hydras"
@@ -90,13 +80,8 @@
 (eval-when-compile
   (require 'use-package))
 (require 'bind-key)                ;; if you use any :bind variant
-(mapc (lambda (name)
-        (progn (unless (fboundp name)
-                 (add-to-list 'load-path
-                              (concat "~/.emacs.d/packages/"
-                                      (symbol-name name)))
-                 (require name))))
-      my:packages)
 
 ;; Load configurations
-(mapc (lambda (name) (load (concat "~/.emacs.d/config/" name ".el"))) my:configs)
+(mapc (lambda (name)
+        (load (concat "~/.emacs.d/config/" name ".el")))
+      my:configs)

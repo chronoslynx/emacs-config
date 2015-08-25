@@ -83,10 +83,10 @@ be global."
 (global-set-key (kbd "C-c C-:") 'eval-replacing-region)
 (global-set-key (kbd "C-x C-k C-o") 'delete-blank-lines-in)
 (global-set-key (kbd "M-g") 'goto-line)
-(global-set-key (kbd "<left>") 'windmove-left)
-(global-set-key (kbd "<right>") 'windmove-right)
-(global-set-key (kbd "<up>") 'windmove-up)
-(global-set-key (kbd "<down>") 'windmove-down)
+;; (global-set-key (kbd "<left>") 'windmove-left)
+;; (global-set-key (kbd "<right>") 'windmove-right)
+;; (global-set-key (kbd "<up>") 'windmove-up)
+;; (global-set-key (kbd "<down>") 'windmove-down)
 (global-set-key (kbd "C-c M-x") 'execute-extended-command)
 (global-set-key (kbd "C->") 'end-of-buffer)
 (global-set-key (kbd "C-<") 'beginning-of-buffer)
@@ -112,8 +112,10 @@ be global."
 (push 'fontify-frame after-make-frame-functions)
 
 ;; Other Global Setup
+(use-package better-defaults
+  :load-path "packages/better-defaults")
+
 (use-package remember
-  :commands (remember)
   :config (define-key remember-notes-mode-map (kbd "C-c C-c") nil)
   :bind ("C-c r" . remember))
 
@@ -122,11 +124,13 @@ be global."
   (projectile-global-mode))
 
 (use-package flycheck
-  :commands (global-flycheck-mode)
-  :init (add-hook 'after-init-hook 'global-flycheck-mode))
+  :init (add-hook 'after-init-hook 'global-flycheck-mode)
+  :config
+  (use-package flycheck-pylama
+    :load-path "packages/flycheck-pylama"))
 
 (use-package yasnippet
-  :init
+  :load-path "packages/yasnippet"
   :config
   (setq yasnippet-dirs (append yas-snippet-dirs "~/.emacs.d/snippets"))
   (yas-global-mode 1))
@@ -180,8 +184,24 @@ be global."
 
 ;; Helm the Mighty
 (use-package helm
-  :init
+  :config
   (use-package helm-config)
+  (helm-mode 1)
+  (helm-adaptive-mode 1)
+  (helm-autoresize-mode 1)
+  (helm-push-mark-mode 1)
+  (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+        helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+        helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+        helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+        helm-ff-file-name-history-use-recentf t)
+  (setq helm-split-window-in-side-p           t
+        helm-buffers-fuzzy-matching           t
+        helm-move-to-line-cycle-in-source     t
+        helm-ff-search-library-in-sexp        t
+        helm-ff-file-name-history-use-recentf t)
+  (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
+  (substitute-key-definition 'find-tag 'helm-etags-select global-map)
   (use-package helm-gtags
     :commands (helm-gtags-mode)
     :init
@@ -211,26 +231,13 @@ be global."
     (helm-projectile-on)
     (setq projectile-completion-system 'helm))
   (use-package swiper-helm
+    :load-path "packages/swiper-helm/"
+    :init (use-package swiper
+            :load-path "packages/swiper")
     :bind (("\C-s" . swiper-helm)
            ("\C-s" . swiper-helm)
            ("C-c C-r" . helm-resume)))
-  :config
-  (helm-mode 1)
-  (helm-adaptive-mode 1)
-  (helm-autoresize-mode 1)
-  (helm-push-mark-mode 1)
-  (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-        helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-        helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-        helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-        helm-ff-file-name-history-use-recentf t)
-  (setq helm-split-window-in-side-p           t
-        helm-buffers-fuzzy-matching           t
-        helm-move-to-line-cycle-in-source     t
-        helm-ff-search-library-in-sexp        t
-        helm-ff-file-name-history-use-recentf t)
-  (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
-  (substitute-key-definition 'find-tag 'helm-etags-select global-map)
+
   :bind (("M-x" . helm-M-x)
          ("C-x C-m" . helm-M-x)
          ("M-y" . helm-show-kill-ring)
@@ -242,16 +249,9 @@ be global."
          ("C-h C-l" . helm-locate-library)
          ("C-c h" . helm-command-prefix)))
 (global-unset-key (kbd "C-x c"))
-
-
 ;; Company
 (use-package company
   :config
-  (use-package helm-company
-    :config
-    (define-key company-mode-map (kbd "C-:") 'helm-company)
-    (define-key company-active-map (kbd "C-:") 'helm-company))
-  (setq company-backends (delete 'company-capf company-backends))
   (setq company-tooltip-flip-when-above t
         company-idle-delay 0.1
         company-minimum-prefix-length 2
@@ -283,6 +283,7 @@ be global."
                  "~/.emacs.d/packages/magit/Documentation/")))
 
 (use-package hl-todo
+  :load-path "packages/hl-todo"
   :config
   (setq hl-todo-keyword-faces '(("TODO" . hl-todo)
                                 ("NOTE" . hl-todo)
