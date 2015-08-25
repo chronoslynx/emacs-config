@@ -79,6 +79,27 @@ be global."
 (setq save-abbrevs t)
 (setq-default abbrev-mode t)
 
+(defun dcaps-to-scaps ()
+  "Convert word in DOuble CApitals to Single Capitals."
+  (interactive)
+  (and (= ?w (char-syntax (char-before)))
+       (save-excursion
+         (and (if (called-interactively-p)
+                  (skip-syntax-backward "w")
+                (= -3 (skip-syntax-backward "w")))
+              (let (case-fold-search)
+                (looking-at "\\b[[:upper:]]\\{2\\}[[:lower:]]"))
+              (capitalize-word 1)))))
+
+(define-minor-mode dubcaps-mode
+  "Toggle `dubcaps-mode'.  Converts words in DOuble CApitals to
+Single Capitals as you type."
+  :init-value nil
+  :lighter (" DC")
+  (if dubcaps-mode
+      (add-hook 'post-self-insert-hook #'dcaps-to-scaps nil 'local)
+    (remove-hook 'post-self-insert-hook #'dcaps-to-scaps 'local)))
+
 ;; Global keybindings
 (global-set-key (kbd "C-c C-:") 'eval-replacing-region)
 (global-set-key (kbd "C-x C-k C-o") 'delete-blank-lines-in)
@@ -105,11 +126,14 @@ be global."
  gdb-show-main t
  )
 
-;; font and color
+;; font
 (defun fontify-frame (frame)
   (set-frame-parameter frame 'font "Input-14"))
 (fontify-frame nil)
 (push 'fontify-frame after-make-frame-functions)
+
+;; Hooks
+(add-hook 'text-mode-hook #'dubcaps-mode)
 
 ;; Other Global Setup
 (use-package better-defaults
