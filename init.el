@@ -53,6 +53,7 @@
     smart-mode-line
     smartparens
     sphinx-doc
+    perspective
     projectile
     puppet-mode
     rust-mode

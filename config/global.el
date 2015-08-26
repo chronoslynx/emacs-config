@@ -143,6 +143,12 @@ Single Capitals as you type."
   :config (define-key remember-notes-mode-map (kbd "C-c C-c") nil)
   :bind ("C-c r" . remember))
 
+(use-package perspective
+  :config
+  (persp-mode)
+  (require 'persp-projectile)
+  (define-key projectile-mode-map (kbd "s-s") 'projectile-persp-switch-project))
+
 (use-package projectile
   :config
   (projectile-global-mode))
@@ -198,7 +204,7 @@ Single Capitals as you type."
 (use-package smart-mode-line
   :config
   (sml/setup)
-  (setq rm-blacklist ".*")
+  ;; (setq rm-blacklist ".*")
   (add-to-list 'sml/replacer-regexp-list '("^~/Projects/\\(\\w+\\)/"
                                            (lambda(s) (concat ":" (upcase (match-string 1 s)) ":"))
                                            ) t)
