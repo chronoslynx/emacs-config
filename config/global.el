@@ -347,6 +347,13 @@ Single Capitals as you type."
   (global-set-key [f8] 'deft)
   :bind ("C-c C-d" . deft-find-file))
 
+(use-package vagrant-tramp
+  :commands vagrant-tramp-enable)
+(use-package tramp
+  :config
+  (setq tramp-default-method "ssh")
+  (vagrant-tramp-enable))
+
 ;; Decrease keystroke echo timeout
 (setq echo-keystrokes 0.5)
 (setq line-number-display-limit-width 10000)

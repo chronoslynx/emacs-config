@@ -11,7 +11,10 @@
    (quote
     ("~/.emacs.d/el-get/smart-mode-line/themes/" "~/.emacs.d/el-get/smart-mode-line/" "~/.emacs.d/themes" custom-theme-directory t)))
  '(helm-ag-base-command "pt -e --nocolor --nogroup")
- '(safe-local-variable-values (quote ((pyenv-mode-set "warthog")))))
+ '(safe-local-variable-values
+   (quote
+    ((pyenv-mode-set "apiary")
+     (pyenv-mode-set "warthog")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -58,9 +61,11 @@
     puppet-mode
     rust-mode
     sml-mode
+    tramp
     web-mode
     yaml-mode
     use-package
+    vagrant-tramp
     )
   "Packages to install via el-get")
 
