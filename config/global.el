@@ -104,10 +104,10 @@ Single Capitals as you type."
 (global-set-key (kbd "C-c C-:") 'eval-replacing-region)
 (global-set-key (kbd "C-x C-k C-o") 'delete-blank-lines-in)
 (global-set-key (kbd "M-g") 'goto-line)
-;; (global-set-key (kbd "<left>") 'windmove-left)
-;; (global-set-key (kbd "<right>") 'windmove-right)
-;; (global-set-key (kbd "<up>") 'windmove-up)
-;; (global-set-key (kbd "<down>") 'windmove-down)
+(global-set-key (kbd "<left>") 'windmove-left)
+(global-set-key (kbd "<right>") 'windmove-right)
+(global-set-key (kbd "<up>") 'windmove-up)
+(global-set-key (kbd "<down>") 'windmove-down)
 (global-set-key (kbd "C-c M-x") 'execute-extended-command)
 (global-set-key (kbd "C->") 'end-of-buffer)
 (global-set-key (kbd "C-<") 'beginning-of-buffer)
@@ -208,6 +208,7 @@ Single Capitals as you type."
 
 ;; Helm the Mighty
 (use-package helm
+  :demand
   :config
   (use-package helm-config)
   (helm-mode 1)
@@ -261,18 +262,25 @@ Single Capitals as you type."
     :bind (("\C-s" . swiper-helm)
            ("\C-s" . swiper-helm)
            ("C-c C-r" . helm-resume)))
-
+  (use-package helm-descbinds
+    :bind (("C-h b" . helm-descbinds)))
+  (add-hook 'eshell-mode-hook
+            '(lambda ()
+               (define-key eshell-mode-map (kbd "TAB") 'helm-esh-pcomplete)
+               (define-key eshell-mode-map (kbd "C-c C-l") 'helm-eshell-history)))
   :bind (("M-x" . helm-M-x)
          ("C-x C-m" . helm-M-x)
          ("M-y" . helm-show-kill-ring)
          ("C-x b" . helm-mini)
          ("C-x C-b" . helm-buffers-list)
          ("C-x C-f" . helm-find-files)
-         ("C-h f" . helm-apropos)
-         ("C-h r" . helm-info-emacs)
+         ("C-h a" . helm-apropos)
+         ("C-h i" . helm-info-emacs)
          ("C-h C-l" . helm-locate-library)
          ("C-c h" . helm-command-prefix)))
+
 (global-unset-key (kbd "C-x c"))
+
 ;; Company
 (use-package company
   :config

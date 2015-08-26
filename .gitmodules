@@ -25,3 +25,9 @@
 [submodule "packages/hl-todo"]
 	path = packages/hl-todo
 	url = https://github.com/tarsius/hl-todo.git
+[submodule "packages/pyenv-mode"]
+	path = packages/pyenv-mode
+	url = https://github.com/proofit404/pyenv-mode
+[submodule "packages/pythonic"]
+	path = packages/pythonic
+	url = https://github.com/proofit404/pythonic

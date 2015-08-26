@@ -62,17 +62,20 @@
 (use-package company-jedi
   :demand)
 
+(use-package pyenv-mode
+  :load-path "packages/pyenv-mode"
+  :init (use-package pythonic
+          :load-path "packages/pythonic"))
+
 (use-package python
   :mode ("\\.py$" . python-mode)
   :interpreter ("ipython" . python-mode)
   :config
+  (pyenv-mode)
   (jedi:setup)
   (sphinx-doc-mode t)
   (setq python-shell-interpreter "ipython")
   (add-to-list 'company-backends 'company-jedi))
-  ;; (add-to-list 'interpreter-mode-alist '("python2" . python-mode))
-  ;; (add-to-list 'interpreter-mode-alist '("python3" . python-mode)))
-
 
 ;; HTML, html-templates
 (use-package web-mode
