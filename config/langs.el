@@ -47,7 +47,8 @@
 
 ;; Python
 (use-package sphinx-doc
-  :commands sphinx-doc-mode)
+  :config
+  (add-to-list 'company-backends 'company-jedi)))
 
 (use-package jedi
   :demand
@@ -73,7 +74,7 @@
   :config
   (pyenv-mode)
   (jedi:setup)
-  (sphinx-doc-mode t)
+  (sphinx-doc-mode)
   (setq python-shell-interpreter "ipython")
   (add-to-list 'company-backends 'company-jedi))
 
