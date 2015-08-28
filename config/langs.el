@@ -48,7 +48,7 @@
 ;; Python
 (use-package sphinx-doc
   :config
-  (add-to-list 'company-backends 'company-jedi)))
+  (add-to-list 'company-backends 'company-jedi))
 
 (use-package jedi
   :demand
