@@ -73,7 +73,6 @@
   '("global"
     "my-hydras"
     "langs"
-    ;; "my-org"
     "my-eshell")
   "Configuration files that follow the config/foo.el path
   format.")

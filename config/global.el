@@ -355,6 +355,11 @@ Single Capitals as you type."
   (setq tramp-default-method "ssh")
   (vagrant-tramp-enable))
 
+;; Shut projectile up when using tramp
+(add-hook 'find-file-hook
+          (lambda ()
+            (when (file-remote-p default-directory)
+              (setq-local projectile-mode-line "Projectile"))))
 ;; Decrease keystroke echo timeout
 (setq echo-keystrokes 0.5)
 (setq line-number-display-limit-width 10000)

@@ -13,5 +13,5 @@ semanticdb
 backup*
 .python-environments
 bookmarks
-eshell
 url
+eshell/history

@@ -5,7 +5,7 @@
                      (file-name-directory (buffer-file-name))
                    default-directory))
          (name (car (last (split-string parent "/" t)))))
-    (split-window-vertically)
+    (split-window-horizontally)
     (other-window 1)
     (eshell "new")
     (rename-buffer (concat "*eshell: " name "*"))
