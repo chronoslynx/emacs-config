@@ -1,0 +1,7 @@
+alias ff find-file $1
+alias fo find-file-other-window $1
+alias open find-file $1
+alias openo find-file-other-window $1
+alias ll 'ls -l $*'
+alias emacs find-file-other-window $1
+alias s (magit-status (eshell/pwd)) > /dev/null

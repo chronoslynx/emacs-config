@@ -355,18 +355,6 @@ Single Capitals as you type."
   (setq tramp-default-method "ssh")
   (vagrant-tramp-enable))
 
-(use-package eshell
-  :init
-  (add-hook 'eshell-mode-hook
-            (lambda ()
-              (setenv "PAGER" "cat")
-              (setenv "EDITOR" "emacsclient")))
-  :config
-  (use-package em-smart)
-  (setq eshell-where-to-jump 'begin
-        eshell-review-quick-commands nil
-        eshell-smart-spaces-goes-to-end))
-
 ;; Decrease keystroke echo timeout
 (setq echo-keystrokes 0.5)
 (setq line-number-display-limit-width 10000)
