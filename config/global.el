@@ -360,6 +360,18 @@ Single Capitals as you type."
           (lambda ()
             (when (file-remote-p default-directory)
               (setq-local projectile-mode-line "Projectile"))))
+
+;(use-package edit-server
+;  :commands edit-server-start
+;  :config
+;  (setq edit-server-url-major-mode-alist
+;        '(("github\\.com" . markdown-mode)
+;          ("jira.*\\.com" . markdown-mode))))
+
+(use-package server
+  :config
+  (if (server-running-p) (edit-server-start)))
+
 ;; Decrease keystroke echo timeout
 (setq echo-keystrokes 0.5)
 (setq line-number-display-limit-width 10000)

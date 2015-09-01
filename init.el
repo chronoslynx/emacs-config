@@ -37,6 +37,7 @@
     clang-format
     dash
     deft
+    edit-server
     ein
     flx
     flycheck

@@ -35,18 +35,21 @@
               (eq major-mode 'c-mode))
       (clang-format-buffer)))
   (add-hook 'before-save-hook 'clang-format-before-save)
-  (use-package function-args
-    :load-path "packages/function-args"
-    :config
-    (fa-config-default)
-    (define-key c-mode-map  [(control tab)] 'moo-complete)
-    (define-key c++-mode-map  [(control tab)] 'moo-complete)
-    (define-key c-mode-map (kbd "M-o")  'fa-show)
-    (define-key c++-mode-map (kbd "M-o")  'fa-show)
-    (set-default 'semantic-case-fold t)))
+  ;; (use-package function-args
+  ;;   :load-path "packages/function-args"
+  ;;   :config
+  ;;   (fa-config-default)
+  ;;   (define-key c-mode-map  [(control tab)] 'moo-complete)
+  ;;   (define-key c++-mode-map  [(control tab)] 'moo-complete)
+  ;;   (define-key c-mode-map (kbd "M-o")  'fa-show)
+  ;;   (define-key c++-mode-map (kbd "M-o")  'fa-show)
+  ;;   (set-default 'semantic-case-fold t))
+  )
 
 ;; Python
 (use-package sphinx-doc
+  :demand
+  :commands sphinx-doc-mode
   :config
   (add-to-list 'company-backends 'company-jedi))
 
@@ -68,13 +71,21 @@
   :init (use-package pythonic
           :load-path "packages/pythonic"))
 
+
 (use-package python
   :mode ("\\.py$" . python-mode)
   :interpreter ("ipython" . python-mode)
   :config
   (pyenv-mode)
   (jedi:setup)
-  (sphinx-doc-mode)
+  (add-hook 'python-mode-hook (lambda ()
+                                (require 'sphinx-doc)
+                                (sphinx-doc-mode t)
+                                (set
+                                 (make-local-variable 'company-backends)
+                                 (company-jedi company-semantic
+                                               (company-dabbrev-code company-keywords)
+                                               company-oddmuse company-files company-dabbrev))))
   (setq python-shell-interpreter "ipython")
   (add-to-list 'company-backends 'company-jedi))
 
