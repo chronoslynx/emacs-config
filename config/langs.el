@@ -34,18 +34,7 @@
     (when (or (eq major-mode 'c++-mode)
               (eq major-mode 'c-mode))
       (clang-format-buffer)))
-  (add-hook 'before-save-hook 'clang-format-before-save)
-  ;; (use-package function-args
-  ;;   :load-path "packages/function-args"
-  ;;   :config
-  ;;   (fa-config-default)
-  ;;   (define-key c-mode-map  [(control tab)] 'moo-complete)
-  ;;   (define-key c++-mode-map  [(control tab)] 'moo-complete)
-  ;;   (define-key c-mode-map (kbd "M-o")  'fa-show)
-  ;;   (define-key c++-mode-map (kbd "M-o")  'fa-show)
-  ;;   (set-default 'semantic-case-fold t))
-  )
-
+  (add-hook 'before-save-hook 'clang-format-before-save))
 ;; Python
 (use-package sphinx-doc
   :demand

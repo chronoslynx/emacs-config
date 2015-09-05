@@ -261,15 +261,7 @@ Single Capitals as you type."
     :config
     (helm-projectile-on)
     (setq projectile-completion-system 'helm))
-  (use-package swiper-helm
-    :load-path "packages/swiper-helm/"
-    :init (use-package swiper
-            :load-path "packages/swiper")
-    :bind (("\C-s" . swiper-helm)
-           ("\C-s" . swiper-helm)
-           ("C-c C-r" . helm-resume)))
-  (use-package helm-descbinds
-    :bind (("C-h b" . helm-descbinds)))
+
   (add-hook 'eshell-mode-hook
             '(lambda ()
                (define-key eshell-mode-map (kbd "TAB") 'helm-esh-pcomplete)
@@ -284,11 +276,21 @@ Single Capitals as you type."
          ("C-h i" . helm-info-emacs)
          ("C-h C-l" . helm-locate-library)
          ("C-c h" . helm-command-prefix)))
+(use-package swiper-helm
+  :load-path "packages/swiper-helm/"
+  :init (use-package swiper
+          :load-path "packages/swiper")
+  :bind (("\C-s" . swiper-helm)
+         ("\C-s" . swiper-helm)
+         ("C-c C-r" . helm-resume)))
+(use-package helm-descbinds
+  :bind (("C-h b" . helm-descbinds)))
 
 (global-unset-key (kbd "C-x c"))
 
 ;; Company
 (use-package company
+  :init (global-auto-complete-mode 0)
   :config
   (setq company-tooltip-flip-when-above t
         company-idle-delay 0.1
@@ -334,7 +336,9 @@ Single Capitals as you type."
   :config
   (global-aggressive-indent-mode 1)
   (add-to-list 'aggressive-indent-excluded-modes 'python-mode)
-  (add-to-list 'aggressive-indent-excluded-modes 'html-mode))
+  (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+  (add-to-list 'aggressive-indent-excluded-modes 'cc-mode)
+  (add-to-list 'aggressive-indent-excluded-modes 'c-mode))
 
 ;; Deft
 (use-package deft
@@ -368,9 +372,7 @@ Single Capitals as you type."
 ;        '(("github\\.com" . markdown-mode)
 ;          ("jira.*\\.com" . markdown-mode))))
 
-(use-package server
-  :config
-  (if (server-running-p) (edit-server-start)))
+(use-package server)
 
 ;; Decrease keystroke echo timeout
 (setq echo-keystrokes 0.5)
