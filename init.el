@@ -42,6 +42,7 @@
     flx
     flycheck
     go-mode
+    god-mode
     helm
     helm-ag
     helm-descbinds
@@ -73,6 +74,7 @@
 (defvar my:configs
   '("global"
     "my-hydras"
+    "my-god"                            ; Hah...
     "langs"
     "my-eshell")
   "Configuration files that follow the config/foo.el path
