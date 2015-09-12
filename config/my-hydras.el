@@ -29,10 +29,55 @@
 
 ;; Flycheck controls
 (defhydra hydra-flycheck (global-map "C-c e")
-  "flycheck controls"
-  ("n" flycheck-next-error "next")
-  ("p" flycheck-previous-error "prev"))
+  "Compilation errors:
+_j_: next error        _h_: first error     _q_uit
+_k_: previous error    _l_: last error
+"
+  ("h" flycheck-first-error)
+  ("j" flycheck-next-error)
+  ("k" flycheck-previous-error)
+  ("l" (condition-case err
+           (while t
+             (flycheck-next-error))
+         (user-error nil))
+   nil :bind nil)
+  ("q" nil            nil :color blue) )
 
+(defhydra hydra-windows (:exit t)
+  "
+^Focus^              ^Management^
+---------------------------------------
+_o_: other-window    _0_: delete-window
+_h_: left            _1_: delete-other
+_l_: right           _2_: vertical
+_k_: up              _3_: horizontal
+_j_: down            _x_: server-edit
+
+"
+  ("o" other-window)
+  ("h" windmove-left)
+  ("l" windmove-right)
+  ("j" windmove-down)
+  ("k" windmove-up)
+  ("0" delete-window :color blue)
+  ("1" delete-other-windows)
+  ("2" split-window-vertically)
+  ("3" split-window-horizontally)
+  ("x" server-edit)
+  )
+
+(defhydra hydra-describe ()
+  "Describe what?
+
+_k_: key-binding
+_f_: function
+_v_: variable
+_m_: mode
+"
+  ("k" describe-key)
+  ("f" decsribe-function)
+  ("v" describe-variable)
+  ("m" describe-mode))
 ;; Buffer controls
 (defhydra hydra-buffer-menu (:color pink
                              :hint nil)
@@ -76,7 +121,7 @@ _~_: modified
   ("q"  nil                                      "cancel" :color blue))
 
 (defhydra hydra-projectile (:color teal
-                            :hint nil)
+                                   :hint nil)
   "
      PROJECTILE: %(projectile-project-root)
 
@@ -96,8 +141,6 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   ("s-f" projectile-find-file)
   ("ff"  projectile-find-file-dwim)
   ("fd"  projectile-find-file-in-directory)
-  ;("g"   ggtags-update-tags)
-  ;("s-g" ggtags-update-tags)
   ("i"   projectile-ibuffer)
   ("K"   projectile-kill-buffers)
   ("s-k" projectile-kill-buffers)

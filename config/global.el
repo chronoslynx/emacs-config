@@ -100,10 +100,10 @@ Single Capitals as you type."
       (add-hook 'post-self-insert-hook #'dcaps-to-scaps nil 'local)
     (remove-hook 'post-self-insert-hook #'dcaps-to-scaps 'local)))
 
-(defun my-split-window-right ()
+(defun my-split-window-horizontally ()
   "Split window with another buffer."
   (interactive)
-  (select-window (split-window-right))
+  (select-window (split-window-horizontally))
   (switch-to-buffer (other-buffer)))
 
 
@@ -112,11 +112,9 @@ Single Capitals as you type."
 (global-set-key (kbd "C-x C-k C-o") 'delete-blank-lines-in)
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-c M-x") 'execute-extended-command)
-(global-set-key (kbd "C->") 'end-of-buffer)
-(global-set-key (kbd "C-<") 'beginning-of-buffer)
 (global-set-key (kbd "C-!") 'eval-defun)
 (define-key ctl-x-map "\C-i" 'endless/ispell-word-then-abbrev)
-(global-set-key (kbd "C-x 3") 'my-split-window-right)
+(global-set-key (kbd "C-x 3") 'my-split-window-horizontally)
 
 ;; Environment settings
 (set-language-environment "UTF-8")
@@ -334,9 +332,11 @@ Single Capitals as you type."
                                 ("NOTE" . hl-todo)
                                 ("FIXME" . hl-todo)
                                 ("KLUDGE" . hl-todo)))
-  (hl-todo-set-regexp)
-  (global-hl-todo-mode))
+  (hl-todo-set-regexp))
+(global-hl-todo-mode)
 
+(use-package ace-link
+  :config (ace-link-setup-default))
 (use-package aggressive-indent
   :config
   (global-aggressive-indent-mode 1)

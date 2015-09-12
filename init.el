@@ -29,6 +29,8 @@
 ;; Packages to load
 (defvar my:elpackages
   '(aggressive-indent-mode
+    avy
+    ace-link
     comment-dwim-2
     company-mode
     company-auctex
@@ -79,6 +81,7 @@
 (defvar my:configs
   '("global"
     "my-hydras"
+    "my-evil"
     "langs"
     "my-eshell")
   "Configuration files that follow the config/foo.el path

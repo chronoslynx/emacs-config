@@ -8,8 +8,13 @@
     "s" 'swiper-helm
     "w" 'save-buffer
     "k" 'kill-buffer
-    "f" 'helm-projectile-find-file
-    "p" 'helm-projectile-switch-project)
+    "p" 'hydra-projectile/body
+    "h" 'hydra-describe
+    "x" 'hydra-windows/body
+    "q" 'hydra-flycheck/body
+    "<SPC>" 'helm-M-x
+    ";" 'avy-goto-word-1
+    )
   )
 
 (use-package key-chord
