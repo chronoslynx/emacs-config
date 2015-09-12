@@ -111,10 +111,6 @@ Single Capitals as you type."
 (global-set-key (kbd "C-c C-:") 'eval-replacing-region)
 (global-set-key (kbd "C-x C-k C-o") 'delete-blank-lines-in)
 (global-set-key (kbd "M-g") 'goto-line)
-(global-set-key (kbd "<left>") 'windmove-left)
-(global-set-key (kbd "<right>") 'windmove-right)
-(global-set-key (kbd "<up>") 'windmove-up)
-(global-set-key (kbd "<down>") 'windmove-down)
 (global-set-key (kbd "C-c M-x") 'execute-extended-command)
 (global-set-key (kbd "C->") 'end-of-buffer)
 (global-set-key (kbd "C-<") 'beginning-of-buffer)
@@ -284,6 +280,7 @@ Single Capitals as you type."
          ("C-h i" . helm-info-emacs)
          ("C-h C-l" . helm-locate-library)
          ("C-c h" . helm-command-prefix)))
+
 (use-package swiper-helm
   :load-path "packages/swiper-helm/"
   :init (use-package swiper

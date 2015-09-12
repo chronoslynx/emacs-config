@@ -39,10 +39,14 @@
     deft
     edit-server
     ein
+    evil
+    evil-leader
+    evil-matchit
+    evil-nerd-commenter
+    evil-surround
     flx
     flycheck
     go-mode
-    god-mode
     helm
     helm-ag
     helm-descbinds
@@ -50,6 +54,7 @@
     helm-swoop
     hydra
     jedi
+    key-chord
     magit
     markdown-mode
     org-mode
@@ -74,7 +79,6 @@
 (defvar my:configs
   '("global"
     "my-hydras"
-    "my-god"                            ; Hah...
     "langs"
     "my-eshell")
   "Configuration files that follow the config/foo.el path
