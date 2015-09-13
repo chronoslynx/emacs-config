@@ -24,7 +24,6 @@
 (use-package evil-matchit
   :commands global-evil-matchit-mode)
 (use-package evil-nerd-commenter
-  :commands (evilnc-default-hotkeys)
   :config
   (evil-leader/set-key
     "ci" 'evilnc-comment-or-uncomment-lines
@@ -56,7 +55,7 @@
   (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
   ;; Emacs movement keys in insert mode
   (define-key evil-insert-state-map "\C-a" 'evil-beginning-of-line)
-  (define-key evil-insert-state-map "\C-e" 'evil-end-of-line)
+  (define-key evil-insert-state-map "\C-e" 'end-of-line)
   (define-key evil-insert-state-map "\C-n" 'evil-next-line)
   (define-key evil-insert-state-map "\C-p" 'evil-previous-line)
   (define-key evil-insert-state-map "\C-d" 'evil-delete)
@@ -65,7 +64,6 @@
   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
   (global-evil-surround-mode 1)
   (global-evil-matchit-mode 1)
-  (evilnc-default-hotkeys)
   )
 (global-evil-leader-mode)
 (evil-mode 1)

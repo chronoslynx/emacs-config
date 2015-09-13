@@ -1,5 +1,5 @@
 (use-package org-mode
-  :commands (org-agenda org-capture org-store-link org-mode)
+  :commands (org-agenda org-capture org-store-link)
   :init
   :config
   (setq org-directory (expand-file-name "~/Dropbox/Notational Velocity")

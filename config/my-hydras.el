@@ -29,9 +29,10 @@
 
 ;; Flycheck controls
 (defhydra hydra-flycheck (global-map "C-c e")
-  "Compilation errors:
+  "Compilation errors
 _j_: next error        _h_: first error     _q_uit
 _k_: previous error    _l_: last error
+
 "
   ("h" flycheck-first-error)
   ("j" flycheck-next-error)
