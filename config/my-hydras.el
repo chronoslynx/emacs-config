@@ -67,20 +67,14 @@ _j_: down            _x_: server-edit
   )
 
 (defhydra hydra-describe ()
-  "Describe what?
-
-_k_: key-binding
-_f_: function
-_v_: variable
-_m_: mode
-"
+  "Describe what?"
   ("k" describe-key)
   ("f" decsribe-function)
   ("v" describe-variable)
   ("m" describe-mode))
 ;; Buffer controls
 (defhydra hydra-buffer-menu (:color pink
-                             :hint nil)
+                                    :hint nil)
   "
 ^Mark^             ^Unmark^           ^Actions^          ^Search
 ^^^^^^^^-----------------------------------------------------------------
@@ -196,7 +190,7 @@ Links, footnotes  C-c C-a    _L_: link          _U_: uri        _F_: footnote   
   ("F" markdown-insert-footnote :color blue)
   ("W" markdown-insert-wiki-link :color blue)
   ("R" markdown-insert-reference-link-dwim :color blue)
-)
+  )
 
 (global-set-key [f9] 'dh-hydra-markdown-mode/body)
 
