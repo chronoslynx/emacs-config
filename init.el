@@ -45,6 +45,7 @@
     evil-leader
     evil-matchit
     evil-nerd-commenter
+    evil-org-mode
     evil-surround
     flx
     flycheck
@@ -65,6 +66,7 @@
     smart-mode-line
     smartparens
     sphinx-doc
+    tuareg-mode
     perspective
     projectile
     puppet-mode

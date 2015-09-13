@@ -59,6 +59,7 @@
   (define-key evil-insert-state-map "\C-e" 'evil-end-of-line)
   (define-key evil-insert-state-map "\C-n" 'evil-next-line)
   (define-key evil-insert-state-map "\C-p" 'evil-previous-line)
+  (define-key evil-insert-state-map "\C-d" 'evil-delete)
   ;; Exit insert mode on jk
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)

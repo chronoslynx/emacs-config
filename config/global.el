@@ -182,6 +182,8 @@ Single Capitals as you type."
   (sp-local-pair 'scheme-mode "`" nil :actions nil)
   (sp-local-pair 'inferior-scheme-mode "'" nil :actions nil)
   (sp-local-pair 'inferior-scheme-mode "`" nil :actions nil)
+  ;;  Ocaml
+  (sp-local-pair 'tuareg-mode "'" nil :actions nil)
   ;; *TeX
   (sp-local-pair 'LaTeX-mode "\"" nil :actions nil)
   (sp-local-pair 'LaTeX-mode "'" nil :actions nil)
