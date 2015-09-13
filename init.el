@@ -83,6 +83,7 @@
 (defvar my:configs
   '("global"
     "my-hydras"
+    "my-org"
     "my-evil"
     "langs"
     "my-eshell")
