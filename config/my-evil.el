@@ -41,6 +41,7 @@
   (if (buffer-file-name) (progn (save-buffer))
     (message "no file is associated to this buffer: do nothing")))
 
+(use-package evil-org)
 (use-package evil
   :commands evil-mode
   :config
@@ -53,6 +54,11 @@
   (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
   (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
   (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+  ;; Emacs movement keys in insert mode
+  (define-key evil-insert-state-map "\C-a" 'evil-beginning-of-line)
+  (define-key evil-insert-state-map "\C-e" 'evil-end-of-line)
+  (define-key evil-insert-state-map "\C-n" 'evil-next-line)
+  (define-key evil-insert-state-map "\C-p" 'evil-previous-line)
   ;; Exit insert mode on jk
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
