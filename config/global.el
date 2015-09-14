@@ -401,6 +401,4 @@ Single Capitals as you type."
   (let ((buffer-backed-up nil))
     (backup-buffer)))
 (add-hook 'before-save-hook 'force-backup-of-buffer)
-;; Garbage collection
-(setq gc-cons-threshold 20000000)
 (provide 'global)

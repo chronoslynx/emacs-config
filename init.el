@@ -21,82 +21,85 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;;  The following two lines thanks to https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
+(setq gc-cons-threshold 20000000)
+(let ((file-name-handler-alist nil))
+  ;; el-get setup
+  (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+  (require 'el-get nil 'noerror)
 
-;; el-get setup
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-(require 'el-get nil 'noerror)
+  ;; Packages to load
+  (defvar my:elpackages
+    '(aggressive-indent-mode
+      avy
+      ace-link
+      comment-dwim-2
+      company-mode
+      company-auctex
+      company-irony
+      company-jedi
+      clang-format
+      dash
+      deft
+      edit-server
+      ein
+      evil
+      evil-leader
+      evil-matchit
+      evil-nerd-commenter
+      evil-org-mode
+      evil-surround
+      flx
+      flycheck
+      go-mode
+      helm
+      helm-ag
+      helm-descbinds
+      helm-gtags
+      helm-swoop
+      hydra
+      jedi
+      key-chord
+      magit
+      markdown-mode
+      org-mode
+      python
+      rainbow-delimiters
+      smart-mode-line
+      smartparens
+      sphinx-doc
+      tuareg-mode
+      perspective
+      projectile
+      puppet-mode
+      rust-mode
+      sml-mode
+      tramp
+      web-mode
+      yaml-mode
+      use-package
+      vagrant-tramp
+      )
+    "Packages to install via el-get")
 
-;; Packages to load
-(defvar my:elpackages
-  '(aggressive-indent-mode
-    avy
-    ace-link
-    comment-dwim-2
-    company-mode
-    company-auctex
-    company-irony
-    company-jedi
-    clang-format
-    dash
-    deft
-    edit-server
-    ein
-    evil
-    evil-leader
-    evil-matchit
-    evil-nerd-commenter
-    evil-org-mode
-    evil-surround
-    flx
-    flycheck
-    go-mode
-    helm
-    helm-ag
-    helm-descbinds
-    helm-gtags
-    helm-swoop
-    hydra
-    jedi
-    key-chord
-    magit
-    markdown-mode
-    org-mode
-    python
-    rainbow-delimiters
-    smart-mode-line
-    smartparens
-    sphinx-doc
-    tuareg-mode
-    perspective
-    projectile
-    puppet-mode
-    rust-mode
-    sml-mode
-    tramp
-    web-mode
-    yaml-mode
-    use-package
-    vagrant-tramp
-    )
-  "Packages to install via el-get")
-
-(defvar my:configs
-  '("global"
-    "my-hydras"
-    "my-org"
-    "my-evil"
-    "langs"
-    "my-eshell")
-  "Configuration files that follow the config/foo.el path
+  (defvar my:configs
+    '("global"
+      "my-hydras"
+      "my-org"
+      "my-evil"
+      "langs"
+      "my-eshell")
+    "Configuration files that follow the config/foo.el path
   format.")
 
-;; Load packages using el-get
-(el-get 'sync my:elpackages)
-(eval-when-compile
-  (require 'use-package))
-(require 'bind-key)                ;; if you use any :bind variant
+  ;; Load packages using el-get
+  (el-get 'sync my:elpackages)
+  (eval-when-compile
+    (require 'use-package))
+  (require 'bind-key)                ;; if you use any :bind variant
 
-;; Load configurations
-(mapc (lambda (name)
-        (load (concat "~/.emacs.d/config/" name ".el")))
-      my:configs)
+  ;; Load configurations
+  (mapc (lambda (name)
+          (load (concat "~/.emacs.d/config/" name ".el")))
+        my:configs)
+  )
