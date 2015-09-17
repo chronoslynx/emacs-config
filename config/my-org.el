@@ -1,12 +1,13 @@
 (use-package org-mode
-  :commands (org-agenda org-capture org-store-link)
+  :commands (org-agenda org-capture org-store-link org-mode)
   :init
-  :config
   (setq org-directory (expand-file-name "~/Dropbox/Notational Velocity")
         org-agenda-files (list org-directory)
         org-default-notes-file (concat org-directory "/inbox.org")
         org-capture-templates
         '(("n" "Note" entry (file+headline (concat org-directory "/inbox.org") "Inbox")
+           "* TODO %<%Y-%m-%d %H:%M:%S>\n\n%?" :empty-lines 1)
+          ("t" "Todo" entry (file+headline (concat org-directory "/todo.org") "Inbox")
            "* TODO %<%Y-%m-%d %H:%M:%S>\n\n%?" :empty-lines 1)
           ("p" "PW" entry (file+headline (concat org-directory "/pw.org") "PW")
            "* TODO %<%Y-%m-%d %H:%M:%S>\n\n%?" :empty-lines 1)
