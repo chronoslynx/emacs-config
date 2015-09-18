@@ -3,6 +3,8 @@
 
 (define-abbrev-table 'Info-edit-mode-abbrev-table '())
 
+(define-abbrev-table 'Man-mode-abbrev-table '())
+
 (define-abbrev-table 'awk-mode-abbrev-table
   '(
    ))
@@ -21,6 +23,8 @@
   '(
    ))
 
+(define-abbrev-table 'calc-trail-mode-abbrev-table '())
+
 (define-abbrev-table 'calendar-mode-abbrev-table '())
 
 (define-abbrev-table 'change-log-mode-abbrev-table '())
@@ -31,6 +35,8 @@
 
 (define-abbrev-table 'diff-mode-abbrev-table '())
 
+(define-abbrev-table 'display-time-world-mode-abbrev-table '())
+
 (define-abbrev-table 'edebug-eval-mode-abbrev-table '())
 
 (define-abbrev-table 'edit-abbrevs-mode-abbrev-table '())
@@ -38,6 +44,12 @@
 (define-abbrev-table 'emacs-lisp-byte-code-mode-abbrev-table '())
 
 (define-abbrev-table 'emacs-lisp-mode-abbrev-table '())
+
+(define-abbrev-table 'epa-info-mode-abbrev-table '())
+
+(define-abbrev-table 'epa-key-list-mode-abbrev-table '())
+
+(define-abbrev-table 'epa-key-mode-abbrev-table '())
 
 (define-abbrev-table 'eshell-mode-abbrev-table '())
 
@@ -54,7 +66,10 @@
 (define-abbrev-table 'global-abbrev-table
   '(
     ("lanugage" "language" nil 0)
+    ("porperties" "properties" nil 0)
    ))
+
+(define-abbrev-table 'gnus-group-mode-abbrev-table '())
 
 (define-abbrev-table 'helm-grep-mode-abbrev-table '())
 
@@ -160,9 +175,7 @@
 
 (define-abbrev-table 'tuareg-interactive-mode-abbrev-table '())
 
-(define-abbrev-table 'tuareg-mode-abbrev-table
-  '(
-   ))
+(define-abbrev-table 'tuareg-mode-abbrev-table '())
 
 (define-abbrev-table 'url-cookie-mode-abbrev-table '())
 

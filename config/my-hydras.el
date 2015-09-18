@@ -29,11 +29,7 @@
 
 ;; Flycheck controls
 (defhydra hydra-flycheck (global-map "C-c e")
-  "Compilation errors
-_j_: next error        _h_: first error     _q_uit
-_k_: previous error    _l_: last error
-
-"
+  "Compilation errors"
   ("h" flycheck-first-error)
   ("j" flycheck-next-error)
   ("k" flycheck-previous-error)
@@ -122,9 +118,9 @@ _~_: modified
 
      Find File            Search                 Buffers                Cache
 ------------------------------------------------------------------------------------------
-_s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache clear
- _ff_: file dwim                              _b_: switch to buffer  _x_: remove known project
- _fd_: file curr dir                        _s-k_: Kill all buffers  _X_: cleanup non-existing
+  _f_: file            _a_: ag                _i_: Ibuffer           _c_: cache clear
+ _ef_: file dwim                              _b_: switch to buffer  _x_: remove known project
+ _ed_: file curr dir                        _s-k_: Kill all buffers  _X_: cleanup non-existing
   _r_: recent file                                               ^^^^_z_: cache current
   _d_: dir
 
@@ -133,9 +129,9 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   ("b"   projectile-switch-to-buffer)
   ("c"   projectile-invalidate-cache)
   ("d"   projectile-find-dir)
-  ("s-f" projectile-find-file)
-  ("ff"  projectile-find-file-dwim)
-  ("fd"  projectile-find-file-in-directory)
+  ("f" projectile-find-file)
+  ("ef"  projectile-find-file-dwim)
+  ("ed"  projectile-find-file-in-directory)
   ("i"   projectile-ibuffer)
   ("K"   projectile-kill-buffers)
   ("s-k" projectile-kill-buffers)

@@ -391,6 +391,7 @@ Single Capitals as you type."
 
 (use-package hl-todo
   :load-path "packages/hl-todo"
+  :init (setq hl-todo-activate-in-modes '(prog-mode))
   :config
   (setq hl-todo-keyword-faces '(("TODO" . hl-todo)
                                 ("NOTE" . hl-todo)
@@ -398,6 +399,9 @@ Single Capitals as you type."
                                 ("KLUDGE" . hl-todo)))
   (hl-todo-set-regexp))
 (global-hl-todo-mode)
+
+(use-package page-break-lines)
+(turn-on-page-break-lines-mode)
 
 (use-package ace-link
   :config (ace-link-setup-default))

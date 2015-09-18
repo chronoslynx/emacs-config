@@ -69,6 +69,7 @@
       smartparens
       sphinx-doc
       tuareg-mode
+      page-break-lines
       perspective
       projectile
       puppet-mode
