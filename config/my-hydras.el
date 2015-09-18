@@ -64,7 +64,7 @@ _j_: down            _x_: server-edit
   )
 
 (defhydra hydra-describe ()
-  "Describe what?"
+  "Describe..."
   ("k" describe-key)
   ("f" decsribe-function)
   ("v" describe-variable)
