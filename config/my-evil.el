@@ -45,6 +45,7 @@
   :commands evil-mode
   :config
   (add-hook 'evil-insert-state-exit-hook 'my-save-if-bufferfilename)
+  (setq evil-insert-state-modes (append 'evil-motion-state-modes '(deft-mode)))
    ;;; esc quits
   (define-key evil-normal-state-map [escape] 'keyboard-quit)
   (define-key evil-visual-state-map [escape] 'keyboard-quit)
