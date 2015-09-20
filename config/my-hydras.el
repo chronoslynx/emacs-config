@@ -202,6 +202,7 @@ Links, footnotes  C-c C-a    _L_: link          _U_: uri        _F_: footnote   
   "page breaks"
   ("k" backward-page "back")
   ("j" forward-page "forward")
+  ("p" helm-pages "show pages")
   ("RET" nil "quit")
   ("q" nil "quit"))
 (provide 'my-hydras)

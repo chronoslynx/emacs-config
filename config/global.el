@@ -280,6 +280,9 @@ Single Capitals as you type."
          ("C-h C-l" . helm-locate-library)
          ("C-c h" . helm-command-prefix)))
 
+(use-package helm-pages
+  :load-path "packages/helm-pages/")
+
 (use-package swiper-helm
   :load-path "packages/swiper-helm/"
   :init (use-package swiper
@@ -400,7 +403,7 @@ Single Capitals as you type."
 (global-hl-todo-mode)
 
 (use-package page-break-lines)
-(turn-on-page-break-lines-mode)
+(global-page-break-lines-mode)
 
 (use-package ace-link
   :config (ace-link-setup-default))

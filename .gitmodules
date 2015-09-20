@@ -31,3 +31,6 @@
 [submodule "packages/pythonic"]
 	path = packages/pythonic
 	url = https://github.com/proofit404/pythonic
+[submodule "packages/helm-pages"]
+	path = packages/helm-pages
+	url = https://github.com/david-christiansen/helm-pages.git
