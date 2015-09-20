@@ -80,6 +80,7 @@ be global."
 (setq-default abbrev-mode t)
 
 (defun dcaps-to-scaps ()
+
   "Convert word in DOuble CApitals to Single Capitals."
   (interactive)
   (and (= ?w (char-syntax (char-before)))
@@ -108,14 +109,12 @@ Single Capitals as you type."
 
 
 ;; Global keybindings
-(global-set-key (kbd "C-c C-:") 'eval-replacing-region)
-(global-set-key (kbd "C-x C-k C-o") 'delete-blank-lines-in)
-(global-set-key (kbd "M-g") 'goto-line)
-(global-set-key (kbd "C-c M-x") 'execute-extended-command)
-(global-set-key (kbd "C-!") 'eval-defun)
 (define-key ctl-x-map "\C-i" 'endless/ispell-word-then-abbrev)
 (global-set-key (kbd "C-x 3") 'my-split-window-horizontally)
 
+;; Ensure that page nav doesn't leave the cursor at the bottom
+(advice-add #'backward-page :after #'recenter)
+(advice-add #'forward-page  :after #'recenter)
 ;; Environment settings
 (set-language-environment "UTF-8")
 

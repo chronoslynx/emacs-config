@@ -65,8 +65,13 @@
 
 (define-abbrev-table 'global-abbrev-table
   '(
+    ("abstracitons" "abstractions" nil 0)
+    ("applicaitons" "applications" nil 0)
+    ("biggst" "biggest" nil 0)
+    ("funciton" "function" nil 0)
     ("lanugage" "language" nil 0)
     ("porperties" "properties" nil 0)
+    ("rathre" "rather" nil 0)
    ))
 
 (define-abbrev-table 'gnus-group-mode-abbrev-table '())

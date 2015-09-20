@@ -64,9 +64,15 @@ _j_: down            _x_: server-edit
   )
 
 (defhydra hydra-describe ()
-  "Describe..."
+  "
+Describe:
+_k_: key-binding
+_f_: function
+_v_: variable
+_m_: mode
+"
   ("k" describe-key)
-  ("f" decsribe-function)
+  ("f" describe-function)
   ("v" describe-variable)
   ("m" describe-mode))
 ;; Buffer controls
@@ -191,4 +197,11 @@ Links, footnotes  C-c C-a    _L_: link          _U_: uri        _F_: footnote   
 
 (global-set-key [f9] 'dh-hydra-markdown-mode/body)
 
+;; page break navigation
+(defhydra hydra-page-break ()
+  "page breaks"
+  ("k" backward-page "back")
+  ("j" forward-page "forward")
+  ("RET" nil "quit")
+  ("q" nil "quit"))
 (provide 'my-hydras)

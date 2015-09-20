@@ -7,13 +7,15 @@
     "b" 'helm-mini
     "s" 'swiper-helm
     "w" 'save-buffer
-    "k" 'kill-buffer
+    "d" 'kill-buffer
     "p" 'hydra-projectile/body
-    "h" 'hydra-describe
+    "h" 'hydra-describe/body
     "x" 'hydra-windows/body
     "q" 'hydra-flycheck/body
     "<SPC>" 'helm-M-x
     ";" 'avy-goto-word-1
+    "j" 'hydra-page-break/forward-page
+    "k" 'hydra-page-break/backward-page
     )
   )
 
