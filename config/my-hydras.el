@@ -124,17 +124,16 @@ _~_: modified
 
      Find...                 Search                 Buffers                 Management
 ---------------------------------------------------------------------------------
-  _f_: file               _a_: ag                _i_: Ibuffer            _x_: remove known project
+  _f_: file               _s_: ag                _i_: Ibuffer            _x_: remove known project
  _ed_: file curr dir      _m_: multi-occur       _b_: switch to buffer   _X_: cleanup known projects
   _r_: recent file      _s-k_: Kill all buffers
   _d_: dir                _`_: other-window
 
 "
-  ("a"   helm-projectile-ag)
+  ("s"   helm-ag-project-root)
   ("b"   helm-projectile-switch-to-buffer)
   ("d"   helm-projectile-find-dir)
   ("f"   helm-projectile-find-file)
-  ("ef"  projectile-find-file-dwim)
   ("ed"  projectile-find-file-in-directory)
   ("i"   projectile-ibuffer)
   ("s-k" projectile-kill-buffers)
@@ -160,7 +159,6 @@ Demote/Promote    C-c C-x    _l_: promote       _r_: demote     _u_: move up    
 Links, footnotes  C-c C-a    _L_: link          _U_: uri        _F_: footnote     _W_: wiki-link      _R_: reference
 
 "
-
 
   ("s" markdown-insert-bold)
   ("e" markdown-insert-italic)
