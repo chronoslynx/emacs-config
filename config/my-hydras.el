@@ -122,34 +122,27 @@ _~_: modified
   "
      PROJECTILE: %(projectile-project-root)
 
-     Find File            Search                 Buffers                Cache
-------------------------------------------------------------------------------------------
-  _f_: file            _a_: ag                _i_: Ibuffer           _c_: cache clear
- _ef_: file dwim                              _b_: switch to buffer  _x_: remove known project
- _ed_: file curr dir                        _s-k_: Kill all buffers  _X_: cleanup non-existing
-  _r_: recent file                                               ^^^^_z_: cache current
-  _d_: dir
+     Find...                 Search                 Buffers                 Management
+---------------------------------------------------------------------------------
+  _f_: file               _a_: ag                _i_: Ibuffer            _x_: remove known project
+ _ed_: file curr dir      _m_: multi-occur       _b_: switch to buffer   _X_: cleanup known projects
+  _r_: recent file      _s-k_: Kill all buffers
+  _d_: dir                _`_: other-window
 
 "
-  ("a"   projectile-ag)
-  ("b"   projectile-switch-to-buffer)
-  ("c"   projectile-invalidate-cache)
-  ("d"   projectile-find-dir)
-  ("f" projectile-find-file)
+  ("a"   helm-projectile-ag)
+  ("b"   helm-projectile-switch-to-buffer)
+  ("d"   helm-projectile-find-dir)
+  ("f"   helm-projectile-find-file)
   ("ef"  projectile-find-file-dwim)
   ("ed"  projectile-find-file-in-directory)
   ("i"   projectile-ibuffer)
-  ("K"   projectile-kill-buffers)
   ("s-k" projectile-kill-buffers)
   ("m"   projectile-multi-occur)
-  ("o"   projectile-multi-occur)
-  ("s-p" projectile-switch-project "switch project")
-  ("p"   projectile-switch-project)
-  ("s"   projectile-switch-project)
-  ("r"   projectile-recentf)
+  ("p"   helm-projectile-switch-project)
+  ("r"   helm-projectile-recentf)
   ("x"   projectile-remove-known-project)
   ("X"   projectile-cleanup-known-projects)
-  ("z"   projectile-cache-current-file)
   ("`"   hydra-projectile-other-window/body "other window")
   ("q"   nil "cancel" :color blue))
 
