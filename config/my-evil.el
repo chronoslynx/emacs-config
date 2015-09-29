@@ -10,6 +10,7 @@
     "d" 'kill-buffer
     "p" 'hydra-projectile/body
     "h" 'hydra-describe/body
+    "o" 'helm-semantic-or-imenu
     "x" 'hydra-windows/body
     "q" 'hydra-flycheck/body
     "<SPC>" 'helm-M-x
