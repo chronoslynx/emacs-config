@@ -51,6 +51,7 @@
       evil-surround
       flx
       flycheck
+      flycheck-irony
       go-mode
       helm
       helm-ag
