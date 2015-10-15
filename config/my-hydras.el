@@ -48,8 +48,7 @@ _o_: other-window    _0_: delete-window
 _h_: left            _1_: delete-other
 _l_: right           _2_: vertical
 _k_: up              _3_: horizontal
-_j_: down            _x_: server-edit
-
+_j_: down            _f_: delete-frame
 "
   ("o" other-window)
   ("h" windmove-left)
@@ -60,7 +59,7 @@ _j_: down            _x_: server-edit
   ("1" delete-other-windows)
   ("2" split-window-vertically)
   ("3" split-window-horizontally)
-  ("x" server-edit)
+  ("f" delete-frame)
   )
 
 (defhydra hydra-describe ()
