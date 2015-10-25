@@ -65,13 +65,20 @@
 
 (define-abbrev-table 'global-abbrev-table
   '(
+    ("'sahred'" "'shared'" nil 0)
     ("abstracitons" "abstractions" nil 0)
     ("applicaitons" "applications" nil 0)
     ("biggst" "biggest" nil 0)
     ("funciton" "function" nil 0)
+    ("inflexibiility" "inflexibility" nil 0)
+    ("inidividual" "individual" nil 0)
     ("lanugage" "language" nil 0)
+    ("optimizaiton" "optimization" nil 0)
     ("porperties" "properties" nil 0)
     ("rathre" "rather" nil 0)
+    ("sctructures" "structures" nil 0)
+    ("shceduling" "scheduling" nil 0)
+    ("shceme" "scheme" nil 0)
    ))
 
 (define-abbrev-table 'gnus-group-mode-abbrev-table '())
@@ -95,6 +102,8 @@
 (define-abbrev-table 'java-mode-abbrev-table
   '(
    ))
+
+(define-abbrev-table 'js-mode-abbrev-table '())
 
 (define-abbrev-table 'lisp-mode-abbrev-table '())
 
@@ -163,6 +172,8 @@
    ))
 
 (define-abbrev-table 'select-tags-table-mode-abbrev-table '())
+
+(define-abbrev-table 'sh-mode-abbrev-table '())
 
 (define-abbrev-table 'shell-mode-abbrev-table '())
 

@@ -129,7 +129,7 @@ Single Capitals as you type."
 
 ;; font
 (defun fontify-frame (frame)
-  (set-frame-parameter frame 'font "Input-14"))
+  (set-frame-parameter frame 'font "Fira Code-14"))
 (fontify-frame nil)
 (push 'fontify-frame after-make-frame-functions)
 
