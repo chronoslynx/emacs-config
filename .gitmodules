@@ -34,3 +34,6 @@
 [submodule "packages/helm-pages"]
 	path = packages/helm-pages
 	url = https://github.com/david-christiansen/helm-pages.git
+[submodule "packages/emacs-color-theme-solarized"]
+	path = packages/emacs-color-theme-solarized
+	url = https://github.com/sellout/emacs-color-theme-solarized.git
