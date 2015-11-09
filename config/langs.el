@@ -96,7 +96,7 @@
 ;; Golang
 (use-package go-mode
   :mode ("\\.go$" . go-mode)
-  :bind (("C-." . 'godef-jump))
+  :bind (("C-." . godef-jump))
   :config
   (add-hook 'before-save-hook 'gofmt-before-save))
 
