@@ -10,8 +10,8 @@
   (setq org-directory (expand-file-name "~/Dropbox/Notes")
         ;; Local (non-synced) projects go into ~/Org
         ;; Shared orgfiles go into ~/Drobox/Notes
-        org-agenda-files (list org-directory "~/Org")
-        org-default-notes-file (concat org-directory "/inbox.org")
+        org-agenda-files (list (concat org-directory "/todo.org") "~/Org")
+        org-default-notes-file (concat org-directory "/todo.org")
         org-todo-keywords '((sequence "WAITING" "TODO" "|" "DONE"))
         org-agenda-include-diary t
         org-capture-templates
