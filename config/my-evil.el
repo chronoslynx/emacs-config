@@ -10,13 +10,16 @@
     "d" 'kill-buffer
     "p" 'hydra-projectile/body
     "h" 'hydra-describe/body
-    "o" 'helm-semantic-or-imenu
+    "m" 'helm-semantic-or-imenu
     "x" 'hydra-windows/body
     "q" 'hydra-flycheck/body
     "<SPC>" 'helm-M-x
     ";" 'avy-goto-word-1
     "j" 'hydra-page-break/forward-page
     "k" 'hydra-page-break/backward-page
+    ;; Org-mode help
+    "cc" 'org-capture
+    "ca" 'org-agenda
     )
   )
 
@@ -26,18 +29,6 @@
   :commands global-evil-surround-mode)
 (use-package evil-matchit
   :commands global-evil-matchit-mode)
-(use-package evil-nerd-commenter
-  :config
-  (evil-leader/set-key
-    "ci" 'evilnc-comment-or-uncomment-lines
-    "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-    "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
-    "cc" 'evilnc-copy-and-comment-lines
-    "cp" 'evilnc-comment-or-uncomment-paragraphs
-    "cr" 'comment-or-uncomment-region
-    "cv" 'evilnc-toggle-invert-comment-line-by-line
-    "\\" 'evilnc-comment-operator ; if you prefer backslash key
-    ))
 
 (defun my-save-if-bufferfilename ()
   (if (buffer-file-name) (progn (save-buffer))

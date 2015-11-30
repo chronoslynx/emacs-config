@@ -1,18 +1,18 @@
 (use-package org-mode
   :commands (org-agenda org-capture org-store-link org-mode)
   :init
-  (setq org-directory (expand-file-name "~/Dropbox/Notational Velocity")
-        org-agenda-files (list org-directory)
+  (setq org-directory (expand-file-name "~/Dropbox/Notes")
+        ;; Local (non-synced) projects go into ~/Org
+        ;; Shared orgfiles go into ~/Drobox/Notes
+        org-agenda-files (list org-directory "~/Org")
         org-default-notes-file (concat org-directory "/inbox.org")
+        org-todo-keywords '((sequence "WAITING" "TODO" "|" "DONE"))
+        org-agenda-include-diary t
         org-capture-templates
         '(("n" "Note" entry (file+headline (concat org-directory "/inbox.org") "Inbox")
-           "* TODO %<%Y-%m-%d %H:%M:%S>\n\n%?" :empty-lines 1)
+           "* Note %<%Y-%m-%d %H:%M:%S>\n\n%?" :empty-lines 1)
           ("t" "Todo" entry (file+headline (concat org-directory "/todo.org") "Inbox")
-           "* TODO %<%Y-%m-%d %H:%M:%S>\n\n%?" :empty-lines 1)
-          ("p" "PW" entry (file+headline (concat org-directory "/pw.org") "PW")
-           "* TODO %<%Y-%m-%d %H:%M:%S>\n\n%?" :empty-lines 1)
-          ("w" "Work" entry (file+datetree (concat org-directory "/work.org"))
-           "* %<%H:%M>\n\n%?" :empty-lines 1)
+           "* TODO %?\n  %i\n  %a")
           ("j" "Journal" entry (file+datetree (concat org-directory "/journal.org"))
            "* %<%H:%M>\n\n%?" :empty-lines 1))
         org-export-backends '(ascii beamer html latex md)
@@ -29,7 +29,8 @@
         org-link-frame-setup '((file . find-file)))
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
-         ("C-c c" . org-capture)))
+         ("C-c c" . org-capture)
+         ("C-c s" . org-schedule)))
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 (provide 'my-org)

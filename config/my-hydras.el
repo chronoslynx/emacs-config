@@ -40,6 +40,22 @@
    nil :bind nil)
   ("q" nil            nil :color blue) )
 
+;; Org-mode helpers
+(defhydra hydra-org ()
+  "
+Org-controls
+---------------------------
+_c_: capture  _a_: agenda
+_r_: refile   _c_: copy
+_v_: archive
+"
+  ("c" org-capture)
+  ("a" org-agenda)
+  ("r" org-refile)
+  ("y" org-copy)
+  ("v" org-archive-subtree-default)
+  )
+
 (defhydra hydra-windows (:exit t)
   "
 ^Focus^              ^Management^
