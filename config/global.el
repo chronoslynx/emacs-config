@@ -419,8 +419,9 @@ Single Capitals as you type."
 (use-package deft
   :commands (deft deft-find-file)
   :init
-  (setq deft-extensions '("markdown" "md" "txt" "tex" "org"))
-  (setq deft-directory "~/Dropbox/Notational Velocity/")
+  (setq deft-extensions '("org"))
+  (setq deft-directory "~/Dropbox/Notes/")
+  (setq deft-text-mode 'org-mode)
   (setq deft-auto-save-interval 0.0)
   (setq deft-use-filename-as-title t)
   (global-set-key [f8] 'deft)

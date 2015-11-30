@@ -21,8 +21,20 @@
            "* TODO %?\n  %i\n  %a")
           ("j" "Journal" entry (file+datetree (concat org-directory "/journal.org"))
            "* %<%H:%M>\n\n%?" :empty-lines 1))
+        org-agenda-custom-commands '(
+                                     ("h" "Agenda and Home-related tasks"
+                                      ((agenda "")
+                                       (tags-todo "home")))
+                                     ("o" "Agenda and Work-related tasks"
+                                      ((agenda "")
+                                       (tags-todo "work")))
+                                     ("w" "Waiting"
+                                      ((org-agenda-sorting-strategy '(priority-down))
+                                       (org-agenda-prefix-format "  Mixed: ")))
+                                     )
         org-export-backends '(ascii beamer html latex md)
         org-catch-invisible-edits 'error
+        org-agenda-start-on-weekday nil
         org-startup-indented t
         org-cycle-include-plain-lists 'integrate
         org-ellipsis " […]"

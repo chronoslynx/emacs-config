@@ -8,6 +8,7 @@
     "s" 'swiper-helm
     "w" 'save-buffer
     "d" 'kill-buffer
+    "g" 'ag
     "p" 'hydra-projectile/body
     "h" 'hydra-describe/body
     "m" 'helm-semantic-or-imenu
@@ -18,8 +19,8 @@
     "j" 'hydra-page-break/forward-page
     "k" 'hydra-page-break/backward-page
     ;; Org-mode help
-    "cc" 'org-capture
-    "ca" 'org-agenda
+    "a" 'org-agenda
+    "c" 'org-capture
     )
   )
 
