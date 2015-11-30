@@ -1,3 +1,9 @@
+(defun org-pass-link-to-system (link)
+  (if (string-match "^[a-zA-Z0-9]+:" link)
+      (shell-command (concat "open " link))
+    nil)
+  )
+
 (use-package org-mode
   :commands (org-agenda org-capture org-store-link org-mode)
   :init
@@ -27,6 +33,7 @@
         org-enforce-todo-dependencies t
         org-enforce-todo-checkbox-dependencies t
         org-link-frame-setup '((file . find-file)))
+  (add-hook 'org-open-link-functions 'org-pass-link-to-system)
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture)
