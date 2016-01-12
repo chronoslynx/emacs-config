@@ -211,4 +211,17 @@ Links, footnotes  C-c C-a    _L_: link          _U_: uri        _F_: footnote   
   ("p" helm-pages "show pages")
   ("RET" nil "quit")
   ("q" nil "quit"))
+
+(defhydra hydra-gtags ()
+  "
+  _s_: select
+  _d_: dwim
+  _<_: previous (history)
+  _>_: next (history)
+"
+  ("s" helm-gtags-select)
+  ("d" helm-gtags-dwim)
+  ("<" helm-gtags-previous-history)
+  (">" helm-gtags-next-history))
+
 (provide 'my-hydras)

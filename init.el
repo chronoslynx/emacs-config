@@ -67,6 +67,7 @@
       python
       rainbow-delimiters
       smart-mode-line
+      smart-tab
       smartparens
       sphinx-doc
       tuareg-mode

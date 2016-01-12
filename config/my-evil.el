@@ -8,7 +8,8 @@
     "s" 'swiper-helm
     "w" 'save-buffer
     "d" 'kill-buffer
-    "g" 'ag
+    "f" 'ag
+    "g" 'hydra-gtags/body
     "p" 'hydra-projectile/body
     "h" 'hydra-describe/body
     "m" 'helm-semantic-or-imenu

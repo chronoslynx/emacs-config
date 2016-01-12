@@ -37,3 +37,6 @@
 [submodule "packages/emacs-color-theme-solarized"]
 	path = packages/emacs-color-theme-solarized
 	url = https://github.com/sellout/emacs-color-theme-solarized.git
+[submodule "packages/rustfmt"]
+	path = packages/rustfmt
+	url = https://github.com/fbergroth/emacs-rustfmt.git

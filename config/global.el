@@ -412,6 +412,7 @@ Single Capitals as you type."
   (global-aggressive-indent-mode 1)
   (add-to-list 'aggressive-indent-excluded-modes 'python-mode)
   (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+  (add-to-list 'aggressive-indent-excluded-modes 'go-mode)
   (add-to-list 'aggressive-indent-excluded-modes 'cc-mode)
   (add-to-list 'aggressive-indent-excluded-modes 'c-mode))
 

@@ -27,14 +27,17 @@
              ("C-c C-f" . markdown-code-fence)
              ("M-;" . markdown-blockquote-region)))
 ;; C, C++
-(use-package cc-mode
+(use-package irony
+  :init
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'objc-mode-hook 'irony-mode)
   :config
-  (defun clang-format-before-save ()
-    (interactive)
-    (when (or (eq major-mode 'c++-mode)
-              (eq major-mode 'c-mode))
-      (clang-format-buffer)))
-  (add-hook 'before-save-hook 'clang-format-before-save))
+  (use-package company-irony
+    :config
+    (eval-after-load 'company
+      '(add-to-list 'company-backends 'company-irony))))
+
 ;; Python
 (use-package sphinx-doc
   :demand
@@ -95,9 +98,15 @@
 
 ;; Golang
 (use-package go-mode
-  :mode ("\\.go$" . go-mode)
-  :bind (("C-." . godef-jump))
+  :mode ("\\go$" . go-mode)
+  :config (add-hook 'before-save-hook 'gofmt-before-save)
+  :bind (("C-." . godef-jump)))
+
+(use-package rust-mode
   :config
-  (add-hook 'before-save-hook 'gofmt-before-save))
+  (use-package rustfmt
+    :load-path "packages/rustfmt"
+    :config (add-hook 'rust-mode-hook #'rustfmt-enable-on-save))
+  :mode ("\\.rs$" . rust-mode))
 
 (provide 'langs)
