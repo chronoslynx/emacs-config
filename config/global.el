@@ -409,12 +409,13 @@ Single Capitals as you type."
   :config (ace-link-setup-default))
 (use-package aggressive-indent
   :config
-  (global-aggressive-indent-mode 1)
   (add-to-list 'aggressive-indent-excluded-modes 'python-mode)
   (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
   (add-to-list 'aggressive-indent-excluded-modes 'go-mode)
   (add-to-list 'aggressive-indent-excluded-modes 'cc-mode)
-  (add-to-list 'aggressive-indent-excluded-modes 'c-mode))
+  (add-to-list 'aggressive-indent-excluded-modes 'c++-mode)
+  (add-to-list 'aggressive-indent-excluded-modes 'c-mode)
+  (global-aggressive-indent-mode 1))
 
 ;; Deft
 (use-package deft
