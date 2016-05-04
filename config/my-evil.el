@@ -17,8 +17,8 @@
     "q" 'hydra-flycheck/body
     "<SPC>" 'helm-M-x
     ";" 'avy-goto-word-1
-    "j" 'hydra-page-break/forward-page
-    "k" 'hydra-page-break/backward-page
+    ;; "j" 'hydra-page-break/forward-page
+    ;; "k" 'hydra-page-break/backward-page
     ;; Org-mode help
     "a" 'org-agenda
     "c" 'org-capture

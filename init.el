@@ -30,14 +30,15 @@
 
   ;; Packages to load
   (defvar my:elpackages
-    '(aggressive-indent-mode
+    '(anaconda-mode
+      adaptive-wrap
       avy
       ace-link
       comment-dwim-2
       company-mode
       company-auctex
       company-irony
-      company-jedi
+      company-anaconda
       clang-format
       dash
       deft
@@ -59,7 +60,6 @@
       helm-gtags
       helm-swoop
       hydra
-      jedi
       key-chord
       magit
       markdown-mode

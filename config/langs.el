@@ -45,27 +45,33 @@
 ;; Python
 (use-package sphinx-doc
   :demand
-  :commands sphinx-doc-mode
-  :config
-  (add-to-list 'company-backends 'company-jedi))
+  :commands sphinx-doc-mode)
 
-(use-package jedi
+;; (use-package jedi
+;;   :demand
+;;   :preface
+;;   (declare-function jedi:goto-definition jedi nil)
+;;   (declare-function jedi:related-names jedi nil)
+;;   (declare-function jedi:show-doc jedi nil)
+;;   :bind (("C-." . jedi:goto-definition)
+;; 	 ("C-c r" . jedi:related-names)
+;; 	 ("C-?" . jedi:show-doc)))
+
+;; (use-package company-jedi
+;;   :demand)
+(use-package company-anaconda
   :demand
-  :preface
-  (declare-function jedi:goto-definition jedi nil)
-  (declare-function jedi:related-names jedi nil)
-  (declare-function jedi:show-doc jedi nil)
-  :bind (("C-." . jedi:goto-definition)
-	 ("C-c r" . jedi:related-names)
-	 ("C-?" . jedi:show-doc)))
-
-(use-package company-jedi
-  :demand)
+  :config
+  (eval-after-load "company"
+    '(add-to-list 'company-backends 'company-anaconda)))
 
 (use-package pyenv-mode
   :load-path "packages/pyenv-mode"
   :init (use-package pythonic
           :load-path "packages/pythonic"))
+
+(use-package anaconda-mode
+  )
 
 
 (use-package python
@@ -73,17 +79,12 @@
   :interpreter ("ipython" . python-mode)
   :config
   (pyenv-mode)
-  (jedi:setup)
   (add-hook 'python-mode-hook (lambda ()
                                 (require 'sphinx-doc)
-                                (sphinx-doc-mode t)
-                                (set
-                                 (make-local-variable 'company-backends)
-                                 (company-jedi company-semantic
-                                               (company-dabbrev-code company-keywords)
-                                               company-oddmuse company-files company-dabbrev))))
-  (setq python-shell-interpreter "ipython")
-  (add-to-list 'company-backends 'company-jedi))
+                                (anaconda-mode)
+                                (sphinx-doc-mode t)))
+  (setq python-shell-interpreter "ipython"))
+
 
 ;; HTML, html-templates
 (use-package web-mode

@@ -46,6 +46,9 @@
         org-enforce-todo-checkbox-dependencies t
         org-link-frame-setup '((file . find-file)))
   (add-hook 'org-open-link-functions 'org-pass-link-to-system)
+  (add-hook 'org-mode-hook (lambda ()
+                             (visual-line-mode)
+                             (adaptive-wrap-prefix-mode)))
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture)
