@@ -23,6 +23,7 @@
  )
 ;;  The following two lines thanks to https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
 (setq gc-cons-threshold 20000000)
+
 (let ((file-name-handler-alist nil))
   ;; el-get setup
   (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
@@ -49,6 +50,7 @@
       evil-matchit
       evil-nerd-commenter
       evil-org-mode
+      evil-snipe
       evil-surround
       flx
       flycheck
@@ -79,6 +81,7 @@
       sml-mode
       tramp
       web-mode
+      writegood
       yaml-mode
       use-package
       vagrant-tramp

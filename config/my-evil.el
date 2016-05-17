@@ -31,6 +31,10 @@
   :commands global-evil-surround-mode)
 (use-package evil-matchit
   :commands global-evil-matchit-mode)
+(use-package evil-snipe
+  :commands evil-snipe-override-mode
+  :config
+  (add-hook 'magit-mode-hook 'turn-off-evil-snipe-override-mode))
 
 (defun my-save-if-bufferfilename ()
   (if (buffer-file-name) (progn (save-buffer))
@@ -59,6 +63,7 @@
   ;; Exit insert mode on jk
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+  (evil-snipe-override-mode 1)
   (global-evil-surround-mode 1)
   (global-evil-matchit-mode 1))
 (global-evil-leader-mode)

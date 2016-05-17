@@ -463,4 +463,9 @@ Single Capitals as you type."
   (let ((buffer-backed-up nil))
     (backup-buffer)))
 (add-hook 'before-save-hook 'force-backup-of-buffer)
+
+(use-package writegood-mode
+  :demand)
+(global-set-key "\C-cg" 'writegood-mode)
+
 (provide 'global)
