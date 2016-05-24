@@ -24,87 +24,103 @@
 ;;  The following two lines thanks to https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
 (setq gc-cons-threshold 20000000)
 
-(let ((file-name-handler-alist nil))
-  ;; el-get setup
-  (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-  (require 'el-get nil 'noerror)
+(require 'cl)
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+;; Packages to load
+(defvar my:packages
+  '(anaconda-mode
+    adaptive-wrap
+    avy
+    ace-link
+    comment-dwim-2
+    company
+    company-auctex
+    company-irony
+    company-anaconda
+    dash
+    deft
+    edit-server
+    ein
+    racer
+    evil
+    evil-leader
+    evil-matchit
+    evil-nerd-commenter
+    evil-org
+    evil-snipe
+    evil-surround
+    flx
+    flycheck
+    flycheck-irony
+    go-mode
+    helm
+    helm-ag
+    helm-descbinds
+    helm-gtags
+    helm-swoop
+    hydra
+    key-chord
+    magit
+    markdown-mode
+    org
+    python
+    rainbow-delimiters
+    smart-mode-line
+    smart-tab
+    smartparens
+    sphinx-doc
+    tuareg
+    page-break-lines
+    perspective
+    persp-projectile
+    projectile
+    puppet-mode
+    rust-mode
+    sml-mode
+    tramp
+    web-mode
+    writegood-mode
+    yaml-mode
+    use-package
+    vagrant-tramp
+    )
+  "Packages to install")
 
-  ;; Packages to load
-  (defvar my:elpackages
-    '(anaconda-mode
-      adaptive-wrap
-      avy
-      ace-link
-      comment-dwim-2
-      company-mode
-      company-auctex
-      company-irony
-      company-anaconda
-      clang-format
-      dash
-      deft
-      edit-server
-      ein
-      evil
-      evil-leader
-      evil-matchit
-      evil-nerd-commenter
-      evil-org-mode
-      evil-snipe
-      evil-surround
-      flx
-      flycheck
-      flycheck-irony
-      go-mode
-      helm
-      helm-ag
-      helm-descbinds
-      helm-gtags
-      helm-swoop
-      hydra
-      key-chord
-      magit
-      markdown-mode
-      org-mode
-      python
-      rainbow-delimiters
-      smart-mode-line
-      smart-tab
-      smartparens
-      sphinx-doc
-      tuareg-mode
-      page-break-lines
-      perspective
-      projectile
-      puppet-mode
-      rust-mode
-      sml-mode
-      tramp
-      web-mode
-      writegood
-      yaml-mode
-      use-package
-      vagrant-tramp
-      )
-    "Packages to install via el-get")
-
-  (defvar my:configs
-    '("global"
-      "my-hydras"
-      "my-org"
-      "my-evil"
-      "langs"
-      "my-eshell")
-    "Configuration files that follow the config/foo.el path
+(defvar my:configs
+  '("global"
+    "my-hydras"
+    "my-org"
+    "my-evil"
+    "langs"
+    "my-eshell")
+  "Configuration files that follow the config/foo.el path
   format.")
 
-  ;; Load packages using el-get
-  (el-get 'sync my:elpackages)
-  (eval-when-compile
-    (require 'use-package))
-  (require 'bind-key)                ;; if you use any :bind variant
+;; Load packages using el-get
+(defun my-packages-installed-p ()
+  (loop for p in my:packages
+    when (not (package-installed-p p)) do (return nil)
+    finally (return t)
+  )
+)
 
-  ;; Load configurations
-  (mapc (lambda (name)
-          (load (concat "~/.emacs.d/config/" name ".el")))
-        my:configs))
+(unless (my-packages-installed-p)
+  (package-refresh-contents)
+  (dolist (p my:packages)
+    (when (not (package-installed-p p))
+      (package-install p)
+   )
+  )
+)
+
+(eval-when-compile
+  (require 'use-package))
+(require 'bind-key)                ;; if you use any :bind variant
+
+;; Load configurations
+(mapc (lambda (name)
+        (load (concat "~/.emacs.d/config/" name ".el")))
+      my:configs)

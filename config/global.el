@@ -129,7 +129,7 @@ Single Capitals as you type."
 
 ;; font
 (defun fontify-frame (frame)
-  (set-frame-parameter frame 'font "Fira Code-14"))
+  (set-frame-parameter frame 'font "Fira Code Retina-14"));;"Fira Code-14"))
 (fontify-frame nil)
 (push 'fontify-frame after-make-frame-functions)
 
@@ -297,7 +297,7 @@ Single Capitals as you type."
 
 ;; Company
 (use-package company
-  :init (global-auto-complete-mode 0)
+  ;; :init (global-auto-complete-mode 0)
   :config
   (setq company-tooltip-flip-when-above t
         company-idle-delay 0.1

@@ -40,3 +40,6 @@
 [submodule "packages/rustfmt"]
 	path = packages/rustfmt
 	url = https://github.com/fbergroth/emacs-rustfmt.git
+[submodule "packages/flycheck-rust"]
+	path = packages/flycheck-rust
+	url = https://github.com/flycheck/flycheck-rust.git

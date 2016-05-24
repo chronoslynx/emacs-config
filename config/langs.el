@@ -112,6 +112,15 @@
   (use-package rustfmt
     :load-path "packages/rustfmt"
     :config (add-hook 'rust-mode-hook #'rustfmt-enable-on-save))
+
+  (use-package emacs-racer
+    :demand
+    :config
+    (setq racer-cmd "~/.cargo/bin/racer")
+    (setq racer-rust-src-path "~/Projects/rustc-1.8.0")
+    (add-hook 'racer-mode-hook #'company-mode))
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'racer-mode-hook #'eldoc-mode)
   :mode ("\\.rs$" . rust-mode))
 
 (provide 'langs)
