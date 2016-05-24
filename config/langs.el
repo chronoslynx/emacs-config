@@ -66,9 +66,7 @@
     '(add-to-list 'company-backends 'company-anaconda)))
 
 (use-package pyenv-mode
-  :load-path "packages/pyenv-mode"
-  :init (use-package pythonic
-          :load-path "packages/pythonic"))
+  :init (use-package pythonic))
 
 (use-package anaconda-mode
   )
@@ -110,7 +108,6 @@
 (use-package rust-mode
   :config
   (use-package rustfmt
-    :load-path "packages/rustfmt"
     :config (add-hook 'rust-mode-hook #'rustfmt-enable-on-save))
 
   (use-package emacs-racer

@@ -35,6 +35,7 @@
     adaptive-wrap
     avy
     ace-link
+    better-defaults
     comment-dwim-2
     company
     company-auctex
@@ -42,7 +43,6 @@
     company-anaconda
     dash
     deft
-    edit-server
     ein
     racer
     evil
@@ -55,12 +55,15 @@
     flx
     flycheck
     flycheck-irony
+    flycheck-rust
     go-mode
     helm
     helm-ag
     helm-descbinds
     helm-gtags
+    helm-pages
     helm-swoop
+    hl-todo
     hydra
     key-chord
     magit
@@ -68,6 +71,7 @@
     org
     python
     rainbow-delimiters
+    rustfmt
     smart-mode-line
     smart-tab
     smartparens
@@ -78,14 +82,18 @@
     persp-projectile
     projectile
     puppet-mode
+    pyenv-mode
     rust-mode
     sml-mode
+    swiper
+    swiper-helm
     tramp
     web-mode
     writegood-mode
     yaml-mode
     use-package
     vagrant-tramp
+    yasnippet
     )
   "Packages to install")
 

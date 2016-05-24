@@ -137,8 +137,7 @@ Single Capitals as you type."
 (add-hook 'text-mode-hook #'dubcaps-mode)
 
 ;; Other Global Setup
-(use-package better-defaults
-  :load-path "packages/better-defaults")
+(use-package better-defaults)
 
 (use-package remember
   :config (define-key remember-notes-mode-map (kbd "C-c C-c") nil)
@@ -161,7 +160,6 @@ Single Capitals as you type."
     :load-path "packages/flycheck-pylama"))
 
 (use-package yasnippet
-  :load-path "packages/yasnippet"
   :config
   (setq yasnippet-dirs (append yas-snippet-dirs "~/.emacs.d/snippets"))
   (yas-global-mode 1))
@@ -280,13 +278,10 @@ Single Capitals as you type."
          ("C-h C-l" . helm-locate-library)
          ("C-c h" . helm-command-prefix)))
 
-(use-package helm-pages
-  :load-path "packages/helm-pages/")
+(use-package helm-pages)
 
 (use-package swiper-helm
-  :load-path "packages/swiper-helm/"
-  :init (use-package swiper
-          :load-path "packages/swiper")
+  :init (use-package swiper)
   :bind (("\C-s" . swiper-helm)
          ("\C-s" . swiper-helm)
          ("C-c C-r" . helm-resume)))
@@ -392,7 +387,6 @@ Single Capitals as you type."
                  "~/.emacs.d/packages/magit/Documentation/")))
 
 (use-package hl-todo
-  :load-path "packages/hl-todo"
   :init (setq hl-todo-activate-in-modes '(prog-mode))
   :config
   (setq hl-todo-keyword-faces '(("TODO" . hl-todo)
