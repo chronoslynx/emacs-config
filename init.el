@@ -52,6 +52,7 @@
     evil-org
     evil-snipe
     evil-surround
+    funciton-args
     flx
     flycheck
     flycheck-irony
