@@ -3,13 +3,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (smart-mode-line-respectful solarized)))
+ '(custom-enabled-themes (quote (solarized-dark)))
  '(custom-safe-themes
    (quote
-    ("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "79a3f477ac0cb4a106f78b6109614e991564a5c2467c36e6e854d4bc1102e178" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "ca8350a6affc43fc36f84a5271e6d5278857185753cd91a899d1f88be062f77b" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
- '(custom-theme-load-path
-   (quote
-    ("~/.emacs.d/el-get/smart-mode-line/themes/" "~/.emacs.d/el-get/smart-mode-line/" "~/.emacs.d/themes" "~/.emacs.d/packages/emacs-color-theme-solarized" custom-theme-directory t)))
+    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" default)))
  '(helm-ag-base-command "pt -e --nocolor --nogroup")
  '(safe-local-variable-values
    (quote
@@ -52,7 +49,7 @@
     evil-org
     evil-snipe
     evil-surround
-    funciton-args
+    function-args
     flx
     flycheck
     flycheck-irony
@@ -63,12 +60,14 @@
     helm-descbinds
     helm-gtags
     helm-pages
+    helm-projectile
     helm-swoop
     hl-todo
     hydra
     key-chord
     magit
     markdown-mode
+    merlin
     org
     python
     rainbow-delimiters

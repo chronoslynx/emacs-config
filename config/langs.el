@@ -3,7 +3,7 @@
 
 ;; Markdown
 (defvar markdown-code-languages
-    '("haskell" "lisp" "javascript" "c"))
+  '("haskell" "lisp" "javascript" "c"))
 (defun markdown-code-fence (beg end)
   "Make a code fence of the given region."
   (interactive "r")
@@ -109,15 +109,25 @@
   :config
   (use-package rustfmt
     :config (add-hook 'rust-mode-hook #'rustfmt-enable-on-save))
+  ;; (use-package flycheck-rust
+  ;;   :commands flycheck-rust-setup)
+  ;; (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
-  (use-package emacs-racer
-    :demand
-    :config
-    (setq racer-cmd "~/.cargo/bin/racer")
-    (setq racer-rust-src-path "~/Projects/rustc-1.8.0")
-    (add-hook 'racer-mode-hook #'company-mode))
-  (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'racer-mode-hook #'eldoc-mode)
-  :mode ("\\.rs$" . rust-mode))
+  ;; (use-package racer
+  ;;   :demand
+  ;;   :config
+  ;;   (setq racer-cmd "~/.cargo/bin/racer")
+  ;;   (setq racer-rust-src-path "~/Projects/rustc-1.8.0")
+  ;;   (add-hook 'racer-mode-hook #'company-mode))
+  ;; (add-hook 'rust-mode-hook #'racer-mode)
+  ;; (add-hook 'racer-mode-hook #'eldoc-mode)
+  :mode ("\\rs$" . rust-mode))
+
+(use-package tuareg
+  :init
+  :config
+  (use-package merlin
+    :commands (merlin-mode))
+  (add-hook 'tuareg-mode-hook 'merlin-mode))
 
 (provide 'langs)

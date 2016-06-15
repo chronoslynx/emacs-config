@@ -1,4 +1,5 @@
 ;; Fundamental functions
+(add-hook 'after-init-hook (lambda () (load-theme 'solarized-dark)))
 (defun occur-dwim ()
   "Call `occur' with a sane default."
   (interactive)
@@ -204,6 +205,7 @@ Single Capitals as you type."
 ;; Mode line
 (use-package smart-mode-line
   :config
+  (setq sml/theme 'respectful)
   (sml/setup)
   ;; (setq rm-blacklist ".*")
   (add-to-list 'sml/replacer-regexp-list '("^~/Projects/\\(\\w+\\)/"
