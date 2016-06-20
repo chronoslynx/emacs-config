@@ -74,14 +74,13 @@
 
 (use-package python
   :mode ("\\.py$" . python-mode)
-  :interpreter ("ipython" . python-mode)
   :config
   (pyenv-mode)
   (add-hook 'python-mode-hook (lambda ()
                                 (require 'sphinx-doc)
                                 (anaconda-mode)
                                 (sphinx-doc-mode t)))
-  (setq python-shell-interpreter "ipython"))
+  (setq python-shell-interpreter "python"))
 
 
 ;; HTML, html-templates
