@@ -49,10 +49,32 @@
   (add-hook 'org-mode-hook (lambda ()
                              (visual-line-mode)
                              (adaptive-wrap-prefix-mode)))
+  (use-package ox-bibtex
+    :demand
+    :load-path "packages/ox-bibtex")
+
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          ("C-c s" . org-schedule)))
+(use-package org-ref
+  :demand
+  :config
+  (setq reftex-default-bibliography '("~/Dropbox/bibliography/references.bib"))
+
+  ;; see org-ref for use of these variables
+  (setq org-ref-bibliography-notes "~/Dropbox/bibliography/notes.org"
+        org-ref-default-bibliography '("~/Dropbox/bibliography/references.bib")
+        org-ref-pdf-directory "~/Dropbox/bibliography/bibtex-pdfs/"))
+(use-package helm-bibtex
+  :demand
+  :config
+  (setq reftex-default-bibliography '("~/Dropbox/bibliography/references.bib"))
+
+  ;; see org-ref for use of these variables
+  (setq org-ref-bibliography-notes "~/Dropbox/bibliography/notes.org"
+        org-ref-default-bibliography '("~/Dropbox/bibliography/references.bib")
+        org-ref-pdf-directory "~/Dropbox/bibliography/bibtex-pdfs/"))
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 (provide 'my-org)

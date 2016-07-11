@@ -57,6 +57,7 @@
     go-mode
     helm
     helm-ag
+    helm-bibtex
     helm-descbinds
     helm-gtags
     helm-pages
@@ -69,6 +70,7 @@
     markdown-mode
     merlin
     org
+    org-ref
     python
     rainbow-delimiters
     rustfmt
