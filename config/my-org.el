@@ -49,10 +49,6 @@
   (add-hook 'org-mode-hook (lambda ()
                              (visual-line-mode)
                              (adaptive-wrap-prefix-mode)))
-  (use-package ox-bibtex
-    :demand
-    :load-path "packages/ox-bibtex")
-
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture)
