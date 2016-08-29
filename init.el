@@ -24,7 +24,7 @@
 (require 'cl)
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
+             '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 ;; Packages to load
 (defvar my:packages
@@ -60,9 +60,7 @@
     helm-bibtex
     helm-descbinds
     helm-gtags
-    helm-pages
     helm-projectile
-    helm-swoop
     hl-todo
     hydra
     key-chord
@@ -87,6 +85,7 @@
     pyenv-mode
     rust-mode
     sml-mode
+    solarized-theme
     swiper
     swiper-helm
     tramp
