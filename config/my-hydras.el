@@ -10,23 +10,6 @@
 (global-set-key (kbd "M-y") #'hydra-yank-pop/yank-pop)
 (global-set-key (kbd "C-y") #'hydra-yank-pop/yank)
 
-;; Movement
-(global-set-key
- (kbd "C-n")
- (defhydra hydra-move
-   (:body-pre (next-line))
-   "move"
-   ("n" next-line)
-   ("p" previous-line)
-   ("f" forward-char)
-   ("b" backward-char)
-   ("a" beginning-of-line)
-   ("e" move-end-of-line)
-   ("v" scroll-up-command)
-   ;; Converting M-v to V here by analogy.
-   ("V" scroll-down-command)
-   ("l" recenter-top-bottom)))
-
 ;; Flycheck controls
 (defhydra hydra-flycheck (global-map "C-c e")
   "Compilation errors"
@@ -87,9 +70,10 @@ _v_: variable
 _m_: mode
 "
   ("k" describe-key)
-  ("f" describe-function)
-  ("v" describe-variable)
+  ("f" counsel-describe-function)
+  ("v" counsel-describe-variable)
   ("m" describe-mode))
+
 ;; Buffer controls
 (defhydra hydra-buffer-menu (:color pink
                                     :hint nil)
@@ -145,16 +129,15 @@ _~_: modified
   _d_: dir                _`_: other-window
 
 "
-  ("s"   helm-ag-project-root)
-  ("b"   helm-projectile-switch-to-buffer)
-  ("d"   helm-projectile-find-dir)
-  ("f"   helm-projectile-find-file)
+  ("s"   projectile-find-file)
+  ("b"   counsel-projectile-switch-to-buffer)
+  ("d"   counsel-projectile-find-dir)
+  ("f"   counsel-projectile-find-file)
   ("ed"  projectile-find-file-in-directory)
   ("i"   projectile-ibuffer)
   ("s-k" projectile-kill-buffers)
   ("m"   projectile-multi-occur)
-  ("p"   helm-projectile-switch-project)
-  ("r"   helm-projectile-recentf)
+  ("p"   counsel-projectile)
   ("x"   projectile-remove-known-project)
   ("X"   projectile-cleanup-known-projects)
   ("`"   hydra-projectile-other-window/body "other window")
@@ -202,15 +185,6 @@ Links, footnotes  C-c C-a    _L_: link          _U_: uri        _F_: footnote   
   )
 
 (global-set-key [f9] 'dh-hydra-markdown-mode/body)
-
-;; page break navigation
-(defhydra hydra-page-break ()
-  "page breaks"
-  ("k" backward-page "back")
-  ("j" forward-page "forward")
-  ("p" helm-pages "show pages")
-  ("RET" nil "quit")
-  ("q" nil "quit"))
 
 (defhydra hydra-gtags ()
   "

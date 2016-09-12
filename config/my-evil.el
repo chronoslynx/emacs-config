@@ -3,25 +3,23 @@
   :config
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
-    "e" 'helm-find-files
-    "b" 'helm-mini
-    "s" 'swiper-helm
-    "w" 'save-buffer
+    "b" 'switch-to-buffer
+    "e" 'counsel-find-file
     "d" 'kill-buffer
-    "f" 'ag
+    "f" 'counsel-ag
     "g" 'hydra-gtags/body
-    "p" 'hydra-projectile/body
     "h" 'hydra-describe/body
-    "m" 'helm-semantic-or-imenu
-    "x" 'hydra-windows/body
+    "l" 'counsel-locate
+    "m" 'ivy-imenu-goto
+    "p" 'hydra-projectile/body
     "q" 'hydra-flycheck/body
-    "<SPC>" 'helm-M-x
+    "r" 'ivy-resume
+    "s" 'swiper
+    "w" 'save-buffer
+    "x" 'hydra-windows/body
+    "y" 'counsel-yank-pop
+    "<SPC>" 'counsel-M-x
     ";" 'avy-goto-word-1
-    ;; "j" 'hydra-page-break/forward-page
-    ;; "k" 'hydra-page-break/backward-page
-    ;; Org-mode help
-    "a" 'org-agenda
-    "c" 'org-capture
     )
   )
 

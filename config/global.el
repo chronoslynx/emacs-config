@@ -140,10 +140,6 @@ Single Capitals as you type."
 ;; Other Global Setup
 (use-package better-defaults)
 
-(use-package remember
-  :config (define-key remember-notes-mode-map (kbd "C-c C-c") nil)
-  :bind ("C-c r" . remember))
-
 (use-package perspective
   :config
   (persp-mode)
@@ -152,7 +148,8 @@ Single Capitals as you type."
 
 (use-package projectile
   :config
-  (projectile-global-mode))
+  (projectile-global-mode)
+  (setq projectile-completion-system 'ivy))
 
 (use-package flycheck
   :init (add-hook 'after-init-hook 'global-flycheck-mode)
@@ -214,80 +211,21 @@ Single Capitals as you type."
   (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:") t)
   (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/Class/" ":CLS:") t))
 
-;; Helm the Mighty
-(use-package helm
+(use-package ivy
   :demand
   :config
-  (use-package helm-config)
-  (helm-mode 1)
-  (helm-adaptive-mode 1)
-  (helm-autoresize-mode 1)
-  (helm-push-mark-mode 1)
-  (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-        helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-        helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-        helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-        helm-ff-file-name-history-use-recentf t)
-  (setq helm-split-window-in-side-p           t
-        helm-buffers-fuzzy-matching           t
-        helm-move-to-line-cycle-in-source     t
-        helm-ff-search-library-in-sexp        t
-        helm-ff-file-name-history-use-recentf t)
-  (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
-  (substitute-key-definition 'find-tag 'helm-etags-select global-map)
-  (use-package helm-gtags
-    :commands (helm-gtags-mode)
-    :init
-    (add-hook 'dired-mode-hook 'helm-gtags-mode)
-    (add-hook 'eshell-mode-hook 'helm-gtags-mode)
-    (add-hook 'c-mode-hook 'helm-gtags-mode)
-    (add-hook 'c++-mode-hook 'helm-gtags-mode)
-    (add-hook 'rust-mode-hook 'helm-gtags-mode)
-    (add-hook 'asm-mode-hook 'helm-gtags-mode)
-    :config
-    (setq
-     helm-gtags-ignore-case t
-     helm-gtags-auto-update t
-     helm-gtags-use-input-at-cursor t
-     helm-gtags-pulse-at-cursor t
-     helm-gtags-prefix-key "\C-c g"
-     helm-gtags-suggested-key-mapping t)
-    (bind-keys :map helm-gtags-mode-map
-               ("C-c g a" . helm-gtags-tags-in-this-function)
-               ("C-j" . helm-gtags-select)
-               ("M-." . helm-gtags-dwim)
-               ("M-," . helm-gtags-pop-stack)
-               ("C-c <" . helm-gtags-previous-history)
-               ("C-c >" . helm-gtags-next-history)))
-  (use-package helm-projectile
-    :config
-    (helm-projectile-on)
-    (setq projectile-completion-system 'helm))
-
-  (add-hook 'eshell-mode-hook
-            '(lambda ()
-               (define-key eshell-mode-map (kbd "TAB") 'helm-esh-pcomplete)
-               (define-key eshell-mode-map (kbd "C-c C-l") 'helm-eshell-history)))
-  :bind (("M-x" . helm-M-x)
-         ("C-x C-m" . helm-M-x)
-         ("M-y" . helm-show-kill-ring)
-         ("C-x b" . helm-mini)
-         ("C-x C-b" . helm-buffers-list)
-         ("C-x C-f" . helm-find-files)
-         ("C-h a" . helm-apropos)
-         ("C-h i" . helm-info-emacs)
-         ("C-h C-l" . helm-locate-library)
-         ("C-c h" . helm-command-prefix)))
-
-(use-package helm-pages)
-
-(use-package swiper-helm
-  :init (use-package swiper)
-  :bind (("\C-s" . swiper-helm)
-         ("\C-s" . swiper-helm)
-         ("C-c C-r" . helm-resume)))
-(use-package helm-descbinds
-  :bind (("C-h b" . helm-descbinds)))
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (use-package swiper
+    :bind ("\C-s" . swiper))
+  (use-package counsel
+    :demand
+    :bind (("M-x" . counsel-M-x)
+           ("C-x C-f" . counsel-find-file)
+           ("C-x l" . counsel-locate)
+           ("C-h b" . counsel-descbinds)))
+  :bind (("C-c C-r" . ivy-resume))
+  )
 
 (global-unset-key (kbd "C-x c"))
 
@@ -379,6 +317,7 @@ Single Capitals as you type."
                       'magit-stash-mode
                       'magit-stashes-mode
                       'magit-status-mode))
+    (setq magit-completing-read-function 'ivy-completing-read)
     (add-to-list 'evil-emacs-state-modes mode))
 
   (use-package info

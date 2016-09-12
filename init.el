@@ -7,7 +7,6 @@
  '(custom-safe-themes
    (quote
     ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" default)))
- '(helm-ag-base-command "pt -e --nocolor --nogroup")
  '(safe-local-variable-values
    (quote
     ((pyenv-mode-set "apiary")
@@ -38,6 +37,10 @@
     company-auctex
     company-irony
     company-anaconda
+    counsel
+    counsel-dash
+    counsel-osx-app
+    counsel-projectile
     dash
     deft
     ein
@@ -55,14 +58,10 @@
     flycheck-irony
     flycheck-rust
     go-mode
-    helm
-    helm-ag
-    helm-bibtex
-    helm-descbinds
-    helm-gtags
-    helm-projectile
     hl-todo
     hydra
+    ivy
+    ivy-hydra
     key-chord
     magit
     markdown-mode
@@ -87,7 +86,7 @@
     sml-mode
     solarized-theme
     swiper
-    swiper-helm
+    ;; swiper-helm
     tramp
     web-mode
     writegood-mode
