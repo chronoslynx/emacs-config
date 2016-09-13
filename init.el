@@ -3,10 +3,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode nil)
  '(custom-enabled-themes (quote (solarized-dark)))
  '(custom-safe-themes
    (quote
     ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" default)))
+ '(persp-show-modestring t)
  '(safe-local-variable-values
    (quote
     ((pyenv-mode-set "apiary")
@@ -38,7 +40,6 @@
     company-irony
     company-anaconda
     counsel
-    counsel-dash
     counsel-osx-app
     counsel-projectile
     dash
@@ -66,11 +67,8 @@
     magit
     markdown-mode
     org
-    org-ref
     python
     rainbow-delimiters
-    rustfmt
-    smart-mode-line
     smart-tab
     smartparens
     sphinx-doc
@@ -89,7 +87,6 @@
     sml-mode
     solarized-theme
     swiper
-    ;; swiper-helm
     tramp
     web-mode
     writegood-mode

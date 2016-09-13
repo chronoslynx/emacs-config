@@ -128,6 +128,31 @@ Single Capitals as you type."
  gdb-show-main t
  )
 
+;; write a function to do the spacing
+(defun simple-mode-line-render (left right)
+  "Return a string of `window-width' length containing LEFT, and RIGHT
+ aligned respectively."
+  (let* ((available-width (- (window-width) (length left) 2)))
+    (format (format " %%s %%%ds " available-width) left right)))
+
+;; Mode-line
+(setq-default mode-line-format
+      '((:eval (simple-mode-line-render
+                ;; left
+                (format-mode-line (format "%s (%%l/%d) %%M"
+                                          (downcase (format-mode-line mode-name))
+                                          (line-number-at-pos (point-max))))
+                ;; right
+                (format "%s"
+                        (concat (buffer-name)
+                                (cond
+                                 ((not (buffer-file-name)) " ")
+                                 ((buffer-modified-p) "*")
+                                 (t " ")))
+                        )
+                ))))
+
+
 ;; font
 (defun fontify-frame (frame)
   (set-frame-parameter frame 'font "Fira Code Retina-14"));;"Fira Code-14"))
@@ -198,26 +223,13 @@ Single Capitals as you type."
     (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
     (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
                                               ("* ||\n[i]" "RET")))))
-;; Mode line
-(use-package smart-mode-line
-  :config
-  (setq sml/theme 'respectful)
-  (sml/setup)
-  ;; (setq rm-blacklist ".*")
-  (add-to-list 'sml/replacer-regexp-list '("^~/Projects/\\(\\w+\\)/"
-                                           (lambda(s)
-                                             (concat ":" (upcase (substring (match-string 1 s) 0 3)) ":"))
-                                           ) t)
-  (add-to-list 'sml/replacer-regexp-list '("^~/Development/" ":DEV:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:") t)
-  (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/Class/" ":CLS:") t))
-
 (use-package ivy
   :demand
   :config
   (ivy-mode 1)
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-use-virtual-buffers t)
+  (setq ivy-wrap t)
   (use-package swiper
     :bind ("\C-s" . swiper))
   (use-package counsel
@@ -241,7 +253,7 @@ Single Capitals as you type."
         company-selection-wrap-around t
         company-show-numbers t
         company-require-match 'never
-        company-dabbrev-downcase nil
+        companydabbrev-downcase nil
         company-dabbrev-ignore-case t)
   (global-company-mode))
 
