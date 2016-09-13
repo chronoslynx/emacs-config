@@ -65,7 +65,6 @@
     key-chord
     magit
     markdown-mode
-    merlin
     org
     org-ref
     python
@@ -75,7 +74,11 @@
     smart-tab
     smartparens
     sphinx-doc
+    ;; Ocaml
+    utop
     tuareg
+    merlin
+    flycheck-ocaml
     page-break-lines
     perspective
     persp-projectile
