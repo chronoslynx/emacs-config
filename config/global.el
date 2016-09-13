@@ -205,7 +205,8 @@ Single Capitals as you type."
   (sml/setup)
   ;; (setq rm-blacklist ".*")
   (add-to-list 'sml/replacer-regexp-list '("^~/Projects/\\(\\w+\\)/"
-                                           (lambda(s) (concat ":" (upcase (match-string 1 s)) ":"))
+                                           (lambda(s)
+                                             (concat ":" (upcase (substring (match-string 1 s) 0 3)) ":"))
                                            ) t)
   (add-to-list 'sml/replacer-regexp-list '("^~/Development/" ":DEV:") t)
   (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:") t)
@@ -215,6 +216,7 @@ Single Capitals as you type."
   :demand
   :config
   (ivy-mode 1)
+  (setq ivy-count-format "(%d/%d) ")
   (setq ivy-use-virtual-buffers t)
   (use-package swiper
     :bind ("\C-s" . swiper))
@@ -322,15 +324,14 @@ Single Capitals as you type."
 
   (use-package info
     :config
-    (info-initialize)
-    (add-to-list 'Info-directory-list
-                 "~/.emacs.d/packages/magit/Documentation/")))
+    (info-initialize)))
 
 (use-package hl-todo
   :init (setq hl-todo-activate-in-modes '(prog-mode))
   :config
   (setq hl-todo-keyword-faces '(("TODO" . hl-todo)
                                 ("NOTE" . hl-todo)
+                                ("XXX" . hl-todo)
                                 ("FIXME" . hl-todo)
                                 ("KLUDGE" . hl-todo)))
   (hl-todo-set-regexp))
