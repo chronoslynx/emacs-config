@@ -162,7 +162,6 @@ Single Capitals as you type."
 
 (use-package yasnippet
   :config
-  (setq yasnippet-dirs (append yas-snippet-dirs "~/.emacs.d/snippets"))
   (yas-global-mode 1))
 
 (use-package smartparens

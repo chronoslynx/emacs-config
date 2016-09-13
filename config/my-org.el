@@ -7,6 +7,7 @@
 (use-package org-mode
   :commands (org-agenda org-capture org-store-link org-mode)
   :init
+  (setq org-latex-pdf-process (list "latexmk -pdf -bibtex %f"))
   (setq org-directory (expand-file-name "~/Dropbox/Notes")
         ;; Local (non-synced) projects go into ~/Org
         ;; Shared orgfiles go into ~/Drobox/Notes
@@ -53,6 +54,24 @@
          ("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          ("C-c s" . org-schedule)))
+(use-package org-ref
+  :demand
+  :config
+  (setq reftex-default-bibliography '("~/Dropbox/bibliography/references.bib"))
+
+  ;; see org-ref for use of these variables
+  (setq org-ref-bibliography-notes "~/Dropbox/bibliography/notes.org"
+        org-ref-default-bibliography '("~/Dropbox/bibliography/references.bib")
+        org-ref-pdf-directory "~/Dropbox/bibliography/bibtex-pdfs/"))
+(use-package helm-bibtex
+  :demand
+  :config
+  (setq reftex-default-bibliography '("~/Dropbox/bibliography/references.bib"))
+
+  ;; see org-ref for use of these variables
+  (setq org-ref-bibliography-notes "~/Dropbox/bibliography/notes.org"
+        org-ref-default-bibliography '("~/Dropbox/bibliography/references.bib")
+        org-ref-pdf-directory "~/Dropbox/bibliography/bibtex-pdfs/"))
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 (provide 'my-org)

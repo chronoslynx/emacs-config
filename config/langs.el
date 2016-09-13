@@ -66,22 +66,29 @@
     '(add-to-list 'company-backends 'company-anaconda)))
 
 (use-package pyenv-mode
-  :init (use-package pythonic))
+  :init (use-package pythonic)
+  :config
+  (defun projectile-pyenv-mode-set ()
+    "Set pyenv version matching project name."
+    (let ((project (projectile-project-name)))
+      (if (member project (pyenv-mode-versions))
+          (pyenv-mode-set project)
+        (pyenv-mode-unset))))
+
+  (add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set))
 
 (use-package anaconda-mode
-  )
+  :demand)
 
 
 (use-package python
   :mode ("\\.py$" . python-mode)
-  :interpreter ("ipython" . python-mode)
   :config
   (pyenv-mode)
   (add-hook 'python-mode-hook (lambda ()
                                 (require 'sphinx-doc)
                                 (anaconda-mode)
-                                (sphinx-doc-mode t)))
-  (setq python-shell-interpreter "ipython"))
+                                (sphinx-doc-mode t))))
 
 
 ;; HTML, html-templates
