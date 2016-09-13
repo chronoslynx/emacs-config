@@ -67,7 +67,6 @@
     key-chord
     magit
     markdown-mode
-    merlin
     org
     python
     rainbow-delimiters
@@ -76,7 +75,11 @@
     smart-tab
     smartparens
     sphinx-doc
+    ;; Ocaml
+    utop
     tuareg
+    merlin
+    flycheck-ocaml
     page-break-lines
     perspective
     persp-projectile

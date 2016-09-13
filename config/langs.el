@@ -123,11 +123,27 @@
   ;; (add-hook 'racer-mode-hook #'eldoc-mode)
   :mode ("\\rs$" . rust-mode))
 
+(use-package merlin
+  :ensure
+  :config
+  (add-hook 'merlin-mode-hook 'company-mode)
+  (with-eval-after-load 'company
+    (add-to-list 'company-backends 'merlin-company-backend))
+  (add-hook 'tuareg-mode-hook 'merlin-mode))
+
 (use-package tuareg
   :init
   :config
-  (use-package merlin
-    :commands (merlin-mode))
-  (add-hook 'tuareg-mode-hook 'merlin-mode))
+  (require 'merlin)
+  (setq auto-mode-alist (cons '("\\.ml\\w?" . tuareg-mode) auto-mode-alist))
+   ;; Setup environment variables using opam
+  (dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
+    (setenv (car var) (cadr var)))
+  (use-package utop
+    :ensure)
+  (autoload 'utop "utop" "Toplevel for OCaml" t)
+  (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
+  (add-hook 'tuareg-mode-hook 'utop-minor-mode)
+  )
 
 (provide 'langs)
