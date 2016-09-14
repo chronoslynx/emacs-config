@@ -10,7 +10,7 @@
     "g" 'hydra-gtags/body
     "h" 'hydra-describe/body
     "l" 'counsel-locate
-    "m" 'ivy-imenu-goto
+    "m" 'counsel-imenu
     "p" 'hydra-projectile/body
     "q" 'hydra-flycheck/body
     "r" 'ivy-resume
