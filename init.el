@@ -12,7 +12,8 @@
  '(safe-local-variable-values
    (quote
     ((pyenv-mode-set "apiary")
-     (pyenv-mode-set "warthog")))))
+     (pyenv-mode-set "warthog"))))
+ '(z3-solver-cmd "/usr/local/bin/z3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -34,6 +35,7 @@
     avy
     ace-link
     better-defaults
+    boogie-friends
     comment-dwim-2
     company
     company-auctex

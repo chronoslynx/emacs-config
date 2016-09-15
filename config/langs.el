@@ -116,6 +116,9 @@
   :config
   :mode ("\\rs$" . rust-mode))
 
+(use-package boogie-friends
+  :mode ("\\z3$" . z3-smt2-mode))
+
 (use-package merlin
   :ensure
   :config
