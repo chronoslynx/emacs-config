@@ -154,10 +154,10 @@ Single Capitals as you type."
 
 
 ;; font
-(defun fontify-frame (frame)
-  (set-frame-parameter frame 'font "Fira Code Retina-14"));;"Fira Code-14"))
-(fontify-frame nil)
-(push 'fontify-frame after-make-frame-functions)
+;; (defun fontify-frame (frame)
+;;   (set-frame-parameter frame 'font "Fira Code-14"));;"Fira Code-14"))
+;; (fontify-frame nil)
+;; (push 'fontify-frame after-make-frame-functions)
 
 ;; Hooks
 (add-hook 'text-mode-hook #'dubcaps-mode)

@@ -40,7 +40,7 @@ If WINDOW is the only one in its frame, then `delete-frame' too."
 
   (setq eshell-where-to-jump 'begin
         eshell-review-quick-commands nil
-        eshell-smart-spaces-goes-to-end)
+        eshell-smart-spaces-goes-to-end t)
   :bind ("C-!" . eshell-here))
 
 

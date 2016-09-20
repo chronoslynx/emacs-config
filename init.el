@@ -101,6 +101,7 @@
 
 (defvar my:configs
   '("global"
+    "font"
     "my-hydras"
     "my-org"
     "my-evil"
