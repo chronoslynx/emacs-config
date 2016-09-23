@@ -1,5 +1,5 @@
 (when (window-system)
-  (set-default-font "Fira Code"))
+  (set-default-font "Fira Code 14"))
 (let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
                (35 . ".\\(?:###\\|##\\|_(\\|[#(?[_{]\\)")
                (36 . ".\\(?:>\\)")
