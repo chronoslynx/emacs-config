@@ -43,9 +43,6 @@
       '(add-to-list 'company-backends 'company-irony))))
 
 ;; Python
-(use-package sphinx-doc
-  :demand
-  :commands sphinx-doc-mode)
 
 ;; (use-package jedi
 ;;   :demand
@@ -59,36 +56,41 @@
 
 ;; (use-package company-jedi
 ;;   :demand)
-(use-package company-anaconda
-  :demand
-  :config
-  (eval-after-load "company"
-    '(add-to-list 'company-backends 'company-anaconda)))
+;; (use-package company-anaconda
+;;   :demand
+;;   :config
+;;   (eval-after-load "company"
+;;     '(add-to-list 'company-backends 'company-anaconda)))
 
-(use-package pyenv-mode
-  :init (use-package pythonic)
-  :config
-  (defun projectile-pyenv-mode-set ()
-    "Set pyenv version matching project name."
-    (let ((project (projectile-project-name)))
-      (if (member project (pyenv-mode-versions))
-          (pyenv-mode-set project)
-        (pyenv-mode-unset))))
 
-  (add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set))
-
-(use-package anaconda-mode
-  :demand)
 
 
 (use-package python
   :mode ("\\.py$" . python-mode)
+  :init
+  (use-package sphinx-doc
+    :commands sphinx-doc-mode)
+  (use-package anaconda-mode)
   :config
-  (pyenv-mode)
   (add-hook 'python-mode-hook (lambda ()
                                 (require 'sphinx-doc)
                                 (anaconda-mode)
-                                (sphinx-doc-mode t))))
+                                (sphinx-doc-mode t)))
+  (when (executable-find "ipython")
+    (setq
+     python-shell-interpreter "ipython"
+     python-shell-interpreter-args ""
+     python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+     python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+     python-shell-completion-native-enable nil
+     python-shell-completion-setup-code
+     "from IPython.core.completerlib import module_completion"
+     python-shell-completion-string-code
+     "';'.join(module_completion('''%s'''))\n"
+     python-shell-completion-string-code
+     "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+    )
+  )
 
 
 ;; HTML, html-templates
@@ -131,15 +133,15 @@
   :init
   :config
   (require 'merlin)
-  (setq auto-mode-alist (cons '("\\.ml\\w?" . tuareg-mode) auto-mode-alist))
    ;; Setup environment variables using opam
-  (dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
-    (setenv (car var) (cadr var)))
+  ;; (dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
+  ;;   (setenv (car var) (cadr var)))
   (use-package utop
     :ensure)
   (autoload 'utop "utop" "Toplevel for OCaml" t)
   (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
   (add-hook 'tuareg-mode-hook 'utop-minor-mode)
+  :mode ("\\.ml\\w?" . tuareg-mode)
   )
 
 (provide 'langs)
