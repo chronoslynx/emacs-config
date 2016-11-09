@@ -27,6 +27,17 @@
              ("C-c C-f" . markdown-code-fence)
              ("M-;" . markdown-blockquote-region)))
 ;; C, C++
+(use-package ggtags
+  :init
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+                (require 'semantic)
+                (global-semanticdb-minor-mode 1)
+                (global-semantic-idle-scheduler-mode 1)
+                (semantic-mode 1)
+                (ggtags-mode 1)))))
+
 (use-package irony
   :init
   (add-hook 'c++-mode-hook 'irony-mode)
@@ -40,31 +51,11 @@
   (use-package company-irony
     :config
     (eval-after-load 'company
+      '(add-to-list 'company-backends 'company-semantic))
+    (eval-after-load 'company
       '(add-to-list 'company-backends 'company-irony))))
 
 ;; Python
-
-;; (use-package jedi
-;;   :demand
-;;   :preface
-;;   (declare-function jedi:goto-definition jedi nil)
-;;   (declare-function jedi:related-names jedi nil)
-;;   (declare-function jedi:show-doc jedi nil)
-;;   :bind (("C-." . jedi:goto-definition)
-;; 	 ("C-c r" . jedi:related-names)
-;; 	 ("C-?" . jedi:show-doc)))
-
-;; (use-package company-jedi
-;;   :demand)
-;; (use-package company-anaconda
-;;   :demand
-;;   :config
-;;   (eval-after-load "company"
-;;     '(add-to-list 'company-backends 'company-anaconda)))
-
-
-
-
 (use-package python
   :mode ("\\.py$" . python-mode)
   :init
@@ -79,7 +70,7 @@
   (when (executable-find "ipython")
     (setq
      python-shell-interpreter "ipython"
-     python-shell-interpreter-args ""
+     python-shell-interpreter-args "--colors=NoColor"
      python-shell-prompt-regexp "In \\[[0-9]+\\]: "
      python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
      python-shell-completion-native-enable nil

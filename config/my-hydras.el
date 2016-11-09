@@ -188,14 +188,18 @@ Links, footnotes  C-c C-a    _L_: link          _U_: uri        _F_: footnote   
 
 (defhydra hydra-gtags ()
   "
-  _s_: select
-  _d_: dwim
-  _<_: previous (history)
-  _>_: next (history)
+  _s_: find symbol       _d_: find definition
+  _f_: find file
+  _h_: show tag history  _c_: create tags
+  _r_: find reference    _u_: update tags
 "
-  ("s" helm-gtags-select)
-  ("d" helm-gtags-dwim)
-  ("<" helm-gtags-previous-history)
-  (">" helm-gtags-next-history))
+  ("s" ggtags-find-other-symbol)
+  ("f" ggtags-find-file)
+  ("x" ggtags-view-tag-history)
+  ("r" ggtags-find-reference)
+  ("d" ggtags-find-definition)
+  ("c" ggtags-create-tags)
+  ("u" ggtags-update-tags)
+  )
 
 (provide 'my-hydras)
