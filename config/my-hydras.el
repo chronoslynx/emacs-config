@@ -125,7 +125,7 @@ _~_: modified
 ---------------------------------------------------------------------------------
   _f_: file               _s_: ag                _i_: Ibuffer            _x_: remove known project
  _ed_: file curr dir      _m_: multi-occur       _b_: switch to buffer   _X_: cleanup known projects
-  _r_: recent file      _s-k_: Kill all buffers
+  _s-k_: Kill all buffers
   _d_: dir                _`_: other-window
 
 "
@@ -190,7 +190,7 @@ Links, footnotes  C-c C-a    _L_: link          _U_: uri        _F_: footnote   
   "
   _s_: find symbol       _d_: find definition
   _f_: find file
-  _h_: show tag history  _c_: create tags
+  _c_: create tags
   _r_: find reference    _u_: update tags
 "
   ("s" ggtags-find-other-symbol)

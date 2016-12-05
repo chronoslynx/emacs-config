@@ -1,5 +1,5 @@
 ;; Fundamental functions
-(add-hook 'after-init-hook (lambda () (load-theme 'gruvbox)))
+;; (add-hook 'after-init-hook (lambda () (load-theme 'gruvbox)))
 (defun occur-dwim ()
   "Call `occur' with a sane default."
   (interactive)

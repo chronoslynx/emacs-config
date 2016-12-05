@@ -62,9 +62,12 @@
   (use-package sphinx-doc
     :commands sphinx-doc-mode)
   (use-package anaconda-mode)
+  (use-package pyenv-mode
+    :init (require 'pyenv-mode-auto))
   :config
   (add-hook 'python-mode-hook (lambda ()
                                 (require 'sphinx-doc)
+                                (pyenv-mode)
                                 (anaconda-mode)
                                 (sphinx-doc-mode t)))
   )

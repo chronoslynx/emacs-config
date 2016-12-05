@@ -4,19 +4,86 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode nil)
+ '(compilation-message-face (quote default))
  '(counsel-ag-base-command "/usr/local/bin/ag --nocolor --nogroup %s")
- '(custom-enabled-themes (quote (gruvbox)))
+ '(cua-global-mark-cursor-color "#2aa198")
+ '(cua-normal-cursor-color "#839496")
+ '(cua-overwrite-cursor-color "#b58900")
+ '(cua-read-only-cursor-color "#859900")
  '(custom-safe-themes
    (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" default)))
+    ("d320493111089afba1563bc3962d8ea1117dd2b3abb189aeebdc8c51b5517ddb" default)))
+ '(fci-rule-color "#073642")
+ '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
+ '(highlight-symbol-colors
+   (--map
+    (solarized-color-blend it "#002b36" 0.25)
+    (quote
+     ("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2"))))
+ '(highlight-symbol-foreground-color "#93a1a1")
+ '(highlight-tail-colors
+   (quote
+    (("#073642" . 0)
+     ("#546E00" . 20)
+     ("#00736F" . 30)
+     ("#00629D" . 50)
+     ("#7B6000" . 60)
+     ("#8B2C02" . 70)
+     ("#93115C" . 85)
+     ("#073642" . 100))))
+ '(hl-bg-colors
+   (quote
+    ("#7B6000" "#8B2C02" "#990A1B" "#93115C" "#3F4D91" "#00629D" "#00736F" "#546E00")))
+ '(hl-fg-colors
+   (quote
+    ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
+ '(magit-diff-use-overlays nil)
+ '(nrepl-message-colors
+   (quote
+    ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (gruvbox-theme ggtags cargo z3-mode yaml-mode writegood-mode web-mode vagrant-tramp utop use-package tuareg sphinx-doc solarized-theme sml-mode smartparens smart-tab smart-mode-line rustfmt rainbow-delimiters racer pyenv-mode puppet-mode persp-projectile page-break-lines org-ref markdown-mode magit ivy-hydra hl-todo go-mode function-args flyspell-correct-ivy flycheck-rust flycheck-ocaml flycheck-irony flx evil-surround evil-snipe evil-org evil-nerd-commenter evil-matchit ein deft counsel-projectile counsel-osx-app counsel-dash company-irony company-auctex company-anaconda comment-dwim-2 boogie-friends better-defaults adaptive-wrap ace-link)))
+    (pyenv-mode-auto gruvbox-theme ggtags cargo z3-mode yaml-mode writegood-mode web-mode vagrant-tramp utop use-package tuareg sphinx-doc solarized-theme sml-mode smartparens smart-tab smart-mode-line rustfmt rainbow-delimiters racer pyenv-mode puppet-mode persp-projectile page-break-lines org-ref markdown-mode magit ivy-hydra hl-todo go-mode function-args flyspell-correct-ivy flycheck-rust flycheck-ocaml flycheck-irony flx evil-surround evil-snipe evil-org evil-nerd-commenter evil-matchit ein deft counsel-projectile counsel-osx-app counsel-dash company-irony company-auctex company-anaconda comment-dwim-2 boogie-friends better-defaults adaptive-wrap ace-link)))
  '(persp-show-modestring t)
+ '(pos-tip-background-color "#073642")
+ '(pos-tip-foreground-color "#93a1a1")
  '(safe-local-variable-values
    (quote
     ((pyenv-mode-set "apiary")
      (pyenv-mode-set "warthog"))))
+ '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
+ '(term-default-bg-color "#002b36")
+ '(term-default-fg-color "#839496")
+ '(vc-annotate-background nil)
+ '(vc-annotate-background-mode nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#dc322f")
+     (40 . "#ff7f00")
+     (60 . "#ffbf00")
+     (80 . "#b58900")
+     (100 . "#ffff00")
+     (120 . "#ffff00")
+     (140 . "#ffff00")
+     (160 . "#ffff00")
+     (180 . "#859900")
+     (200 . "#aaff55")
+     (220 . "#7fff7f")
+     (240 . "#55ffaa")
+     (260 . "#2affd4")
+     (280 . "#2aa198")
+     (300 . "#00ffff")
+     (320 . "#00ffff")
+     (340 . "#00ffff")
+     (360 . "#268bd2"))))
+ '(vc-annotate-very-old-color nil)
+ '(weechat-color-list
+   (quote
+    (unspecified "#002b36" "#073642" "#990A1B" "#dc322f" "#546E00" "#859900" "#7B6000" "#b58900" "#00629D" "#268bd2" "#93115C" "#d33682" "#00736F" "#2aa198" "#839496" "#657b83")))
+ '(xterm-color-names
+   ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#eee8d5"])
+ '(xterm-color-names-bright
+   ["#002b36" "#cb4b16" "#586e75" "#657b83" "#839496" "#6c71c4" "#93a1a1" "#fdf6e3"])
  '(z3-solver-cmd "/usr/local/bin/z3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -66,7 +133,7 @@
     flycheck-rust
     ggtags
     go-mode
-    gruvbox
+    gruvbox-theme
     hl-todo
     hydra
     ivy
@@ -91,6 +158,7 @@
     projectile
     puppet-mode
     pyenv-mode
+    pyenv-mode-auto
     rust-mode
     sml-mode
     solarized-theme
