@@ -12,7 +12,7 @@
  '(cua-read-only-cursor-color "#859900")
  '(custom-safe-themes
    (quote
-    ("d320493111089afba1563bc3962d8ea1117dd2b3abb189aeebdc8c51b5517ddb" default)))
+    ("10e231624707d46f7b2059cc9280c332f7c7a530ebc17dba7e506df34c5332c4" "d320493111089afba1563bc3962d8ea1117dd2b3abb189aeebdc8c51b5517ddb" default)))
  '(fci-rule-color "#073642")
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
  '(highlight-symbol-colors
@@ -43,7 +43,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (pyenv-mode-auto gruvbox-theme ggtags cargo z3-mode yaml-mode writegood-mode web-mode vagrant-tramp utop use-package tuareg sphinx-doc solarized-theme sml-mode smartparens smart-tab smart-mode-line rustfmt rainbow-delimiters racer pyenv-mode puppet-mode persp-projectile page-break-lines org-ref markdown-mode magit ivy-hydra hl-todo go-mode function-args flyspell-correct-ivy flycheck-rust flycheck-ocaml flycheck-irony flx evil-surround evil-snipe evil-org evil-nerd-commenter evil-matchit ein deft counsel-projectile counsel-osx-app counsel-dash company-irony company-auctex company-anaconda comment-dwim-2 boogie-friends better-defaults adaptive-wrap ace-link)))
+    (php-mode pyenv-mode-auto gruvbox-theme ggtags cargo z3-mode yaml-mode writegood-mode web-mode vagrant-tramp utop use-package tuareg sphinx-doc solarized-theme sml-mode smartparens smart-tab smart-mode-line rustfmt rainbow-delimiters racer pyenv-mode puppet-mode persp-projectile page-break-lines org-ref markdown-mode magit ivy-hydra hl-todo go-mode function-args flyspell-correct-ivy flycheck-rust flycheck-ocaml flycheck-irony flx evil-surround evil-snipe evil-org evil-nerd-commenter evil-matchit ein deft counsel-projectile counsel-osx-app counsel-dash company-irony company-auctex company-anaconda comment-dwim-2 boogie-friends better-defaults adaptive-wrap ace-link)))
  '(persp-show-modestring t)
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
