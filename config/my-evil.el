@@ -4,6 +4,7 @@
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
     "b" 'switch-to-buffer
+    "c" 'compile
     "e" 'counsel-find-file
     "d" 'kill-buffer
     "f" 'counsel-ag

@@ -12,7 +12,7 @@
  '(cua-read-only-cursor-color "#859900")
  '(custom-safe-themes
    (quote
-    ("10e231624707d46f7b2059cc9280c332f7c7a530ebc17dba7e506df34c5332c4" "d320493111089afba1563bc3962d8ea1117dd2b3abb189aeebdc8c51b5517ddb" default)))
+    ("cd4d1a0656fee24dc062b997f54d6f9b7da8f6dc8053ac858f15820f9a04a679" "6ac7c0f959f0d7853915012e78ff70150bfbe2a69a1b703c3ac4184f9ae3ae02" "ed0b4fc082715fc1d6a547650752cd8ec76c400ef72eb159543db1770a27caa7" "7f3ef7724515515443f961ef87fee655750512473b1f5bf890e2dc7e065f240c" "2b6bd2ebad907ee42b3ffefa4831f348e3652ea8245570cdda67f0034f07db93" "5673c365c8679addfb44f3d91d6b880c3266766b605c99f2d9b00745202e75f6" "8d3c5e9ba9dcd05020ccebb3cc615e40e7623b267b69314bdb70fe473dd9c7a8" "10e231624707d46f7b2059cc9280c332f7c7a530ebc17dba7e506df34c5332c4" "d320493111089afba1563bc3962d8ea1117dd2b3abb189aeebdc8c51b5517ddb" default)))
  '(fci-rule-color "#073642")
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
  '(highlight-symbol-colors
@@ -43,7 +43,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (cmake-mode powershell pyenv-mode-auto gruvbox-theme ggtags cargo z3-mode yaml-mode writegood-mode web-mode vagrant-tramp utop use-package tuareg sphinx-doc solarized-theme sml-mode smartparens smart-tab smart-mode-line rustfmt rainbow-delimiters racer pyenv-mode puppet-mode persp-projectile page-break-lines org-ref markdown-mode magit ivy-hydra hl-todo go-mode function-args flyspell-correct-ivy flycheck-rust flycheck-ocaml flycheck-irony flx evil-surround evil-snipe evil-org evil-nerd-commenter evil-matchit ein deft counsel-projectile counsel-osx-app counsel-dash company-irony company-auctex company-anaconda comment-dwim-2 boogie-friends better-defaults adaptive-wrap ace-link)))
+    (capture company-racer ess julia-mode company-lua flymake-lua lua-mode cmake-mode powershell pyenv-mode-auto gruvbox-theme ggtags cargo z3-mode yaml-mode writegood-mode web-mode vagrant-tramp utop use-package tuareg sphinx-doc solarized-theme sml-mode smartparens smart-tab smart-mode-line rustfmt rainbow-delimiters racer pyenv-mode puppet-mode persp-projectile page-break-lines org-ref markdown-mode magit ivy-hydra hl-todo go-mode function-args flyspell-correct-ivy flycheck-rust flycheck-ocaml flycheck-irony flx evil-surround evil-snipe evil-org evil-nerd-commenter evil-matchit ein deft counsel-projectile counsel-osx-app counsel-dash company-irony company-auctex company-anaconda comment-dwim-2 boogie-friends better-defaults adaptive-wrap ace-link)))
  '(persp-show-modestring t)
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
@@ -107,6 +107,7 @@
     ace-link
     better-defaults
     boogie-friends
+    cargo
     comment-dwim-2
     company
     company-auctex
@@ -143,6 +144,7 @@
     markdown-mode
     org
     python
+    racer
     rainbow-delimiters
     smart-tab
     smartparens

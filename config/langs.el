@@ -1,5 +1,6 @@
 ;; Elisp
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.p8\\'" . lua-mode))
 
 ;; Markdown
 (defvar markdown-code-languages
@@ -78,53 +79,76 @@
 
 ;; HTML, html-templates
 (use-package web-mode
-             :init
-             (add-to-list 'auto-mode-alist '("\\.html?" . web-mode))
-             (add-to-list 'auto-mode-alist '("\\.j2$" . web-mode))
-             (add-to-list 'auto-mode-alist '("\\.erb$" . web-mode))
-             (add-to-list 'auto-mode-alist '("\\.tmpl$" . web-mode))
-             :config
-             (setq web-mode-markup-indent-offset 2)
-             (setq web-mode-css-indent-offset 2)
-             (setq web-mode-code-indent-offset 2))
+  :init
+  (add-to-list 'auto-mode-alist '("\\.html?" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.j2$" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb$" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tmpl$" . web-mode))
+  :config
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2))
 
 (use-package yaml-mode
-             :mode ("\\.yml$" . yaml-mode))
+  :mode ("\\.yml$" . yaml-mode))
 
 ;; Golang
 (use-package go-mode
-             :mode ("\\go$" . go-mode)
-             :config (add-hook 'before-save-hook 'gofmt-before-save)
-             :bind (("C-." . godef-jump)))
+  :mode ("\\go$" . go-mode)
+  :config (add-hook 'before-save-hook 'gofmt-before-save)
+  :bind (("C-." . godef-jump)))
 
 (use-package rust-mode
-             :config
-             :mode ("\\rs$" . rust-mode))
+  :config
+  (use-package flycheck-rust
+    :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+  (use-package racer
+    :config
+    (setq racer-cmd "~/.cargo/bin/racer")
+    (setq racer-rust-src-path "/Users/chronon/Projects/deps/rust")
+    (add-hook 'rust-mode-hook #'racer-mode)
+    (add-hook 'racer-mode-hook #'eldoc-mode)
+    (add-hook 'racer-mode-hook #'company-mode)
+    )
+  (add-hook 'rust-mode-hook 'cargo-minor-mode)
+  (add-hook 'rust-mode-hook
+            (lambda ()
+              (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
+
+
+  :mode ("\\rs$" . rust-mode))
 
 (use-package boogie-friends
-             :mode ("\\z3$" . z3-smt2-mode))
+  :mode ("\\z3$" . z3-smt2-mode))
 
 (use-package merlin
-             :ensure
-             :config
-             (add-hook 'merlin-mode-hook 'company-mode)
-             (with-eval-after-load 'company
-                                   (add-to-list 'company-backends 'merlin-company-backend))
-             (add-hook 'tuareg-mode-hook 'merlin-mode))
+  :ensure
+  :config
+  (add-hook 'merlin-mode-hook 'company-mode)
+  (with-eval-after-load 'company
+    (add-to-list 'company-backends 'merlin-company-backend))
+  (add-hook 'tuareg-mode-hook 'merlin-mode))
 
 (use-package tuareg
-             :init
-             :config
-             (require 'merlin)
-             ;; Setup environment variables using opam
-             ;; (dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
-             ;;   (setenv (car var) (cadr var)))
-             (use-package utop
-                          :ensure)
-             (autoload 'utop "utop" "Toplevel for OCaml" t)
-             (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
-             (add-hook 'tuareg-mode-hook 'utop-minor-mode)
-             :mode ("\\.ml\\w?" . tuareg-mode)
-             )
+  :init
+  :config
+  (require 'merlin)
+  ;; Setup environment variables using opam
+  ;; (dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
+  ;;   (setenv (car var) (cadr var)))
+  (use-package utop
+    :ensure t)
+  (autoload 'utop "utop" "Toplevel for OCaml" t)
+  (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
+  (add-hook 'tuareg-mode-hook 'utop-minor-mode)
+  :mode ("\\.ml\\w?" . tuareg-mode)
+  )
+(use-package ess
+  :ensure t
+  :init
+  (require 'ess-site)
+  :config
+  (setq inferior-julia-program-name "/usr/local/bin/julia")
+  )
 
 (provide 'langs)
