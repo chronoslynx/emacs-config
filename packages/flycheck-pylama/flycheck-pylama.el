@@ -49,7 +49,7 @@
   "A Python syntax and style checker using the pylama utility.
 
 See URL `http://pypi.python.org/pypi/pylama'."
-  :command ("pylama" source-inplace)
+  :command ("pylava" source-inplace)
   :error-patterns
   ((error line-start (file-name) ":" line ":" (message) line-end))
   :modes python-mode)
